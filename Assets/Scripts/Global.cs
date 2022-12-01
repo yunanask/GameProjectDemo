@@ -5,8 +5,8 @@ using System.Linq;
 
 public class Global
 {
-    private static int size_x = 10;
-    private static int size_y = 10;
+    public static int size_x = 10;
+    public static int size_y = 10;
     private static int[,] MapLandform = new int[size_x, size_y];
     private static int[,] MapPlayer = new int[size_x, size_y];
     private static int[,] MapElement = new int[size_x, size_y];
@@ -87,7 +87,7 @@ public class Global
     public static int IfCellSelected = 0;
 
     //ÏÔÊ¾Â·¾¶
-    public static void SelectMap(int X, int Y, int dis)
+    public static void SelectMap(int X, int Y, int dis, int landform)
     {
         Queue<Tuple<int, int>> q = new Queue<Tuple<int, int>>();
         q.Enqueue(new Tuple<int, int>(X, Y));
@@ -106,7 +106,8 @@ public class Global
                 if (dY < 0) continue;
                 if (dX >= size_x) continue;
                 if (dY >= size_y) continue;
-                if (MapLandform[dX, dY] != 0) continue;
+                if (MapLandform[dX, dY] > landform) continue;
+                if (MapLandform[dX, dY] < -landform) continue;
                 if (MapPlayer[dX, dY] == 0)
                 {
                     if (MapSelect[dX, dY] == 0)
@@ -146,6 +147,11 @@ public class Global
     public static int GetMapElement(int X, int Y)
     {
         return MapElement[X, Y];
+    }
+
+    public static int GetMapPlayer(int X, int Y)
+    {
+        return MapPlayer[X, Y];
     }
 
     public static int GetSizeX()
@@ -191,7 +197,7 @@ public class Global
         }
     }
 
-    public static void SelectPlayer(int X, int Y, int dis)
+    public static void SelectPlayer(int X, int Y, int dis,int type)
     {
         for (int i = 0; i < size_x; i++)
         {
@@ -206,8 +212,11 @@ public class Global
                 }
             }
         }
-        MapSelect[X, Y] = 0;
-        IfCellSelected = 2;
+        if (type == 2)
+        {
+            MapSelect[X, Y] = 0;
+        }
+        IfCellSelected = type;
     }
 
     private static int Distance(int X,int Y)
