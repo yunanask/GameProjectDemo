@@ -71,7 +71,7 @@ public class clicked : MonoBehaviour
                     GameObject hex = lastPlayer.GetComponent<clicked>().WhatIsDown();
                     int dX = X - hex.GetComponent<Position>().X;
                     int dY = Y - hex.GetComponent<Position>().Y;
-                    int action = 0;
+                    int action = -1;
                     if (dX == 1 && dY == 1)
                     {
                         action = 0;
@@ -96,12 +96,15 @@ public class clicked : MonoBehaviour
                     {
                         action = 5;
                     }
-                    Queue<int> q = new Queue<int>();
-                    for (int i = 0; i < dis; i++)
+                    if (action >= 0)
                     {
-                        q.Enqueue(action);
+                        Queue<int> q = new Queue<int>();
+                        for (int i = 0; i < dis; i++)
+                        {
+                            q.Enqueue(action);
+                        }
+                        GetComponent<Run>().PostQ(q);
                     }
-                    GetComponent<Run>().PostQ(q);
                 }
             }
             var UI = GameObject.FindWithTag("UI");

@@ -103,6 +103,7 @@ public class Detail : MonoBehaviour
                 {
                     Skill.AOE(X, Y, true);
                 }
+                GetComponent<Hexoutline>().Hide6();
             }
             Global.SelectCancel();
             var UI = GameObject.FindWithTag("UI");

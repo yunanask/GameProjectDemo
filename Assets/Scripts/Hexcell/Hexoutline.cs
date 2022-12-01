@@ -94,6 +94,21 @@ public class Hexoutline : MonoBehaviour
             }
         }
     }
+    public void Hide6()
+    {
+        int X = GetComponent<Position>().X;
+        int Y = GetComponent<Position>().Y;
+        for (int i = 0; i < 6; i++)
+        {
+            int dX = X + PlayerAction[i, 0];
+            int dY = Y + PlayerAction[i, 1];
+            if (dX < 0) continue;
+            if (dY < 0) continue;
+            if (dX >= Global.size_x) continue;
+            if (dY >= Global.size_y) continue;
+            Hide(dX, dY);
+        }
+    }
     void Show(int X, int Y)
     {
         Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 1f, Y * 15f);
