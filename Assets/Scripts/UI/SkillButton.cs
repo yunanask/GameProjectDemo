@@ -30,5 +30,9 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler
         {
             Global.SelectPlayer(X, Y, attackWide * 5, 4);
         }
+        if (type == 3)
+        {
+            Global.SelectPlayer(X, Y, 1, 5);
+        }
     }
 }

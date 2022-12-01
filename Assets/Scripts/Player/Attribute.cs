@@ -23,6 +23,11 @@ public class Attribute : MonoBehaviour
         if (health <= 0)
         {
             GameObject HexcellDown = WhatIsDown();
+            if (HexcellDown == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
             int X = HexcellDown.GetComponent<Position>().X;
             int Y = HexcellDown.GetComponent<Position>().Y;
             Destroy(gameObject);
