@@ -89,14 +89,21 @@ public class Detail : MonoBehaviour
             }
             if (Global.IfCellSelected == 3)
             {
-                GameObject hex = clicked.lastPlayer.GetComponent<clicked>().WhatIsDown();
-                X = hex.GetComponent<Position>().X;
-                Y = hex.GetComponent<Position>().Y;
-                Skill.AOE(X, Y, false);
+                if (Global.CellIfSelected(X, Y))
+                {
+                    GameObject hex = clicked.lastPlayer.GetComponent<clicked>().WhatIsDown();
+                    X = hex.GetComponent<Position>().X;
+                    Y = hex.GetComponent<Position>().Y;
+                    Skill.AOE(X, Y, false);
+                }
             }
             if (Global.IfCellSelected == 4)
             {
-                Skill.AOE(X, Y, true);
+                if (Global.CellIfSelected(X, Y))
+                {
+                    Skill.AOE(X, Y, true);
+                }
+                GetComponent<Hexoutline>().Hide6();
             }
             Global.SelectCancel();
             var UI = GameObject.FindWithTag("UI");
