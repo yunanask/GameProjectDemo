@@ -5,12 +5,12 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MoveButton : MonoBehaviour, IPointerDownHandler
+public class SkillButton : MonoBehaviour, IPointerDownHandler
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -19,9 +19,16 @@ public class MoveButton : MonoBehaviour, IPointerDownHandler
         GameObject hex = player.GetComponent<clicked>().WhatIsDown();
         int X = hex.GetComponent<Position>().X;
         int Y = hex.GetComponent<Position>().Y;
-        int moveWide = player.GetComponent<Attribute>().moveWide;
-        int landform = player.GetComponent<Attribute>().landform;
-        Global.SelectCancel();
-        player.GetComponent<clicked>().SelectMap(X, Y, moveWide, landform);
+        int type = player.GetComponent<Attribute>().type;
+        int attackWide = player.GetComponent<Attribute>().attackWide;
+        int damage = player.GetComponent<Attribute>().attackDamage;
+        if (type == 1)
+        {
+            Global.SelectPlayer(X, Y, 1, 3);
+        }
+        if (type == 2)
+        {
+            Global.SelectPlayer(X, Y, attackWide * 5, 4);
+        }
     }
 }

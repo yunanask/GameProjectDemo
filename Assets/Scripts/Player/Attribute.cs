@@ -10,6 +10,8 @@ public class Attribute : MonoBehaviour
     public int moveWide = 1;
     public int attackWide = 1;
     public int attackDamage = 1;
+    public int landform = 1;
+    public int type = 1;
     void Start()
     {
         

@@ -46,13 +46,24 @@ public class clicked : MonoBehaviour
                     GetComponent<Attack>().AttackPlayer();
                 }
             }
+            if (Global.IfCellSelected == 3)
+            {
+                GameObject hex = lastPlayer.GetComponent <clicked>().WhatIsDown();
+                X = hex.GetComponent<Position>().X;
+                Y = hex.GetComponent<Position>().Y;
+                Skill.AOE(X,Y, false);
+            }
+            if (Global.IfCellSelected == 4)
+            {
+                Skill.AOE(X, Y, true);
+            }
             var UI = GameObject.FindWithTag("UI");
             UI.GetComponent<Canvas>().enabled = false;
             Global.SelectCancel();
         }
         else
         {
-            SelectMap(X, Y, 0);
+            SelectMap(X, Y, 0, 0);
             var UI = GameObject.FindWithTag("UI");
             UI.GetComponent<Canvas>().enabled = true;
             UI.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "X: " + X.ToString() + "\nY: " + Y.ToString() + "\nHealth: " + GetComponent<Attribute>().health.ToString();
@@ -61,14 +72,14 @@ public class clicked : MonoBehaviour
         }
     }
 
-    public void SelectMap(int X,int Y,int wide)
+    public void SelectMap(int X,int Y,int wide, int landform)
     {
-        Global.SelectMap(X, Y, wide);
+        Global.SelectMap(X, Y, wide, landform);
     }
 
     public void SelectPlayer(int X, int Y, int wide)
     {
-        Global.SelectPlayer(X, Y, wide);
+        Global.SelectPlayer(X, Y, wide, 2);
     }
 
     public GameObject WhatIsDown()

@@ -84,10 +84,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  element: 1
+  element: 3
   moveWide: 1
   attackWide: 1
   attackDamage: 1
+  landform: 1
+  type: 3
 --- !u!114 &2991568264253144464
 MonoBehaviour:
   m_ObjectHideFlags: 0

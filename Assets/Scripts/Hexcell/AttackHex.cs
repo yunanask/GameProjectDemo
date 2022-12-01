@@ -22,4 +22,14 @@ public class AttackHex : MonoBehaviour
         GameObject lastPlayer = clicked.lastPlayer;
         Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
     }
+    public void AttackAOE()
+    {
+        int X = GetComponent<Position>().X;
+        int Y = GetComponent<Position>().Y;
+        GameObject lastPlayer = clicked.lastPlayer;
+        if (Global.GetMapElement(X, Y) == 0)
+        {
+            Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
+        }
+    }
 }

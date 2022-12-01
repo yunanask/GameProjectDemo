@@ -87,6 +87,17 @@ public class Detail : MonoBehaviour
                     }
                 }
             }
+            if (Global.IfCellSelected == 3)
+            {
+                GameObject hex = clicked.lastPlayer.GetComponent<clicked>().WhatIsDown();
+                X = hex.GetComponent<Position>().X;
+                Y = hex.GetComponent<Position>().Y;
+                Skill.AOE(X, Y, false);
+            }
+            if (Global.IfCellSelected == 4)
+            {
+                Skill.AOE(X, Y, true);
+            }
             Global.SelectCancel();
             var UI = GameObject.FindWithTag("UI");
             UI.GetComponent<Canvas>().enabled = false;
