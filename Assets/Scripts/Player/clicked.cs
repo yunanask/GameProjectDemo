@@ -11,6 +11,7 @@ using TMPro;
 public class clicked : MonoBehaviour
 {
     public static GameObject lastPlayer;
+    public int dis = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +57,43 @@ public class clicked : MonoBehaviour
             if (Global.IfCellSelected == 4)
             {
                 Skill.AOE(X, Y, true);
+            }
+            if (Global.IfCellSelected == 5)
+            {
+                GameObject hex = lastPlayer.GetComponent<clicked>().WhatIsDown();
+                int dX = X - hex.GetComponent<Position>().X;
+                int dY = Y - hex.GetComponent<Position>().Y;
+                int action = 0;
+                if (dX == 1 && dY == 1)
+                {
+                    action = 0;
+                }
+                if (dX == 0 && dY == -1)
+                {
+                    action = 1;
+                }
+                if (dX == 1 && dY == 0)
+                {
+                    action = 2;
+                }
+                if (dX == -1 && dY == 0)
+                {
+                    action = 3;
+                }
+                if (dX == 0 && dY == 1)
+                {
+                    action = 4;
+                }
+                if (dX == -1 && dY == -1)
+                {
+                    action = 5;
+                }
+                Queue<int> q = new Queue<int>();
+                for (int i = 0; i < dis; i++)
+                {
+                    q.Enqueue(action);
+                }
+                GetComponent<Run>().PostQ(q);
             }
             var UI = GameObject.FindWithTag("UI");
             UI.GetComponent<Canvas>().enabled = false;

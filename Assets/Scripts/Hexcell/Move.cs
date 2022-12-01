@@ -25,7 +25,5 @@ public class Move : MonoBehaviour
         Queue<int> q = Global.GetPoint(X, Y, hex.GetComponent<Position>().X, hex.GetComponent<Position>().Y);
         Debug.Log(q);
         lastPlayer.GetComponent<Run>().PostQ(q);
-        Global.SetPlayer(X, Y, 1);
-        Global.SetPlayer(hex.GetComponent<Position>().X, hex.GetComponent<Position>().Y, 0);
     }
 }
