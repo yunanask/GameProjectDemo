@@ -123,6 +123,7 @@ public class Global
             }
             MapSelect[nowx, nowy] = 1;
         }
+        MapSelect[X, Y] = 0;
         IfCellSelected = 1;
     }
 
