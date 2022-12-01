@@ -212,7 +212,7 @@ public class Global
                 }
             }
         }
-        if (type == 2)
+        if (type == 2 || type == 4 || type == 5) 
         {
             MapSelect[X, Y] = 0;
         }
