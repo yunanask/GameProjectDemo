@@ -7,7 +7,7 @@ using UnityEngine;
 public class InitGame : MonoBehaviour
 {
     [SerializeField] private GameObject Hex;
-    [SerializeField] private GameObject Player;
+    [SerializeField] private PlayerInventory inventory;
     // Start is called before the first frame update
     private static float Sqrt3 = Mathf.Sqrt(3);
     void Start()
@@ -30,10 +30,34 @@ public class InitGame : MonoBehaviour
                 Position.Y = j;
             }
         }
+        GameObject Player = 1 switch
+        {
+            3 => inventory.player3,
+            2 => inventory.player2,
+            1 => inventory.player1,
+            _ => inventory.player1,
+        };
         var player = new GameObject { name = "Player" };
-        Player.transform.localScale = new Vector3(10f, 10f, 10f);
+        Player.transform.localScale = new Vector3(5f, 5f, 5f);
         var Player_ = Instantiate(Player, new Vector3(0f, 5f, 0f), Q, player.transform);
+        Player = 2 switch
+        {
+            3 => inventory.player3,
+            2 => inventory.player2,
+            1 => inventory.player1,
+            _ => inventory.player1,
+        };
+        Player.transform.localScale = new Vector3(5f, 5f, 5f);
         Instantiate(Player, new Vector3(Sqrt3 * 10f, 5f, 0f), Q, player.transform);
+        Player = 3 switch
+        {
+            3 => inventory.player3,
+            2 => inventory.player2,
+            1 => inventory.player1,
+            _ => inventory.player1,
+        };
+        Player.transform.localScale = new Vector3(5f, 5f, 5f);
+        Instantiate(Player, new Vector3(Sqrt3 * 20f, 5f, 0f), Q, player.transform);
     }
 
     // Update is called once per frame

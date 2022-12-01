@@ -6,12 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Inventory/Player", menuName = "PlayerInventory")]//将新建物体的选项添加至unity右键菜单
 public class PlayerInventory : ScriptableObject
 {
-    [System.Serializable]
-    public struct Cell
-    {
-        public Mesh mesh;
-        public Material material;
-    };
     [Tooltip("")]
-    public Cell player1, player2, player3;
+    public GameObject player1, player2, player3;
 }

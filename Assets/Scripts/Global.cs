@@ -24,13 +24,17 @@ public class Global
     public static void Init()
     {
         InitMap();
-        MapElement[1, 1] = 1;
-        MapElement[2, 2] = 2;
-        MapElement[5, 2] = 3;
     }
 
     private static void InitMap()
     {
+        for (int i = 0; i < size_x; i++)
+        {
+            for (int j = 0; j < size_y; j++)
+            {
+                MapPlayer[i, j] = 0;
+            }
+        }
         string[] RawString = System.IO.File.ReadAllLines(@"Data\Map.txt");  //路径
 
         for (int i = 0; i < RawString.Length; i++)     //
@@ -39,6 +43,17 @@ public class Global
             for(int j = 0; j < ss.Length; j++)
             {
                 MapLandform[i, j] = (int)float.Parse(ss[j]);
+            }
+        }
+
+        RawString = System.IO.File.ReadAllLines(@"Data\Element.txt");  //路径
+
+        for (int i = 0; i < RawString.Length; i++)     //
+        {
+            string[] ss = RawString[i].Split(' ');     //截断字节
+            for (int j = 0; j < ss.Length; j++)
+            {
+                MapElement[i, j] = (int)float.Parse(ss[j]);
             }
         }
     }
@@ -56,9 +71,20 @@ public class Global
             text += "\r\n";
         }
         System.IO.File.WriteAllText(@"Data\Map.txt", text);
+        text = "";
+        for (int i = 0; i < size_x; i++)
+        {
+            text += MapElement[i, 0].ToString();
+            for (int j = 1; j < size_y; j++)
+            {
+                text += " " + MapElement[i, j].ToString();
+            }
+            text += "\r\n";
+        }
+        System.IO.File.WriteAllText(@"Data\Element.txt", text);
     }
 
-    public static bool IfCellSelected = false;
+    public static int IfCellSelected = 0;
 
     //显示路径
     public static void SelectMap(int X, int Y, int dis)
@@ -96,7 +122,7 @@ public class Global
             }
             MapSelect[nowx, nowy] = 1;
         }
-        IfCellSelected = true;
+        IfCellSelected = 1;
     }
 
     public static void SelectCancel()
@@ -109,7 +135,7 @@ public class Global
                 PlayerComeFrom[i, j] = 0;
             }
         }
-        IfCellSelected = false;
+        IfCellSelected = 0;
     }
 
     public static int GetMapLandform(int X,int Y)
@@ -142,7 +168,11 @@ public class Global
         MapPlayer[X, Y] = Value;
     }
 
-    
+    public static void SetElement(int X, int Y, int Value)
+    {
+        MapElement[X, Y] = Value;
+    }
+
     public static void HexcellUp(int X, int Y, int dis, int Addition)
     {
         for(int i = 0; i < size_x; i++)
@@ -169,7 +199,7 @@ public class Global
             {
                 if (Distance(i - X, j - Y) <= dis)
                 {
-                    if(MapPlayer[i, j] == 1)
+                    if (MapPlayer[i, j] == 1 || MapElement[i, j] >= 0) 
                     {
                         MapSelect[i, j] = 1;
                     }
@@ -177,7 +207,7 @@ public class Global
             }
         }
         MapSelect[X, Y] = 0;
-        IfCellSelected = true;
+        IfCellSelected = 2;
     }
 
     private static int Distance(int X,int Y)

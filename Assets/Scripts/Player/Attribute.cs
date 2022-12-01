@@ -20,7 +20,21 @@ public class Attribute : MonoBehaviour
     {
         if (health <= 0)
         {
+            GameObject HexcellDown = WhatIsDown();
+            int X = HexcellDown.GetComponent<Position>().X;
+            int Y = HexcellDown.GetComponent<Position>().Y;
             Destroy(gameObject);
+            Global.SetPlayer(X, Y, 0);
         }
+    }
+    public GameObject WhatIsDown()
+    {
+        Ray ray = new Ray(transform.position, -Vector3.up);
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            return hitInfo.collider.gameObject;
+        }
+        return null;
     }
 }

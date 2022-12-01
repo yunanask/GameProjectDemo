@@ -68,17 +68,26 @@ public class Detail : MonoBehaviour
         }
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
-        if (Global.IfCellSelected)
+        if (Global.IfCellSelected > 0)
         {
-            if (Global.CellIfSelected(X, Y))
+            if (Global.IfCellSelected == 1)
             {
-                GetComponent<Move>().MovePlayer();
-                Global.SelectCancel();
+                if (Global.CellIfSelected(X, Y))
+                {
+                        GetComponent<Move>().MovePlayer();
+                }
             }
-            else
+            if (Global.IfCellSelected == 2)
             {
-                Global.SelectCancel();
+                if (Global.CellIfSelected(X, Y))
+                {
+                    if (WhatIsOn() == null)
+                    {
+                        GetComponent<AttackHex>().Attack();
+                    }
+                }
             }
+            Global.SelectCancel();
             var UI = GameObject.FindWithTag("UI");
             UI.GetComponent<Canvas>().enabled = false;
         }

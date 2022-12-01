@@ -37,11 +37,14 @@ public class clicked : MonoBehaviour
         int Y = HexcellDown.GetComponent<Position>().Y;
         int moveWide = GetComponent<Attribute>().moveWide;
         int attackWide = GetComponent<Attribute>().attackWide;
-        if (Global.IfCellSelected)
+        if (Global.IfCellSelected > 0) 
         {
-            if(Global.CellIfSelected(X, Y))
+            if(Global.IfCellSelected == 2)
             {
-                GetComponent<Attack>().AttackPlayer();
+                if(Global.CellIfSelected(X, Y))
+                {
+                    GetComponent<Attack>().AttackPlayer();
+                }
             }
             var UI = GameObject.FindWithTag("UI");
             UI.GetComponent<Canvas>().enabled = false;

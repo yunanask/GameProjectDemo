@@ -12,12 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9492ce948e1b53540a8d8a3ee6183404, type: 3}
   m_Name: Inventory_Player
   m_EditorClassIdentifier: 
-  player1:
-    mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-    material: {fileID: 2100000, guid: 82ad4c9ee43b58549ac4d1fa154e9527, type: 2}
-  player2:
-    mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-    material: {fileID: 2100000, guid: 82ad4c9ee43b58549ac4d1fa154e9527, type: 2}
-  player3:
-    mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-    material: {fileID: 2100000, guid: 82ad4c9ee43b58549ac4d1fa154e9527, type: 2}
+  player1: {fileID: 115916, guid: 7bf226a057fadd745bf900589163e392, type: 3}
+  player2: {fileID: 141846, guid: a087c764cde2ebf4aaba1b35ab4fa929, type: 3}
+  player3: {fileID: 195512, guid: 8a4a0878068573c4ca13bdeaeb706bb6, type: 3}
