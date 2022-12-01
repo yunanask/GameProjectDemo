@@ -1542,6 +1542,7 @@ GameObject:
   - component: {fileID: 6528019022917194733}
   - component: {fileID: 8418996458473050004}
   - component: {fileID: 6962117657529466861}
+  - component: {fileID: 2449617736057835027}
   m_Layer: 0
   m_Name: Creep_Archer_Red
   m_TagString: Untagged
@@ -1634,3 +1635,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbbcaa6914c7984880392718dc8fc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 70
+--- !u!95 &2449617736057835027
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115916}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: b6b2b23c3f5f70844ab0512aad5c246f, type: 3}
+  m_Controller: {fileID: 9100000, guid: d87015dbd86d86b4091e595b1430f6d9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

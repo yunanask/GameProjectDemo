@@ -39,7 +39,7 @@ public class InitGame : MonoBehaviour
         };
         var player = new GameObject { name = "Player" };
         Player.transform.localScale = new Vector3(5f, 5f, 5f);
-        var Player_ = Instantiate(Player, new Vector3(0f, 5f, 0f), Q, player.transform);
+        var Player_ = Instantiate(Player, new Vector3(0f, 1f, 0f), Q, player.transform);
         Player = 2 switch
         {
             3 => inventory.player3,
@@ -48,7 +48,7 @@ public class InitGame : MonoBehaviour
             _ => inventory.player1,
         };
         Player.transform.localScale = new Vector3(5f, 5f, 5f);
-        Instantiate(Player, new Vector3(Sqrt3 * 10f, 5f, 0f), Q, player.transform);
+        Instantiate(Player, new Vector3(Sqrt3 * 10f, 1f, 0f), Q, player.transform);
         Player = 3 switch
         {
             3 => inventory.player3,
@@ -57,7 +57,7 @@ public class InitGame : MonoBehaviour
             _ => inventory.player1,
         };
         Player.transform.localScale = new Vector3(5f, 5f, 5f);
-        Instantiate(Player, new Vector3(Sqrt3 * 20f, 5f, 0f), Q, player.transform);
+        Instantiate(Player, new Vector3(Sqrt3 * 20f, 1f, 0f), Q, player.transform);
     }
 
     // Update is called once per frame
