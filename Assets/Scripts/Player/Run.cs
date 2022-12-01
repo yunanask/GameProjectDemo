@@ -100,6 +100,8 @@ public class Run : MonoBehaviour
                     {
                         Q.Dequeue();
                     }
+                    X = X - PlayerAction[top, 0];
+                    Y = Y - PlayerAction[top, 1];
                     return;
                 }
                 target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
