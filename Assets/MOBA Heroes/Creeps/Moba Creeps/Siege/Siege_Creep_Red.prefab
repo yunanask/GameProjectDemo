@@ -85,8 +85,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   element: 1
-  moveWide: 1
-  attackWide: 1
+  moveWide: 11
+  attackWide: 4
   attackDamage: 1
 --- !u!114 &2991568264253144464
 MonoBehaviour:
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbbcaa6914c7984880392718dc8fc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 30
 --- !u!65 &-2128344540747097110
 BoxCollider:
   m_ObjectHideFlags: 0

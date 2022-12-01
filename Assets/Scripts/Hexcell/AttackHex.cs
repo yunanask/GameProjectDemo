@@ -20,6 +20,9 @@ public class AttackHex : MonoBehaviour
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
         GameObject lastPlayer = clicked.lastPlayer;
+        Animator anim = lastPlayer.GetComponent<Animator>();
+        lastPlayer.transform.LookAt(transform.position);
+        anim.SetTrigger("attack");
         Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
     }
 }

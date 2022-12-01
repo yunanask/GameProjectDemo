@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -17,13 +18,18 @@ public class Attack : MonoBehaviour
     }
     public void AttackPlayer()
     {
+       
         GameObject Hex = WhatIsDown();
         int X = Hex.GetComponent<Position>().X;
         int Y = Hex.GetComponent<Position>().Y;
         GameObject lastPlayer = clicked.lastPlayer;
         if (lastPlayer != gameObject)
         {
+            Animator anim = lastPlayer.GetComponent<Animator>();
+            lastPlayer.transform.LookAt(transform.position);
+            anim.SetTrigger("attack");
             GetComponent<Attribute>().health -= lastPlayer.GetComponent<Attribute>().attackDamage;
+
         }
     }
 
