@@ -1266,9 +1266,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   element: 1
-  moveWide: 8
+  moveWide: 4
   attackWide: 1
   attackDamage: 1
+  landform: 1
+  type: 1
 --- !u!114 &5745218190864770429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,6 +1283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c124f65406c6eb43b89ae651a0a3974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dis: 3
 --- !u!114 &7768623722275899626
 MonoBehaviour:
   m_ObjectHideFlags: 0
