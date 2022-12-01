@@ -1266,7 +1266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   element: 1
-  moveWide: 1
+  moveWide: 8
   attackWide: 1
   attackDamage: 1
 --- !u!114 &5745218190864770429
@@ -1293,6 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbbcaa6914c7984880392718dc8fc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 50
 --- !u!65 &-2762228003736872097
 BoxCollider:
   m_ObjectHideFlags: 0
