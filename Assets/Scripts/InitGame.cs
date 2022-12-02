@@ -58,6 +58,15 @@ public class InitGame : MonoBehaviour
         };
         Player.transform.localScale = new Vector3(5f, 5f, 5f);
         Instantiate(Player, new Vector3(Sqrt3 * 20f, 1f, 0f), Q, player.transform);
+        Player = 3 switch
+        {
+            3 => inventory.player3,
+            2 => inventory.player2,
+            1 => inventory.player1,
+            _ => inventory.player1,
+        };
+        Player.transform.localScale = new Vector3(5f, 5f, 5f);
+        Instantiate(Player, new Vector3(Sqrt3 * 30f, 1f, 0f), Q, player.transform);
     }
 
     // Update is called once per frame
