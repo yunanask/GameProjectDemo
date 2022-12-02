@@ -23,16 +23,35 @@ public class AttackHex : MonoBehaviour
         Animator anim = lastPlayer.GetComponent<Animator>();
         lastPlayer.transform.LookAt(transform.position);
         anim.SetTrigger("attack");
-        Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
+        if(GetComponent<Element>().Element_ == 0)
+        {
+            Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
+        }
+        else
+        {
+            int yuan = (lastPlayer.GetComponent<Attribute>().element - GetComponent<Element>().Element_ + 3) % 3;
+            if (yuan == 2)
+            {
+                Global.SetElement(X, Y, 0);
+            }
+        }
     }
     public void AttackAOE()
     {
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
         GameObject lastPlayer = clicked.lastPlayer;
-        if (Global.GetMapElement(X, Y) == 0)
+        if (GetComponent<Element>().Element_ == 0)
         {
             Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
+        }
+        else
+        {
+            int yuan = (lastPlayer.GetComponent<Attribute>().element - GetComponent<Element>().Element_ + 3) % 3;
+            if (yuan == 2)
+            {
+                Global.SetElement(X, Y, 0);
+            }
         }
     }
 }
