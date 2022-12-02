@@ -1606,10 +1606,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   element: 2
-  moveWide: 1
-  attackWide: 1
+  moveWide: 3
+  attackWide: 3
   attackDamage: 1
-  landform: 1
+  landform: 0
   type: 2
 --- !u!114 &8418996458473050004
 MonoBehaviour:
@@ -1623,6 +1623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c124f65406c6eb43b89ae651a0a3974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dis: 3
 --- !u!114 &6962117657529466861
 MonoBehaviour:
   m_ObjectHideFlags: 0

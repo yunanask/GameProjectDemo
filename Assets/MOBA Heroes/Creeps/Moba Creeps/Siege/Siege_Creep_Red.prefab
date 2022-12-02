@@ -85,10 +85,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   element: 3
-  moveWide: 1
-  attackWide: 1
+  moveWide: 2
+  attackWide: 4
   attackDamage: 1
-  landform: 1
+  landform: 0
   type: 3
 --- !u!114 &2991568264253144464
 MonoBehaviour:
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c124f65406c6eb43b89ae651a0a3974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dis: 3
 --- !u!114 &49876950846328370
 MonoBehaviour:
   m_ObjectHideFlags: 0

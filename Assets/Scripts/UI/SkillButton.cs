@@ -20,18 +20,21 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler
         int X = hex.GetComponent<Position>().X;
         int Y = hex.GetComponent<Position>().Y;
         int type = player.GetComponent<Attribute>().type;
-        int attackWide = player.GetComponent<Attribute>().attackWide;
+        int aoeWide = player.GetComponent<Attribute>().attackWide;
         int damage = player.GetComponent<Attribute>().attackDamage;
         if (type == 1)
         {
+            Global.SelectCancel();
             Global.SelectPlayer(X, Y, 1, 3);
         }
         if (type == 2)
         {
-            Global.SelectPlayer(X, Y, attackWide * 5, 4);
+            Global.SelectCancel();
+            Global.SelectPlayer(X, Y, aoeWide , 4);
         }
         if (type == 3)
         {
+            Global.SelectCancel();
             Global.SelectPlayer(X, Y, 1, 5);
         }
     }
