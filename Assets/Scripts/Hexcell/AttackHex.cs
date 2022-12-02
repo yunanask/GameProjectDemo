@@ -24,6 +24,8 @@ public class AttackHex : MonoBehaviour
         lastPlayer.transform.LookAt(transform.position);
         anim.SetTrigger("attack");
         Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
+        //hasattacked
+        lastPlayer.GetComponent<Attribute>().CanAttack = false;
     }
     public void AttackAOE()
     {
@@ -37,5 +39,8 @@ public class AttackHex : MonoBehaviour
         {
             Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
         }
+        //has apply skill 2
+
+        lastPlayer.GetComponent<Attribute>().CanSkill = false;
     }
 }

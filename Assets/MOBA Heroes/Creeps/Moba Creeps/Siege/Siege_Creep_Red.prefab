@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -2128344540747097110}
   m_Layer: 0
   m_Name: Siege_Creep_Red
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,6 +90,11 @@ MonoBehaviour:
   attackDamage: 1
   landform: 0
   type: 3
+  CanMove: 1
+  CanAttack: 1
+  CanSkill: 1
+  IsTurn: 0
+  turn: 0
 --- !u!114 &2991568264253144464
 MonoBehaviour:
   m_ObjectHideFlags: 0

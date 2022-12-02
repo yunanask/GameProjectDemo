@@ -74,7 +74,8 @@ public class Detail : MonoBehaviour
             {
                 if (Global.CellIfSelected(X, Y))
                 {
-                        GetComponent<Move>().MovePlayer();
+                    GetComponent<Move>().MovePlayer();
+                    //GetComponent<Attribute>().CanMove = false;
                 }
             }
             if (Global.IfCellSelected == 2)
@@ -84,6 +85,7 @@ public class Detail : MonoBehaviour
                     if (WhatIsOn() == null)
                     {
                         GetComponent<AttackHex>().Attack();
+                        //GetComponent<Attribute>().CanAttack = false;
                     }
                 }
             }

@@ -8,11 +8,47 @@ public class InitGame : MonoBehaviour
 {
     [SerializeField] private GameObject Hex;
     [SerializeField] private PlayerInventory inventory;
-    // Start is called before the first frame update
+    private GameObject[] players;
+    private GameObject[] enemys;
+    private List<GameObject> myplayer = new List<GameObject>();
+    private List<GameObject> enemy = new List<GameObject>();
+    private List<GameObject> team = new List<GameObject>();
+    private bool GameEnd ;
+    private int TurnCount;
+
     private static float Sqrt3 = Mathf.Sqrt(3);
+
+    public List<GameObject> getmyplayer
+    {
+        set { myplayer = value; }
+        get { return myplayer; }
+    }
+
+    public List<GameObject> getenemy
+    {
+        set { enemy = value; }
+        get { return enemy; }
+    }
+
+    public List<GameObject> getteam
+    {
+        set { team = value; }
+        get { return team; }
+    }
+    public int getturncount
+    {
+        set { TurnCount = value; }
+        get { return TurnCount; }
+    }
+
+    // Start is called before the first frame update
     void Start()
     {
+        GameEnd = false;
+        TurnCount = 1;
+        //map init
         Global.Init();
+        //ui init
         var UI = GameObject.FindWithTag("UI");
         UI.GetComponent<Canvas>().enabled = false;
         int size_x = Global.GetSizeX();
@@ -30,6 +66,7 @@ public class InitGame : MonoBehaviour
                 Position.Y = j;
             }
         }
+        //player init
         GameObject Player = 1 switch
         {
             3 => inventory.player3,
@@ -58,11 +95,47 @@ public class InitGame : MonoBehaviour
         };
         Player.transform.localScale = new Vector3(5f, 5f, 5f);
         Instantiate(Player, new Vector3(Sqrt3 * 20f, 1f, 0f), Q, player.transform);
+        //team init
+        players = GameObject.FindGameObjectsWithTag("Player");
+        enemys = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (var o in players)
+        {
+            o.GetComponent<Attribute>().IsTurn = true;
+            myplayer.Add(o);
+        }
+        foreach (var o in enemys)
+        {
+            o.GetComponent<Attribute>().IsTurn = false;
+            enemy.Add(o);
+        }
+        team = myplayer;
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
+        if (GameEnd)
+        {
+            Debug.Log("game end!");
+            Time.timeScale = 0;
+        }
+        else
+        {
+           if(team.Count <= 0)
+            {
+                if(myplayer.Count <= 0)
+                {
+                    Debug.Log("enemy win!");
+                }
+                else
+                {
+                    Debug.Log("you win!");
+                }
+                GameEnd = true;
+            }
+        }
     }
 }

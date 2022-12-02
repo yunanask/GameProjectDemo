@@ -12,27 +12,63 @@ public class Attribute : MonoBehaviour
     public int attackDamage = 1;
     public int landform = 1;
     public int type = 1;
+    public bool CanMove = true;
+    public bool CanAttack = true;
+    public bool CanSkill = true;
+    public bool IsTurn = false;
+    public int turn = 0;
 
+
+    private InitGame gm;
     void Start()
     {
-        
+        gm = GameObject.Find("GameManage").GetComponent<InitGame>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //death
         if (health <= 0)
         {
             GameObject HexcellDown = WhatIsDown();
-            if (HexcellDown == null)
+          
+            if (gameObject.tag == "Player")
             {
-                Destroy(gameObject);
-                return;
+                gm.getmyplayer.Remove(gameObject);
+                if (gm.getteam.Contains(gameObject))
+                    gm.getteam.Remove(gameObject);
             }
-            int X = HexcellDown.GetComponent<Position>().X;
-            int Y = HexcellDown.GetComponent<Position>().Y;
+            if (gameObject.tag == "Enemy")
+            {
+                gm.getenemy.Remove(gameObject);
+                if (gm.getteam.Contains(gameObject))
+                    gm.getteam.Remove(gameObject);
+            }
+
             Destroy(gameObject);
-            Global.SetPlayer(X, Y, 0);
+            Debug.Log("À¿Õˆ");
+
+            if (HexcellDown != null)
+            {
+                int X = HexcellDown.GetComponent<Position>().X;
+                int Y = HexcellDown.GetComponent<Position>().Y;
+                Global.SetPlayer(X, Y, 0);
+            }
+
+        }
+        //isturn
+        if (IsTurn && (gm.getturncount != turn))
+        {
+            CanMove = true;
+            CanAttack = true;
+            CanSkill = true;
+            turn = gm.getturncount;
+        }
+        //turn end
+        if (!(CanMove || CanAttack || CanSkill))
+        {
+            IsTurn = false;
         }
     }
     public GameObject WhatIsDown()
