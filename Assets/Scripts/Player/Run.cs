@@ -23,6 +23,8 @@ public class Run : MonoBehaviour
     public float speed = 70.0f;
     Animator anim;
 
+    private bool damageif = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,6 +106,7 @@ public class Run : MonoBehaviour
                     Y = Y - PlayerAction[top, 1];
                     return;
                 }
+                damageif = false;
                 target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
                 if (Global.GetMapLandform(X, Y) < -1)
                 {
@@ -114,7 +117,40 @@ public class Run : MonoBehaviour
                     }
                     return;
                 }
-                Global.SetPlayer(X, Y, 1);
+                Global.SetPlayer(X, Y, 2);
+            }
+            else
+            {
+                if (!damageif)
+                {
+                    GameObject Hex = WhatIsDown();
+
+                    if (Hex.GetComponent<Element>().Element_ > 0)
+                    {
+
+                        int yuan = (GetComponent<Attribute>().element - Hex.GetComponent<Element>().Element_ + 3) % 3;
+                        if (yuan == 2)
+                        {
+                            yuan = 0;
+                        }
+                        else
+                        {
+                            if (yuan == 1)
+                            {
+                                yuan = -1;
+                            }
+                            else
+                            {
+                                if (yuan == 0)
+                                {
+                                    yuan = 1;
+                                }
+                            }
+                        }
+                        GetComponent<Attribute>().health += yuan;
+                    }
+                    damageif = true;
+                }
             }
         }
     }
