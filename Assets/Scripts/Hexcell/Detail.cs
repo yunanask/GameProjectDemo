@@ -108,8 +108,8 @@ public class Detail : MonoBehaviour
                 GetComponent<Hexoutline>().Hide6();
             }
             Global.SelectCancel();
-            var UI = GameObject.FindWithTag("UI");
-            UI.GetComponent<Canvas>().enabled = false;
+            //var UI = GameObject.FindWithTag("UI");
+            //UI.GetComponent<Canvas>().enabled = false;
         }
         else
         {

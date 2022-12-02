@@ -42,7 +42,7 @@ public class clicked : MonoBehaviour
         {
             if(Global.IfCellSelected == 2)
             {
-                if(Global.CellIfSelected(X, Y))
+                if(Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
                     
                     GetComponent<Attack>().AttackPlayer();
@@ -52,7 +52,7 @@ public class clicked : MonoBehaviour
             }
             if (Global.IfCellSelected == 3)
             {
-                if (Global.CellIfSelected(X, Y))
+                if (Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
                     GameObject hex = lastPlayer.GetComponent<clicked>().WhatIsDown();
                     X = hex.GetComponent<Position>().X;
@@ -64,7 +64,7 @@ public class clicked : MonoBehaviour
             }
             if (Global.IfCellSelected == 4)
             {
-                if (Global.CellIfSelected(X, Y))
+                if (Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
                     Skill.AOE(X, Y, true);
                     //has apply skill 2
@@ -73,7 +73,7 @@ public class clicked : MonoBehaviour
             }
             if (Global.IfCellSelected == 5)
             {
-                if (Global.CellIfSelected(X, Y))
+                if (Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
                     GameObject hex = lastPlayer.GetComponent<clicked>().WhatIsDown();
                     int dX = X - hex.GetComponent<Position>().X;
@@ -116,8 +116,8 @@ public class clicked : MonoBehaviour
                     }
                 }
             }
-            var UI = GameObject.FindWithTag("UI");
-            UI.GetComponent<Canvas>().enabled = false;
+            //var UI = GameObject.FindWithTag("UI");
+            //UI.GetComponent<Canvas>().enabled = false;
             Global.SelectCancel();
         }
         else

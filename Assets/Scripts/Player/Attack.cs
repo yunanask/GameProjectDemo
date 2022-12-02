@@ -23,7 +23,7 @@ public class Attack : MonoBehaviour
         int X = Hex.GetComponent<Position>().X;
         int Y = Hex.GetComponent<Position>().Y;
         GameObject lastPlayer = clicked.lastPlayer;
-        if (lastPlayer != gameObject)
+        if (lastPlayer.tag != gameObject.tag)
         {
             Animator anim = lastPlayer.GetComponent<Animator>();
             lastPlayer.transform.LookAt(transform.position);

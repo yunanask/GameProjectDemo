@@ -18,7 +18,7 @@ public class Run : MonoBehaviour
     };
     private Vector3 target;// new Vector3(i * Sqrt3 * 10f - j * 5f * Sqrt3, 0, j * 15f);
     private Vector3 step;
-    private Queue<int> Q = new Queue<int>();
+    public Queue<int> Q = new Queue<int>();
     private int top;
     public float speed = 70.0f;
     private bool ifgao = false;
@@ -128,6 +128,11 @@ public class Run : MonoBehaviour
                 if (Y >= Global.size_y)
                 {
                     target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
+                    return;
+                }
+                if (Global.GetMapPlayer(X, Y) > 0)
+                {
+                    FindPlayer(X, Y);
                     return;
                 }
                 if (Global.GetMapLandform(X, Y) < -1)
@@ -284,9 +289,29 @@ public class Run : MonoBehaviour
             }
             if(Global.GetMapPlayer(dX, dY) == 0)
             {
-                Q.Enqueue(way);
+                Queue<int> q = new Queue<int>();
+                q.Enqueue(way);
+                for (; Q.Count > 0;) 
+                {
+                    q.Enqueue(Q.Dequeue());
+                }
+                Q = q;
                 return;
             }
+        }
+    }
+    void FindPlayer(int X, int Y)
+    {
+        Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 30f, Y * 15f);
+        Ray ray = new Ray(position, -Vector3.up);
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            Debug.Log(hitInfo.collider.gameObject);
+            hitInfo.collider.gameObject.GetComponent<Run>().Q = Q;
+            hitInfo.collider.gameObject.GetComponent<Attribute>().health--;
+            GetComponent<Attribute>().health--;
+            Q = new Queue<int>();
         }
     }
 }
