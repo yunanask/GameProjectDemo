@@ -21,7 +21,10 @@ public class Run : MonoBehaviour
     private Queue<int> Q = new Queue<int>();
     private int top;
     public float speed = 70.0f;
+    private bool ifgao = false;
     Animator anim;
+
+    private bool damageif = false;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +68,40 @@ public class Run : MonoBehaviour
                 GetComponent<Attribute>().health = 0;
                 return;
             }
+            if (Global.GetMapLandform(X, Y) == -3)
+            {
+                GetComponent<Attribute>().health = 0;
+                return;
+            }
+            if (Global.GetMapLandform(X, Y) == -2)
+            {
+                GetComponent<Attribute>().health --; 
+                RandHex();
+            }
+            if (Global.GetMapLandform(X, Y) == -1)
+            {
+                if (GetComponent<Attribute>().landform < 1)
+                {
+                    RandHex();
+                }
+            }
+            if (Global.GetMapLandform(X, Y) == 1)
+            {
+                if (GetComponent<Attribute>().landform < 1)
+                {
+                    RandHex();
+                }
+            }
+            if (Global.GetMapLandform(X, Y) == 2)
+            {
+                GetComponent<Attribute>().health--;
+                RandHex();
+            }
+            if (Global.GetMapLandform(X, Y) == 3)
+            {
+                GetComponent<Attribute>().health -= 3;
+                RandHex();
+            }
             Global.SetPlayer(X, Y, 1);
             anim.SetBool("walking", false);
             if (Q.Count > 0)
@@ -93,28 +130,90 @@ public class Run : MonoBehaviour
                     target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
                     return;
                 }
-                if(Global.GetMapLandform(X, Y) > 1)
-                {
-                    GetComponent<Attribute>().health -= (Q.Count + 1) * Global.GetMapLandform(X, Y);
-                    for(; Q.Count>0;)
-                    {
-                        Q.Dequeue();
-                    }
-                    X = X - PlayerAction[top, 0];
-                    Y = Y - PlayerAction[top, 1];
-                    return;
-                }
-                target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
                 if (Global.GetMapLandform(X, Y) < -1)
                 {
-                    GetComponent<Attribute>().health += (Q.Count + 1) * Global.GetMapLandform(X, Y);
+                    target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
                     for (; Q.Count > 0;)
                     {
                         Q.Dequeue();
                     }
                     return;
                 }
-                Global.SetPlayer(X, Y, 1);
+                if (ifgao)
+                {
+                    target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
+                    if (Global.GetMapLandform(X, Y) > 1)
+                    {
+                        for (; Q.Count > 0;)
+                        {
+                            Q.Dequeue();
+                        }
+                        return;
+                    }
+                }
+                else
+                {
+                    if (Global.GetMapLandform(X, Y) > 1)
+                    {
+                        GetComponent<Attribute>().health -= (Q.Count + 1) * Global.GetMapLandform(X, Y);
+                        for (; Q.Count > 0;)
+                        {
+                            Q.Dequeue();
+                        }
+                        X = X - PlayerAction[top, 0];
+                        Y = Y - PlayerAction[top, 1];
+                        return;
+                    }
+                    target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
+                }
+                damageif = false;
+                if (Global.GetMapLandform(X, Y) < -1)
+                {
+                    if(Global.GetMapLandform(X, Y) == -2)
+                    {
+                        GetComponent<Attribute>().health -= 1;
+                    }
+                    for (; Q.Count > 0;)
+                    {
+                        Q.Dequeue();
+                    }
+                    return;
+                }
+                Global.SetPlayer(X, Y, 2);
+            }
+            else
+            {
+                ifgao = false;
+                if (!damageif)
+                {
+                    GameObject Hex = WhatIsDown();
+
+                    if (Hex.GetComponent<Element>().Element_ > 0)
+                    {
+
+                        int yuan = (GetComponent<Attribute>().element - Hex.GetComponent<Element>().Element_ + 3) % 3;
+                        if (yuan == 2)
+                        {
+                            yuan = 0;
+                        }
+                        else
+                        {
+                            if (yuan == 1)
+                            {
+                                yuan = -1;
+                            }
+                            else
+                            {
+                                if (yuan == 0)
+                                {
+                                    yuan = 1;
+                                }
+                            }
+                        }
+                        GetComponent<Attribute>().health += yuan;
+                    }
+                    damageif = true;
+                }
             }
         }
     }
@@ -131,5 +230,63 @@ public class Run : MonoBehaviour
             return hitInfo.collider.gameObject;
         }
         return null;
+    }
+    void RandHex()
+    {
+        ifgao = true;
+        bool canrun = false;
+        for(int i = 0; i < 6; i++)
+        {
+            int dX = X + PlayerAction[i, 0];
+            int dY = Y + PlayerAction[i, 1];
+            if (dX < 0)
+            {
+                continue;
+            }
+            if (dY < 0)
+            {
+                continue;
+            }
+            if (dX > Global.size_x)
+            {
+                continue;
+            }
+            if (dX > Global.size_y)
+            {
+                continue;
+            }
+            if (Global.GetMapPlayer(dX, dY) != 0)
+            {
+                continue;
+            }
+            canrun = true;
+        }
+        for (; canrun; )
+        {
+            int way=Random.Range(0, 5);
+            int dX = X + PlayerAction[way, 0];
+            int dY = Y + PlayerAction[way, 1];
+            if (dX < 0)
+            {
+                continue;
+            }
+            if (dY < 0)
+            {
+                continue;
+            }
+            if (dX > Global.size_x)
+            {
+                continue;
+            }
+            if (dX > Global.size_y)
+            {
+                continue;
+            }
+            if(Global.GetMapPlayer(dX, dY) == 0)
+            {
+                Q.Enqueue(way);
+                return;
+            }
+        }
     }
 }

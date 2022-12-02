@@ -110,7 +110,6 @@ public class InitGame : MonoBehaviour
             enemy.Add(o);
         }
         team = myplayer;
-
     }
 
     // Update is called once per frame

@@ -23,9 +23,20 @@ public class AttackHex : MonoBehaviour
         Animator anim = lastPlayer.GetComponent<Animator>();
         lastPlayer.transform.LookAt(transform.position);
         anim.SetTrigger("attack");
-        Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
         //hasattacked
         lastPlayer.GetComponent<Attribute>().CanAttack = false;
+        if(GetComponent<Element>().Element_ == 0)
+        {
+            Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
+        }
+        else
+        {
+            int yuan = (lastPlayer.GetComponent<Attribute>().element - GetComponent<Element>().Element_ + 3) % 3;
+            if (yuan == 2)
+            {
+                Global.SetElement(X, Y, 0);
+            }
+        }
     }
     public void AttackAOE()
     {
@@ -35,12 +46,19 @@ public class AttackHex : MonoBehaviour
         Animator anim = lastPlayer.GetComponent<Animator>();
         lastPlayer.transform.LookAt(transform.position);
         anim.SetTrigger("attack");
+        //has apply skill 2
+        lastPlayer.GetComponent<Attribute>().CanSkill = false;
         if (Global.GetMapElement(X, Y) == 0)
         {
             Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
         }
-        //has apply skill 2
-
-        lastPlayer.GetComponent<Attribute>().CanSkill = false;
+        else
+        {
+            int yuan = (lastPlayer.GetComponent<Attribute>().element - GetComponent<Element>().Element_ + 3) % 3;
+            if (yuan == 2)
+            {
+                Global.SetElement(X, Y, 0);
+            }
+        }
     }
 }

@@ -28,7 +28,16 @@ public class Attack : MonoBehaviour
             Animator anim = lastPlayer.GetComponent<Animator>();
             lastPlayer.transform.LookAt(transform.position);
             anim.SetTrigger("attack");
-            GetComponent<Attribute>().health -= lastPlayer.GetComponent<Attribute>().attackDamage;
+            int yuan = (lastPlayer.GetComponent<Attribute>().element - GetComponent<Attribute>().element + 3) % 3;
+            if (yuan == 2)
+            {
+                yuan = 2;
+            }
+            else
+            {
+                yuan = 1;
+            }
+            GetComponent<Attribute>().health -= lastPlayer.GetComponent<Attribute>().attackDamage * yuan;
 
         }
     }

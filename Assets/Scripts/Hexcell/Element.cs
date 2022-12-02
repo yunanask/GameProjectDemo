@@ -35,16 +35,24 @@ public class Element : MonoBehaviour
         int Y = GetComponent<Position>().Y;
         if (Element_!= Global.GetMapElement(X, Y))
         {
-            Element_ = Global.GetMapElement(X, Y); 
-            var element = transform.GetChild(0).gameObject;
-            element.SetActive(true);
-            element.GetComponent<ParticleSystemRenderer>().material = Element_ switch
+            Element_ = Global.GetMapElement(X, Y);
+            if (Element_ > 0)
             {
-                3 => inventory.green,
-                2 => inventory.red,
-                1 => inventory.blue,
-                _ => inventory.red,
-            };
+                var element = transform.GetChild(0).gameObject;
+                element.SetActive(true);
+                element.GetComponent<ParticleSystemRenderer>().material = Element_ switch
+                {
+                    3 => inventory.green,
+                    2 => inventory.red,
+                    1 => inventory.blue,
+                    _ => inventory.red,
+                };
+            }
+            else
+            {
+                var element = transform.GetChild(0).gameObject;
+                element.SetActive(false);
+            }
         }
     }
 }
