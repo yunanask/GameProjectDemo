@@ -19,6 +19,7 @@ public class Element : MonoBehaviour
             element.SetActive(true);
             element.GetComponent<ParticleSystemRenderer>().material = Element_ switch
             {
+                4 => inventory.yellow,
                 3 => inventory.green,
                 2 => inventory.red,
                 1 => inventory.blue,
@@ -42,6 +43,7 @@ public class Element : MonoBehaviour
                 element.SetActive(true);
                 element.GetComponent<ParticleSystemRenderer>().material = Element_ switch
                 {
+                    4 => inventory.yellow,
                     3 => inventory.green,
                     2 => inventory.red,
                     1 => inventory.blue,

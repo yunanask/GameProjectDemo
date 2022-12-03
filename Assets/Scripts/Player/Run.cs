@@ -39,7 +39,12 @@ public class Run : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target != transform.position)
+        if (Global.shuidian[X, Y])
+        {
+            Global.shuidian[X, Y] = false;
+            GetComponent<Attribute>().health--;
+        }
+        if (target != transform.position)
         {
             transform.LookAt(target);
             transform.position = Vector3.MoveTowards(transform.position, target,speed * Time.deltaTime);
@@ -196,7 +201,7 @@ public class Run : MonoBehaviour
                     if (Hex.GetComponent<Element>().Element_ > 0)
                     {
 
-                        int yuan = (GetComponent<Attribute>().element - Hex.GetComponent<Element>().Element_ + 3) % 3;
+                        int yuan = kezhi(GetComponent<Attribute>().element , Hex.GetComponent<Element>().Element_ );
                         if (yuan == 2)
                         {
                             yuan = 0;
@@ -252,11 +257,11 @@ public class Run : MonoBehaviour
             {
                 continue;
             }
-            if (dX > Global.size_x)
+            if (dX >= Global.size_x)
             {
                 continue;
             }
-            if (dX > Global.size_y)
+            if (dX >= Global.size_y)
             {
                 continue;
             }
@@ -279,11 +284,11 @@ public class Run : MonoBehaviour
             {
                 continue;
             }
-            if (dX > Global.size_x)
+            if (dX >= Global.size_x)
             {
                 continue;
             }
-            if (dX > Global.size_y)
+            if (dX >= Global.size_y)
             {
                 continue;
             }
@@ -300,6 +305,33 @@ public class Run : MonoBehaviour
             }
         }
     }
+    int kezhi(int x, int y)
+    {
+        if (x == 1 && y == 3)
+        {
+            return 1;
+        }
+        if (x == 2 && y == 3)
+        {
+            return 2;
+        }
+        if (x == 3 && y == 1)
+        {
+            return 2;
+        }
+        if (x == 3 && y == 2)
+        {
+            return 1;
+        }
+        if (x == 1 && y == 2)
+        {
+            return 2;
+        }
+        if (x == y)
+        {
+            return 0;
+        }
+        return 1;
     void FindPlayer(int X, int Y)
     {
         Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 30f, Y * 15f);
