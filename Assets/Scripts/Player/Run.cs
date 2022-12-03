@@ -115,6 +115,7 @@ public class Run : MonoBehaviour
                 Global.SetPlayer(X, Y, 0);
                 X = X + PlayerAction[top, 0];
                 Y = Y + PlayerAction[top, 1];
+                Global.Water();
                 if (X < 0)
                 {
                     target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
