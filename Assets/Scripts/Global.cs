@@ -202,7 +202,38 @@ public class Global
             }
         }
     }
-
+    public static void Water()
+    {
+        for (int k = 3; k > -3; k--)
+        {
+            for (int i = 0; i < size_x; i++)
+            {
+                for (int j = 0; j < size_y; j++)
+                {
+                    if (MapLandform[i, j] == k && MapElement[i, j] == 1)
+                    {
+                        for (int t = 0; t < 6; t++)
+                        {
+                            int dX = i + PlayerAction[t, 0];
+                            int dY = j + PlayerAction[t, 1];
+                            if (dX < 0) continue;
+                            if (dY < 0) continue;
+                            if (dX >= size_x) continue;
+                            if (dY >= size_y) continue;
+                            if (MapPlayer[dX, dY] > 0) continue;
+                            if (MapLandform[dX, dY] < k)
+                            {
+                                if (MapElement[dX, dY] == 0)
+                                {
+                                    MapElement[dX, dY] = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     public static void SelectPlayer(int X, int Y, int dis,int type)
     {
         for (int i = 0; i < size_x; i++)

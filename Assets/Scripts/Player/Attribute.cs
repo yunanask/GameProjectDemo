@@ -32,7 +32,8 @@ public class Attribute : MonoBehaviour
         if (health <= 0)
         {
             GameObject HexcellDown = WhatIsDown();
-          
+            Global.Water();
+
             if (gameObject.tag == "Player")
             {
                 gm.getmyplayer.Remove(gameObject);
