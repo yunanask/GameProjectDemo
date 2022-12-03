@@ -53,6 +53,11 @@ public class Detail : MonoBehaviour
     {
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
+        if (Global.huodian[X, Y])
+        {
+            Global.huodian[X, Y] = false;
+            Global.HexcellUp(X, Y, 0, -1);
+        }
         if (Landform != Global.GetMapLandform(X, Y))
         {
             Landform = Global.GetMapLandform(X, Y);
@@ -74,13 +79,15 @@ public class Detail : MonoBehaviour
             {
                 if (Global.CellIfSelected(X, Y))
                 {
-                        GetComponent<Move>().MovePlayer();
+                    GetComponent<Move>().MovePlayer();
+                    Global.SelectCancel();
                 }
             }
             if (Global.IfCellSelected == 2)
             {
                 if (Global.CellIfSelected(X, Y))
                 {
+                    Global.SelectCancel();
                     if (WhatIsOn() == null)
                     {
                         GetComponent<AttackHex>().Attack();
@@ -91,6 +98,7 @@ public class Detail : MonoBehaviour
             {
                 if (Global.CellIfSelected(X, Y))
                 {
+                    Global.SelectCancel();
                     GameObject hex = clicked.lastPlayer.GetComponent<clicked>().WhatIsDown();
                     X = hex.GetComponent<Position>().X;
                     Y = hex.GetComponent<Position>().Y;
@@ -101,11 +109,11 @@ public class Detail : MonoBehaviour
             {
                 if (Global.CellIfSelected(X, Y))
                 {
+                    Global.SelectCancel();
                     Skill.AOE(X, Y, true);
                 }
                 GetComponent<Hexoutline>().Hide6();
             }
-            Global.SelectCancel();
             var UI = GameObject.FindWithTag("UI");
             UI.GetComponent<Canvas>().enabled = false;
         }

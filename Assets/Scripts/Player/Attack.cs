@@ -28,7 +28,7 @@ public class Attack : MonoBehaviour
             Animator anim = lastPlayer.GetComponent<Animator>();
             lastPlayer.transform.LookAt(transform.position);
             anim.SetTrigger("attack");
-            int yuan = (lastPlayer.GetComponent<Attribute>().element - GetComponent<Attribute>().element + 3) % 3;
+            int yuan = kezhi(lastPlayer.GetComponent<Attribute>().element , GetComponent<Attribute>().element);
             if (yuan == 2)
             {
                 yuan = 2;
@@ -51,5 +51,29 @@ public class Attack : MonoBehaviour
             return hitInfo.collider.gameObject;
         }
         return null;
+    }
+    int kezhi(int x, int y)
+    {
+        if (x == 1 && y == 3)
+        {
+            return 1;
+        }
+        if (x == 2 && y == 3)
+        {
+            return 2;
+        }
+        if (x == 3 && y == 1)
+        {
+            return 2;
+        }
+        if (x == 3 && y == 2)
+        {
+            return 1;
+        }
+        if (x == 1 && y == 2)
+        {
+            return 2;
+        }
+        return 1;
     }
 }

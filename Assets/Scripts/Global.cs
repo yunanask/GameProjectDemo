@@ -7,6 +7,8 @@ public class Global
 {
     public static int size_x = 10;
     public static int size_y = 10;
+    public static bool[,] shuidian = new bool[size_x, size_y];
+    public static bool[,] huodian = new bool[size_x, size_y];
     private static int[,] MapLandform = new int[size_x, size_y];
     private static int[,] MapPlayer = new int[size_x, size_y];
     private static int[,] MapElement = new int[size_x, size_y];
@@ -164,7 +166,10 @@ public class Global
     {
         return size_y;
     }
-
+    public static void ChangeSelected(int X,int Y,int Value)
+    {
+        MapSelect[X, Y] = Value;
+    }
     public static bool CellIfSelected(int X, int Y)
     {
         return MapSelect[X, Y] == 1;
@@ -242,5 +247,35 @@ public class Global
         Queue<int> q= GetPoint(X+ PlayerAction[PlayerComeFrom[X,Y],0],Y + PlayerAction[PlayerComeFrom[X, Y], 1], X0, Y0);
         q.Enqueue(5 - PlayerComeFrom[X, Y]);
         return q;
+    }
+
+
+    public static void SelectElement(int X, int Y, int element)
+    {
+        Queue<Tuple<int, int>> q = new Queue<Tuple<int, int>>();
+        q.Enqueue(new Tuple<int, int>(X, Y));
+        MapSelect[X, Y] = 1;
+        for (; q.Count > 0;)
+        {
+            Tuple<int, int> now = q.First();
+            q.Dequeue();
+            int nowx = now.Item1;
+            int nowy = now.Item2;
+            for (int i = 0; i < 6; i++)
+            {
+                int dX = now.Item1 + PlayerAction[i, 0];
+                int dY = now.Item2 + PlayerAction[i, 1];
+                if (dX < 0) continue;
+                if (dY < 0) continue;
+                if (dX >= size_x) continue;
+                if (dY >= size_y) continue;
+                if (MapElement[dX, dY] != element) continue;
+                if (MapSelect[dX, dY] == 0)
+                {
+                    MapSelect[dX, dY] = 1;
+                    q.Enqueue(new Tuple<int, int>(dX, dY));
+                }
+            }
+        }
     }
 }
