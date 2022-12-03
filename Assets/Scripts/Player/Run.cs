@@ -39,11 +39,6 @@ public class Run : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Global.shuidian[X, Y])
-        {
-            Global.shuidian[X, Y] = false;
-            GetComponent<Attribute>().health--;
-        }
         if (target != transform.position)
         {
             transform.LookAt(target);
@@ -72,6 +67,11 @@ public class Run : MonoBehaviour
             {
                 GetComponent<Attribute>().health = 0;
                 return;
+            }
+            if (Global.shuidian[X, Y])
+            {
+                Global.shuidian[X, Y] = false;
+                GetComponent<Attribute>().health--;
             }
             if (Global.GetMapLandform(X, Y) == -3)
             {
@@ -222,6 +222,14 @@ public class Run : MonoBehaviour
                             }
                         }
                         GetComponent<Attribute>().health += yuan;
+                    }
+                    if (Hex.GetComponent<Element>().Element_ < 0)
+                    {
+                        //GetComponent<Attribute>().health += 100;
+                        int X = Hex.GetComponent<Position>().X;
+                        int Y = Hex.GetComponent<Position>().Y;
+                        Global.SelectPlayer(X, Y, GetComponent<Attribute>().attackWide, 6);
+                        Global.SetElement(X, Y, 0);
                     }
                     damageif = true;
                 }

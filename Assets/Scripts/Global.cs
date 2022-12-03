@@ -58,6 +58,7 @@ public class Global
                 MapElement[i, j] = (int)float.Parse(ss[j]);
             }
         }
+        MapElement[1, 1] = -1;
     }
 
     public static void SaveMap()
@@ -110,7 +111,7 @@ public class Global
                 if (dY >= size_y) continue;
                 if (MapLandform[dX, dY] > landform) continue;
                 if (MapLandform[dX, dY] < -landform) continue;
-                if (MapPlayer[dX, dY] == 0)
+                if (MapPlayer[dX, dY] <= 0)
                 {
                     if (MapSelect[dX, dY] == 0)
                     {
