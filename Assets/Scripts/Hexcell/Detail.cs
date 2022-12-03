@@ -91,6 +91,7 @@ public class Detail : MonoBehaviour
                     if (WhatIsOn() == null)
                     {
                         GetComponent<AttackHex>().Attack();
+                        //GetComponent<Attribute>().CanAttack = false;
                     }
                 }
             }
@@ -114,8 +115,8 @@ public class Detail : MonoBehaviour
                 }
                 GetComponent<Hexoutline>().Hide6();
             }
-            var UI = GameObject.FindWithTag("UI");
-            UI.GetComponent<Canvas>().enabled = false;
+            //var UI = GameObject.FindWithTag("UI");
+            //UI.GetComponent<Canvas>().enabled = false;
         }
         else
         {

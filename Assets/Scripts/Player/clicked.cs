@@ -42,31 +42,38 @@ public class clicked : MonoBehaviour
         {
             if(Global.IfCellSelected == 2)
             {
-                if(Global.CellIfSelected(X, Y))
+                if(Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
+                    
                     GetComponent<Attack>().AttackPlayer();
+                    //has attack player
+                    lastPlayer.GetComponent<Attribute>().CanAttack = false;
                 }
             }
             if (Global.IfCellSelected == 3)
             {
-                if (Global.CellIfSelected(X, Y))
+                if (Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
                     GameObject hex = lastPlayer.GetComponent<clicked>().WhatIsDown();
                     X = hex.GetComponent<Position>().X;
                     Y = hex.GetComponent<Position>().Y;
                     Skill.AOE(X, Y, false);
+                    //has apply skill 1
+                    GetComponent<Attribute>().CanSkill = false;
                 }
             }
             if (Global.IfCellSelected == 4)
             {
-                if (Global.CellIfSelected(X, Y))
+                if (Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
                     Skill.AOE(X, Y, true);
+                    //has apply skill 2
+                    lastPlayer.GetComponent<Attribute>().CanSkill = false;
                 }
             }
             if (Global.IfCellSelected == 5)
             {
-                if (Global.CellIfSelected(X, Y))
+                if (Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
                     GameObject hex = lastPlayer.GetComponent<clicked>().WhatIsDown();
                     int dX = X - hex.GetComponent<Position>().X;
@@ -104,21 +111,27 @@ public class clicked : MonoBehaviour
                             q.Enqueue(action);
                         }
                         GetComponent<Run>().PostQ(q);
+                        //has apply skill 3
+                        lastPlayer.GetComponent<Attribute>().CanSkill = false;
                     }
                 }
             }
-            var UI = GameObject.FindWithTag("UI");
-            UI.GetComponent<Canvas>().enabled = false;
+            //var UI = GameObject.FindWithTag("UI");
+            //UI.GetComponent<Canvas>().enabled = false;
             Global.SelectCancel();
         }
         else
         {
-            SelectMap(X, Y, 0, 0);
-            var UI = GameObject.FindWithTag("UI");
-            UI.GetComponent<Canvas>().enabled = true;
-            UI.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "X: " + X.ToString() + "\nY: " + Y.ToString() + "\nHealth: " + GetComponent<Attribute>().health.ToString();
-            //SelectMap(X, Y, moveWide);
-            lastPlayer = gameObject;
+            //ui显示选中角色的信息
+            if (gameObject.GetComponent<Attribute>().IsTurn)
+            {
+                SelectMap(X, Y, 0, 0);
+                var UI = GameObject.FindWithTag("UI");
+                UI.GetComponent<Canvas>().enabled = true;
+                UI.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "X: " + X.ToString() + "\nY: " + Y.ToString() + "\nHealth: " + GetComponent<Attribute>().health.ToString();
+                //SelectMap(X, Y, moveWide);
+                lastPlayer = gameObject;
+            }
         }
     }
 

@@ -33,6 +33,8 @@ public class AttackHex : MonoBehaviour
         Animator anim = lastPlayer.GetComponent<Animator>();
         lastPlayer.transform.LookAt(transform.position);
         anim.SetTrigger("attack");
+        //hasattacked
+        lastPlayer.GetComponent<Attribute>().CanAttack = false;
         if(GetComponent<Element>().Element_ == 0)
         {
             Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
@@ -77,6 +79,8 @@ public class AttackHex : MonoBehaviour
         Animator anim = lastPlayer.GetComponent<Animator>();
         lastPlayer.transform.LookAt(transform.position);
         anim.SetTrigger("attack");
+        //has apply skill 2
+        lastPlayer.GetComponent<Attribute>().CanSkill = false;
         if (Global.GetMapElement(X, Y) == 0)
         {
             Global.SetElement(X, Y, lastPlayer.GetComponent<Attribute>().element);
