@@ -243,14 +243,24 @@ public class Global
             {
                 if (Distance(i - X, j - Y) <= dis)
                 {
-                    if (MapPlayer[i, j] == 1 || MapElement[i, j] >= 0) 
+                    if (type == 6)
                     {
-                        MapSelect[i, j] = 1;
+                        if(MapPlayer[i, j] == 0)
+                        {
+                            MapSelect[i, j] = 1;
+                        }
+                    }
+                    else
+                    {
+                        if (MapPlayer[i, j] == 1 || MapElement[i, j] >= 0)
+                        {
+                            MapSelect[i, j] = 1;
+                        }
                     }
                 }
             }
         }
-        if (type == 2 || type == 4 || type == 5) 
+        if (type == 2 || type == 4 || type == 5 || type == 6) 
         {
             MapSelect[X, Y] = 0;
         }

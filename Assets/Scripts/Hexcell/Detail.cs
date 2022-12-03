@@ -17,6 +17,7 @@ public class Detail : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManage").GetComponent<InitGame>();
         //Landform = UnityEngine.Random.Range(-3, 3);
         Landform = 0;
         cellMesh(Landform);
@@ -151,6 +152,7 @@ public class Detail : MonoBehaviour
         }
         return null;
     }
+    private InitGame gm;
     void NewPlayer(int X,int Y)
     {
         Quaternion Q = Quaternion.Euler(0, 0, 0);
@@ -165,5 +167,17 @@ public class Detail : MonoBehaviour
         Player.transform.localScale = new Vector3(5f, 5f, 5f);
         var Player_ = Instantiate(Player, new Vector3(Sqrt3 * 10f * X - 5f * Sqrt3 * Y, 1f, 15f * Y), Q, player.transform);
         Player_.tag = clicked.lastPlayer.tag;
+        if (Player_.tag == "Player")
+        {
+            gm.getmyplayer.Add(Player_);
+            if (!gm.getteam.Contains(Player_))
+                gm.getteam.Add(Player_);
+        }
+        if (Player_.tag == "Enemy")
+        {
+            gm.getenemy.Add(Player_);
+            if (!gm.getteam.Contains(Player_))
+                gm.getteam.Add(Player_);
+        }
     }
 }
