@@ -163,6 +163,7 @@ public class AttackHex : MonoBehaviour
     void huodian(int X,int Y)
     {
         Global.ChangeSelected(X, Y, 0);
+        Global.SetElement(X, Y, 0);
         //Global.HexcellUp(X, Y, 0, -1);
         Global.huodian[X, Y] = true;
         for (int i = 0; i < 6; i++)

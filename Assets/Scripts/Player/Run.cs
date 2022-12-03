@@ -261,7 +261,7 @@ public class Run : MonoBehaviour
             {
                 continue;
             }
-            if (dX >= Global.size_y)
+            if (dY >= Global.size_y)
             {
                 continue;
             }
@@ -288,7 +288,7 @@ public class Run : MonoBehaviour
             {
                 continue;
             }
-            if (dX >= Global.size_y)
+            if (dY >= Global.size_y)
             {
                 continue;
             }
