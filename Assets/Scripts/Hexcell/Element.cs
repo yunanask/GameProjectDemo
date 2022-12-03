@@ -13,7 +13,7 @@ public class Element : MonoBehaviour
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
         Element_ = Global.GetMapElement(X, Y);
-        if (Element_ != 0)
+        if (Element_ > 0)
         {
             var element = transform.GetChild(0).gameObject;
             element.SetActive(true);

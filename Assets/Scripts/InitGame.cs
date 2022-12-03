@@ -66,6 +66,7 @@ public class InitGame : MonoBehaviour
                 Position.Y = j;
             }
         }
+        var player = new GameObject { name = "Player" };
         //player init
         GameObject Player = 1 switch
         {
@@ -74,7 +75,6 @@ public class InitGame : MonoBehaviour
             1 => inventory.player1,
             _ => inventory.player1,
         };
-        var player = new GameObject { name = "Player" };
         Player.transform.localScale = new Vector3(5f, 5f, 5f);
         var Player_ = Instantiate(Player, new Vector3(0f, 1f, 0f), Q, player.transform);
         Player = 2 switch

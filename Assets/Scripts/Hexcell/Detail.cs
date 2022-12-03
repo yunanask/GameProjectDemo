@@ -10,12 +10,14 @@ using UnityEngine.EventSystems;
 
 public class Detail : MonoBehaviour
 {
+    [SerializeField] private PlayerInventory Inventory;
     private Tuple<bool, int> ExitShow = new Tuple<bool, int>(false, 0);
     public GridInventory inventory;
     public int Landform = 0;
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManage").GetComponent<InitGame>();
         //Landform = UnityEngine.Random.Range(-3, 3);
         Landform = 0;
         cellMesh(Landform);
@@ -115,6 +117,14 @@ public class Detail : MonoBehaviour
                 }
                 GetComponent<Hexoutline>().Hide6();
             }
+            if (Global.IfCellSelected == 6)
+            {
+                if (Global.CellIfSelected(X, Y))
+                {
+                    Global.SelectCancel();
+                    NewPlayer(X,Y);
+                }
+            }
             //var UI = GameObject.FindWithTag("UI");
             //UI.GetComponent<Canvas>().enabled = false;
         }
@@ -131,6 +141,7 @@ public class Detail : MonoBehaviour
         }
     }
 
+    private static float Sqrt3 = Mathf.Sqrt(3);
     GameObject WhatIsOn()
     {
         Ray ray = new Ray(transform.position, Vector3.up);
@@ -140,5 +151,33 @@ public class Detail : MonoBehaviour
             return hitInfo.collider.gameObject;
         }
         return null;
+    }
+    private InitGame gm;
+    void NewPlayer(int X,int Y)
+    {
+        Quaternion Q = Quaternion.Euler(0, 0, 0);
+        GameObject Player = UnityEngine.Random.Range(1, 3) switch
+        {
+            3 => Inventory.player3,
+            2 => Inventory.player2,
+            1 => Inventory.player1,
+            _ => Inventory.player1,
+        };
+        GameObject player = GameObject.Find("Player");
+        Player.transform.localScale = new Vector3(5f, 5f, 5f);
+        var Player_ = Instantiate(Player, new Vector3(Sqrt3 * 10f * X - 5f * Sqrt3 * Y, 1f, 15f * Y), Q, player.transform);
+        Player_.tag = clicked.lastPlayer.tag;
+        if (Player_.tag == "Player")
+        {
+            gm.getmyplayer.Add(Player_);
+            if (!gm.getteam.Contains(Player_))
+                gm.getteam.Add(Player_);
+        }
+        if (Player_.tag == "Enemy")
+        {
+            gm.getenemy.Add(Player_);
+            if (!gm.getteam.Contains(Player_))
+                gm.getteam.Add(Player_);
+        }
     }
 }

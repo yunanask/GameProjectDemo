@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50940bab09633240833e32d1797be5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory: {fileID: 11400000, guid: 410d462df560e1d4c9eac0d87d23d5b7, type: 2}
   inventory: {fileID: 11400000, guid: dcb55c14ac4b748418d5ef4c120ae88e, type: 2}
   Landform: 2
 --- !u!114 &-4687228614691476078

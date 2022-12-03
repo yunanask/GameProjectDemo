@@ -66,6 +66,12 @@ public class Attribute : MonoBehaviour
             CanSkill = true;
             turn = gm.getturncount;
         }
+        if (health > 100000)
+        {
+            CanMove = false;
+            CanAttack = false;
+            CanSkill = false;
+        }
         //turn end
         if (!(CanMove || CanAttack || CanSkill))
         {
