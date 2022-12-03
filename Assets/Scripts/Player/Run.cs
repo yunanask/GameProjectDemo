@@ -332,6 +332,7 @@ public class Run : MonoBehaviour
             return 0;
         }
         return 1;
+    }
     void FindPlayer(int X, int Y)
     {
         Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 30f, Y * 15f);
