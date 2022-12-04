@@ -230,6 +230,8 @@ public class Run : MonoBehaviour
                         int Y = Hex.GetComponent<Position>().Y;
                         Global.SelectPlayer(X, Y, GetComponent<Attribute>().attackWide, 6);
                         Global.SetElement(X, Y, 0);
+                        var UI = GameObject.FindWithTag("UI");
+                        UI.GetComponent<Canvas>().enabled = false;
                     }
                     damageif = true;
                 }
