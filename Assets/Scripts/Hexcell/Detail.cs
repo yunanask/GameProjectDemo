@@ -7,9 +7,13 @@ using System;
 using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Detail : MonoBehaviour
 {
+    public static int Back = 0;
+    public static int BackX = 0;
+    public static int BackY = 0;
     [SerializeField] private PlayerInventory Inventory;
     private Tuple<bool, int> ExitShow = new Tuple<bool, int>(false, 0);
     public GridInventory inventory;
@@ -77,6 +81,22 @@ public class Detail : MonoBehaviour
         int Y = GetComponent<Position>().Y;
         if (Global.IfCellSelected > 0)
         {
+            if (Global.IfCellSelected == 7)
+            {
+                if (Global.CellIfSelected(X, Y))
+                {
+                    BackX = X;
+                    BackY = Y;
+                    Global.HexcellUp(X, Y, 0, 1);
+                    Back--;
+                    Global.SelectCancel();
+                    Global.ChangeSelected(X, Y, 1);
+                    Global.IfCellSelected = 7;
+                    GameObject tumu = GameObject.Find("tumu");
+                    tumu.GetComponent<Button>().interactable = false;
+                }
+                return;
+            }
             if (Global.IfCellSelected == 1)
             {
                 if (Global.CellIfSelected(X, Y))
@@ -125,6 +145,10 @@ public class Detail : MonoBehaviour
                     NewPlayer(X,Y);
                 }
             }
+            if (!Global.CellIfSelected(X, Y))
+            {
+                Global.SelectCancel();
+            }
             //var UI = GameObject.FindWithTag("UI");
             //UI.GetComponent<Canvas>().enabled = false;
         }
@@ -136,9 +160,10 @@ public class Detail : MonoBehaviour
             }
             else
             {
-                Global.HexcellUp(X, Y, 0, 1);
+                //Global.HexcellUp(X, Y, 0, 1);
             }
         }
+        Global.MainSkill = 0;
     }
 
     private static float Sqrt3 = Mathf.Sqrt(3);

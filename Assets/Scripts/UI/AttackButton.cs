@@ -43,5 +43,6 @@ public class AttackButton : MonoBehaviour, IPointerDownHandler
         {
             GetComponent<Button>().interactable = false;
         }
+        Global.MainSkill = 0;
     }
 }
