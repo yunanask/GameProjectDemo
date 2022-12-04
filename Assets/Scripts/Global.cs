@@ -28,6 +28,7 @@ public class Global
     public static void Init()
     {
         InitMap();
+        SelectCancel();
     }
 
     private static void InitMap()
@@ -234,6 +235,7 @@ public class Global
                             {
                                 if (MapElement[dX, dY] == 0)
                                 {
+
                                     MapElement[dX, dY] = 1;
                                 }
                             }

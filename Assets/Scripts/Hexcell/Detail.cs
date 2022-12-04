@@ -1,4 +1,4 @@
-using cakeslice;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,7 +41,7 @@ public class Detail : MonoBehaviour
             _ => inventory.hole.mesh,
         };
         //update material
-        MeshRenderer cellRenderer = GetComponent<MeshRenderer>();
+        /*MeshRenderer cellRenderer = GetComponent<MeshRenderer>();
         cellRenderer.sharedMaterial = Landform switch
         {
             3 => inventory.mountain3.material,
@@ -52,7 +52,8 @@ public class Detail : MonoBehaviour
             -2 => inventory.basin_2.material,
             -3 => inventory.valley_3.material,
             _ => inventory.hole.material,
-        };
+        };*/
+        GetComponent<Outline>().LandformChange();
     }
     // Update is called once per frame
     void Update()

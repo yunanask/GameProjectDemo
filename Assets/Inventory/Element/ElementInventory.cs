@@ -7,5 +7,5 @@ using UnityEngine;
 public class ElementInventory : ScriptableObject
 {
     [Tooltip("")]
-    public Material red,blue,green,yellow;
+    public Material red, green,blue, yellow;
 }
