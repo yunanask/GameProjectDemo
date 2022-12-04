@@ -38,9 +38,13 @@ public class clicked : MonoBehaviour
         int Y = HexcellDown.GetComponent<Position>().Y;
         int moveWide = GetComponent<Attribute>().moveWide;
         int attackWide = GetComponent<Attribute>().attackWide;
-        if (Global.IfCellSelected > 0) 
+        if (Global.IfCellSelected > 0)
         {
-            if(Global.IfCellSelected == 2)
+            if (Global.IfCellSelected == 7)
+            {
+                return;
+            }
+            if (Global.IfCellSelected == 2)
             {
                 if(Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
@@ -133,6 +137,7 @@ public class clicked : MonoBehaviour
                 lastPlayer = gameObject;
             }
         }
+        Global.MainSkill = 0;
     }
 
     public void SelectMap(int X,int Y,int wide, int landform)

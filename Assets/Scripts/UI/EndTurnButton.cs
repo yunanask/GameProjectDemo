@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
@@ -31,6 +32,8 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             player.GetComponent<Attribute>().CanAttack = false;
             player.GetComponent<Attribute>().CanMove = false;
             player.GetComponent<Attribute>().CanSkill = false;
+            GameObject tumu = GameObject.Find("tumu");
+            tumu.GetComponent<Button>().interactable = true;
             bool turnover = true;
 
             var UI = GameObject.FindWithTag("UI");
@@ -67,6 +70,8 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
         player.GetComponent<Attribute>().CanAttack = false;
         player.GetComponent<Attribute>().CanMove = false;
         player.GetComponent<Attribute>().CanSkill = false;
+        GameObject tumu = GameObject.Find("tumu");
+        tumu.GetComponent<Button>().interactable = true;
         bool turnover = true;
 
         var UI = GameObject.FindWithTag("UI");
@@ -94,5 +99,6 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                 o.GetComponent<Attribute>().IsTurn = true;
             }
         }
+        Global.MainSkill = 0;
     }
 }

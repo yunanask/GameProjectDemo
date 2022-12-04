@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Global
 {
+    public static int MainSkill = 0;
     public static int size_x = 10;
     public static int size_y = 10;
     public static bool[,] shuidian = new bool[size_x, size_y];
@@ -188,6 +189,7 @@ public class Global
 
     public static void HexcellUp(int X, int Y, int dis, int Addition)
     {
+        Addition = (Addition % 8 + 8)%8;
         for(int i = 0; i < size_x; i++)
         {
             for(int j = 0; j < size_y; j++)
@@ -197,7 +199,11 @@ public class Global
                     MapLandform[i, j] += Addition;
                     if (MapLandform[i, j] > 4)
                     {
-                        MapLandform[i, j] = -3;
+                        MapLandform[i, j] = MapLandform[i, j] - 8;
+                    }
+                    if (MapLandform[i, j] < -3)
+                    {
+                        MapLandform[i, j] = MapLandform[i, j] + 8;
                     }
                 }
             }
@@ -246,6 +252,14 @@ public class Global
                     if (type == 6)
                     {
                         if(MapPlayer[i, j] == 0)
+                        {
+                            MapSelect[i, j] = 1;
+                        }
+                    }
+                    else
+                    if (type >= 7)
+                    {
+                        if (MapPlayer[i, j] == 0 && MapElement[i, j] >= 0)
                         {
                             MapSelect[i, j] = 1;
                         }
