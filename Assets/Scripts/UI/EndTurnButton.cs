@@ -32,7 +32,7 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             player.GetComponent<Attribute>().CanAttack = false;
             player.GetComponent<Attribute>().CanMove = false;
             player.GetComponent<Attribute>().CanSkill = false;
-            GameObject tumu = GameObject.Find("tumu");
+            GameObject tumu = GameObject.Find("constructionskill");
             tumu.GetComponent<Button>().interactable = true;
             bool turnover = true;
 
@@ -52,8 +52,8 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                 if (gm.getteam == gm.getmyplayer) gm.getteam = gm.getenemy;
                 else gm.getteam = gm.getmyplayer;
                 gm.getturncount++;
-                GameObject text = GameObject.Find("Turn");
-                text.GetComponent<TextMeshProUGUI>().text = "Turn:" + gm.getturncount.ToString();
+                GameObject text = GameObject.Find("TurnCountText");
+                text.GetComponent<Text>().text = "Turn:" + gm.getturncount.ToString();
 
                 foreach (var o in gm.getteam)
                 {
@@ -70,7 +70,7 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
         player.GetComponent<Attribute>().CanAttack = false;
         player.GetComponent<Attribute>().CanMove = false;
         player.GetComponent<Attribute>().CanSkill = false;
-        GameObject tumu = GameObject.Find("tumu");
+        GameObject tumu = GameObject.Find("constructionskill");
         tumu.GetComponent<Button>().interactable = true;
         bool turnover = true;
 
@@ -90,8 +90,8 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             if (gm.getteam == gm.getmyplayer) gm.getteam = gm.getenemy;
             else gm.getteam = gm.getmyplayer;
             gm.getturncount++;
-            GameObject text = GameObject.Find("Turn");
-            text.GetComponent<TextMeshProUGUI>().text = "Turn:" + gm.getturncount.ToString();
+            GameObject text = GameObject.Find("TurnCountText");
+            text.GetComponent<Text>().text = "Turn:" + gm.getturncount.ToString();
             //Debug.Log(gm.getturncount.ToString());
             //Debug.Log("Now Turncount:"+gm.getturncount);
             foreach (var o in gm.getteam)

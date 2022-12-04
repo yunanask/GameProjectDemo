@@ -8,6 +8,7 @@ public class Global
     public static int MainSkill = 0;
     public static int size_x = 10;
     public static int size_y = 10;
+    public static int[] num = new int[7];
     public static bool[,] shuidian = new bool[size_x, size_y];
     public static bool[,] huodian = new bool[size_x, size_y];
     private static int[,] MapLandform = new int[size_x, size_y];
@@ -31,6 +32,7 @@ public class Global
 
     private static void InitMap()
     {
+        for (int i = 1; i <= 6; i++) num[i] = 0;
         for (int i = 0; i < size_x; i++)
         {
             for (int j = 0; j < size_y; j++)

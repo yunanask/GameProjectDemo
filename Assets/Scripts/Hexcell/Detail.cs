@@ -92,7 +92,7 @@ public class Detail : MonoBehaviour
                     Global.SelectCancel();
                     Global.ChangeSelected(X, Y, 1);
                     Global.IfCellSelected = 7;
-                    GameObject tumu = GameObject.Find("tumu");
+                    GameObject tumu = GameObject.Find("constructionskill");
                     tumu.GetComponent<Button>().interactable = false;
                 }
                 return;
@@ -194,15 +194,49 @@ public class Detail : MonoBehaviour
         Player_.tag = clicked.lastPlayer.tag;
         if (Player_.tag == "Player")
         {
+            int type = Player_.GetComponent<Attribute>().type;
             gm.getmyplayer.Add(Player_);
+            Global.num[type]++;
             if (!gm.getteam.Contains(Player_))
                 gm.getteam.Add(Player_);
+            if(type == 1)
+            {
+                GameObject count = GameObject.Find("CountText1");
+                count.GetComponent<Text>().text = Global.num[1].ToString();
+            }
+            if (type == 2)
+            {
+                GameObject count = GameObject.Find("CountText2");
+                count.GetComponent<Text>().text = Global.num[2].ToString();
+            }
+            if (type == 3)
+            {
+                GameObject count = GameObject.Find("CountText3");
+                count.GetComponent<Text>().text = Global.num[3].ToString();
+            }
         }
         if (Player_.tag == "Enemy")
         {
+            int type = Player_.GetComponent<Attribute>().type + 3;
             gm.getenemy.Add(Player_);
+            Global.num[type]++;
             if (!gm.getteam.Contains(Player_))
                 gm.getteam.Add(Player_);
+            if (type == 4)
+            {
+                GameObject count = GameObject.Find("CountText4");
+                count.GetComponent<Text>().text = Global.num[4].ToString();
+            }
+            if (type == 5)
+            {
+                GameObject count = GameObject.Find("CountText5");
+                count.GetComponent<Text>().text = Global.num[5].ToString();
+            }
+            if (type == 6)
+            {
+                GameObject count = GameObject.Find("CountText6");
+                count.GetComponent<Text>().text = Global.num[6].ToString();
+            }
         }
     }
 }

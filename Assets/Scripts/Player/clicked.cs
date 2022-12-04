@@ -38,7 +38,7 @@ public class clicked : MonoBehaviour
         int Y = HexcellDown.GetComponent<Position>().Y;
         int moveWide = GetComponent<Attribute>().moveWide;
         int attackWide = GetComponent<Attribute>().attackWide;
-        if (Global.IfCellSelected > 0)
+        if (Global.IfCellSelected > 0&& Global.CellIfSelected(X, Y))
         {
             if (Global.IfCellSelected == 7)
             {
@@ -132,7 +132,7 @@ public class clicked : MonoBehaviour
                 SelectMap(X, Y, 0, 0);
                 var UI = GameObject.FindWithTag("UI");
                 UI.GetComponent<Canvas>().enabled = true;
-                UI.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "X: " + X.ToString() + "\nY: " + Y.ToString() + "\nHealth: " + GetComponent<Attribute>().health.ToString();
+                //UI.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "X: " + X.ToString() + "\nY: " + Y.ToString() + "\nHealth: " + GetComponent<Attribute>().health.ToString();
                 //SelectMap(X, Y, moveWide);
                 lastPlayer = gameObject;
             }
