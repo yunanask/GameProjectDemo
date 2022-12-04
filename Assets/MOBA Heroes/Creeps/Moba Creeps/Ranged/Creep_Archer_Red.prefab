@@ -272,7 +272,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 49f51c34773a3364393530d28eb98def, type: 2}
+  - {fileID: 2100000, guid: c22fd4cc5f22da546887d6284e43e95a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -482,7 +482,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 49f51c34773a3364393530d28eb98def, type: 2}
+  - {fileID: 2100000, guid: c22fd4cc5f22da546887d6284e43e95a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1605,6 +1605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  MaxHealth: 10
   element: 2
   moveWide: 3
   attackWide: 3
@@ -1615,6 +1616,7 @@ MonoBehaviour:
   CanAttack: 1
   CanSkill: 1
   IsTurn: 0
+  turn: 0
 --- !u!114 &8418996458473050004
 MonoBehaviour:
   m_ObjectHideFlags: 0
