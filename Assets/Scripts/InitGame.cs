@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InitGame : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class InitGame : MonoBehaviour
     private List<GameObject> team = new List<GameObject>();
     private bool GameEnd ;
     private int TurnCount;
+    public GameObject count1, count2, count3, count4, count5, count6;
 
     private static float Sqrt3 = Mathf.Sqrt(3);
 
@@ -67,48 +70,40 @@ public class InitGame : MonoBehaviour
             }
         }
         var player = new GameObject { name = "Player" };
-        //player init
-        GameObject Player = 1 switch
+        for(int i = 1; i <= 3; i++)
         {
-            3 => inventory.player3,
-            2 => inventory.player2,
-            1 => inventory.player1,
-            _ => inventory.player1,
-        };
-        Player.transform.localScale = new Vector3(5f, 5f, 5f);
-        var Player_ = Instantiate(Player, new Vector3(0f, 1f, 0f), Q, player.transform);
-        Player = 2 switch
-        {
-            3 => inventory.player3,
-            2 => inventory.player2,
-            1 => inventory.player1,
-            _ => inventory.player1,
-        };
-        Player.transform.localScale = new Vector3(5f, 5f, 5f);
-        Instantiate(Player, new Vector3(Sqrt3 * 10f, 1f, 0f), Q, player.transform);
-        Player = 3 switch
-        {
-            3 => inventory.player3,
-            2 => inventory.player2,
-            1 => inventory.player1,
-            _ => inventory.player1,
-        };
-        Player.transform.localScale = new Vector3(5f, 5f, 5f);
-        Instantiate(Player, new Vector3(Sqrt3 * 20f, 1f, 0f), Q, player.transform);
-        //team init
+            //player init
+            GameObject Player = i switch
+            {
+                3 => inventory.player3,
+                2 => inventory.player2,
+                1 => inventory.player1,
+                _ => inventory.player1,
+            };
+            Player.transform.localScale = new Vector3(5f, 5f, 5f);
+            var Player_ = Instantiate(Player, new Vector3(Sqrt3 * 10f*(i-1), 1f, 0f), Q, player.transform);
+        }
         players = GameObject.FindGameObjectsWithTag("Player");
         enemys = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (var o in players)
         {
             o.GetComponent<Attribute>().IsTurn = true;
+            Global.num[o.GetComponent<Attribute>().type]++;
             myplayer.Add(o);
         }
         foreach (var o in enemys)
         {
             o.GetComponent<Attribute>().IsTurn = false;
+            Global.num[o.GetComponent<Attribute>().type+3]++;
             enemy.Add(o);
         }
+        count1.GetComponent<Text>().text = Global.num[1].ToString();
+        count2.GetComponent<Text>().text = Global.num[2].ToString();
+        count3.GetComponent<Text>().text = Global.num[3].ToString();
+        count4.GetComponent<Text>().text = Global.num[4].ToString();
+        count5.GetComponent<Text>().text = Global.num[5].ToString();
+        count6.GetComponent<Text>().text = Global.num[6].ToString();
         team = myplayer;
     }
 

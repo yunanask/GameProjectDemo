@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Attribute : MonoBehaviour
 {
     // Start is called before the first frame update
     public int health = 10;
+    public int MaxHealth = 10;
     public int element = 1;
     public int moveWide = 1;
     public int attackWide = 1;
@@ -28,6 +30,10 @@ public class Attribute : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health > MaxHealth)
+        {
+            MaxHealth = health;
+        }
         //death
         if (health <= 0)
         {
@@ -39,12 +45,44 @@ public class Attribute : MonoBehaviour
                 gm.getmyplayer.Remove(gameObject);
                 if (gm.getteam.Contains(gameObject))
                     gm.getteam.Remove(gameObject);
+                Global.num[type]--;
+                if (type == 1)
+                {
+                    GameObject count = GameObject.Find("CountText1");
+                    count.GetComponent<Text>().text = Global.num[1].ToString();
+                }
+                if (type == 2)
+                {
+                    GameObject count = GameObject.Find("CountText2");
+                    count.GetComponent<Text>().text = Global.num[2].ToString();
+                }
+                if (type == 3)
+                {
+                    GameObject count = GameObject.Find("CountText3");
+                    count.GetComponent<Text>().text = Global.num[3].ToString();
+                }
             }
             if (gameObject.tag == "Enemy")
             {
                 gm.getenemy.Remove(gameObject);
                 if (gm.getteam.Contains(gameObject))
                     gm.getteam.Remove(gameObject);
+                Global.num[type + 3]--;
+                if (type == 1)
+                {
+                    GameObject count = GameObject.Find("CountText4");
+                    count.GetComponent<Text>().text = Global.num[4].ToString();
+                }
+                if (type == 2)
+                {
+                    GameObject count = GameObject.Find("CountText5");
+                    count.GetComponent<Text>().text = Global.num[5].ToString();
+                }
+                if (type == 3)
+                {
+                    GameObject count = GameObject.Find("CountText6");
+                    count.GetComponent<Text>().text = Global.num[6].ToString();
+                }
             }
 
             Destroy(gameObject);
