@@ -15,3 +15,6 @@ MonoBehaviour:
   player1: {fileID: 115916, guid: 7bf226a057fadd745bf900589163e392, type: 3}
   player2: {fileID: 141846, guid: a087c764cde2ebf4aaba1b35ab4fa929, type: 3}
   player3: {fileID: 195512, guid: 8a4a0878068573c4ca13bdeaeb706bb6, type: 3}
+  player4: {fileID: 195512, guid: 5086a971c660ad34aa9f2a134b7081b0, type: 3}
+  player5: {fileID: 115916, guid: ca54bc4007490294da746cd8e270f48c, type: 3}
+  player6: {fileID: 141846, guid: cc41dbfcc1b47654b9949c07860ffb11, type: 3}

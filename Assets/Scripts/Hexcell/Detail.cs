@@ -14,6 +14,7 @@ public class Detail : MonoBehaviour
     public static int Back = 0;
     public static int BackX = 0;
     public static int BackY = 0;
+    public GameObject[] skillui;
     [SerializeField] private PlayerInventory Inventory;
     private Tuple<bool, int> ExitShow = new Tuple<bool, int>(false, 0);
     public GridInventory inventory;
@@ -53,6 +54,12 @@ public class Detail : MonoBehaviour
             -3 => inventory.valley_3.material,
             _ => inventory.hole.material,
         };*/
+        if (Landform == 4)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+            return;
+        }
+        GetComponent<MeshRenderer>().enabled = true;
         GetComponent<Outline>().LandformChange();
     }
     // Update is called once per frame
@@ -126,6 +133,10 @@ public class Detail : MonoBehaviour
                     GameObject hex = clicked.lastPlayer.GetComponent<clicked>().WhatIsDown();
                     X = hex.GetComponent<Position>().X;
                     Y = hex.GetComponent<Position>().Y;
+                    Quaternion Q = Quaternion.Euler(0, 0, 0);
+                    if (clicked.lastPlayer.GetComponent<Attribute>().element == 1)
+                    { Instantiate(skillui[0], clicked.lastPlayer.transform.position + new Vector3(0, 3f, 0), Q); }
+                    else { Instantiate(skillui[2], clicked.lastPlayer.transform.position + new Vector3(0, 3f, 0), Q); }
                     Skill.AOE(X, Y, false);
                 }
             }
@@ -134,6 +145,10 @@ public class Detail : MonoBehaviour
                 if (Global.CellIfSelected(X, Y))
                 {
                     Global.SelectCancel();
+                    Quaternion Q = Quaternion.Euler(0, 0, 0);
+                    if (clicked.lastPlayer.GetComponent<Attribute>().element == 2)
+                    { Instantiate(skillui[1], transform.position, Q); }
+                    else { Instantiate(skillui[3], transform.position, Q); }
                     Skill.AOE(X, Y, true);
                 }
                 GetComponent<Hexoutline>().Hide6();

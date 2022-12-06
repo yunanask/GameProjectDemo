@@ -1,12 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using UnityEngine;
 
 public class Global
 {
+    public static bool move = false;
     public static int MainSkill = 0;
-    public static int size_x = 10;
+    public static int size_x = 18;
     public static int size_y = 10;
     public static int[] num = new int[7];
     public static bool[,] shuidian = new bool[size_x, size_y];
@@ -62,7 +64,7 @@ public class Global
                 MapElement[i, j] = (int)float.Parse(ss[j]);
             }
         }
-        MapElement[1, 1] = -1;
+        //MapElement[1, 1] = -1;
     }
 
     public static void SaveMap()
@@ -187,7 +189,10 @@ public class Global
 
     public static void SetElement(int X, int Y, int Value)
     {
-        MapElement[X, Y] = Value;
+        if (MapLandform[X, Y] != 4)
+        {
+            MapElement[X, Y] = Value;
+        }
     }
 
     public static void HexcellUp(int X, int Y, int dis, int Addition)
@@ -212,7 +217,7 @@ public class Global
             }
         }
     }
-    public static void Water()
+    public static IEnumerator Water()
     {
         for (int k = 3; k > -3; k--)
         {
@@ -235,8 +240,9 @@ public class Global
                             {
                                 if (MapElement[dX, dY] == 0)
                                 {
-
+                                    yield return new WaitForSeconds(1f);
                                     MapElement[dX, dY] = 1;
+                                  
                                 }
                             }
                         }
@@ -255,7 +261,7 @@ public class Global
                 {
                     if (type == 6)
                     {
-                        if(MapPlayer[i, j] == 0)
+                        if (MapPlayer[i, j] == 0 && MapLandform[i, j] == 0) 
                         {
                             MapSelect[i, j] = 1;
                         }
@@ -337,5 +343,21 @@ public class Global
                 }
             }
         }
+    }
+    public static Tuple<int, int> randTreasure()
+    {
+        int X, Y,t=0;
+        for(; t<=1000000;)
+        {
+            t = t + 1;
+            X = UnityEngine.Random.Range(0, size_x - 1);
+            Y = UnityEngine.Random.Range(0, size_y - 1);
+            if (MapElement[X, Y] == 0 && MapLandform[X, Y] == 0 && MapPlayer[X, Y] == 0)
+            {
+                MapElement[X, Y] = -1;
+                return new Tuple<int, int>(X, Y); 
+            }
+        }
+        return new Tuple<int, int>(-1, -1);
     }
 }

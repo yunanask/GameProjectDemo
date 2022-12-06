@@ -24,8 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DendroDecalMat
-  m_Shader: {fileID: -6465566751694194690, guid: 413585e3f9e8ba34385999e188d2e6a4,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 413585e3f9e8ba34385999e188d2e6a4, type: 3}
   m_ValidKeywords:
   - _MATERIAL_AFFECTS_ALBEDO
   m_InvalidKeywords: []
@@ -74,9 +73,9 @@ Material:
     - _DecalStencilRef: 16
     - _DecalStencilWriteMask: 16
     - _DrawOrder: 1
-    - _Range: 0.385
-    - _Scale: 25.6
-    - _Strength: 0.453
+    - _Range: 0.2
+    - _Scale: 25
+    - _Strength: 1
     m_Colors:
     - _Color: {r: 0.45882353, g: 0.33333334, b: 1, a: 0}
     - _Color1: {r: 0.7058823, g: 1, b: 0.13725486, a: 0}

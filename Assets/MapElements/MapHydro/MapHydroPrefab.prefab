@@ -4979,7 +4979,7 @@ Transform:
   m_GameObject: {fileID: 1472658940910371966}
   m_LocalRotation: {x: 0.70710725, y: -0, z: -0, w: 0.7071064}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1472658942045177823}
@@ -5008,7 +5008,7 @@ MonoBehaviour:
   m_DecalLayerMask: 1
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0}
-  m_Size: {x: 20, y: 20, z: 20}
+  m_Size: {x: 20, y: 20, z: 60}
   m_FadeFactor: 1
   m_Version: 2
 --- !u!1 &1472658941233222965
@@ -5219,7 +5219,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472658941357363075}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 4
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5463,7 +5463,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6045,7 +6045,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.6
+      scalar: 4
       minScalar: 10
       maxCurve:
         serializedVersion: 2

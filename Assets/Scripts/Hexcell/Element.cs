@@ -11,7 +11,8 @@ public class Element : MonoBehaviour
     public GameObject green;
     public GameObject blue;
     public GameObject yellow;
-    void Start()
+    private static float Sqrt3 = Mathf.Sqrt(3);
+    void Awake()
     {
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
@@ -40,11 +41,24 @@ public class Element : MonoBehaviour
         }
     }
 
+    private static int[,] PlayerAction =
+    {
+        {1,1 },
+        {0,-1 },
+        {1,0 },
+        {-1,0 },
+        {0,1 },
+        {-1,-1 }
+    };
     // Update is called once per frame
     void Update()
     {
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
+        if (Global.GetMapLandform(X, Y) == 4)
+        {
+            return;
+        }
         if (Element_!= Global.GetMapElement(X, Y))
         {
             if (Element_ != 0)

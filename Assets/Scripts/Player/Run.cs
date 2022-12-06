@@ -24,8 +24,10 @@ public class Run : MonoBehaviour
     private bool ifgao = false;
     Animator anim;
 
-    private bool damageif = false;
+    private bool show = false;
 
+    private bool damageif = false;
+    public GameObject Ring;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,27 @@ public class Run : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target,speed * Time.deltaTime);
             anim.SetBool("walking", true);
             //lastPlayer.transform.position = transform.position + new Vector3(0, 5f, 0);
+            if(target == transform.position)
+            {
+                GameObject hex = WhatIsDown();
+                if (X < 0)
+                {
+                    return;
+                }
+                if (Y < 0)
+                {
+                    return;
+                }
+                if (X >= Global.size_x)
+                {
+                    return;
+                }
+                if (Y >= Global.size_y)
+                {
+                    return;
+                }
+                Instantiate(Ring, hex.transform.position + new Vector3(0, 1f, 0), Quaternion.Euler(0, 0, 0), hex.transform);
+            }
         }
         else
         {
@@ -78,6 +101,11 @@ public class Run : MonoBehaviour
                 GetComponent<Attribute>().health = 0;
                 return;
             }
+            /*if (Global.GetMapLandform(X, Y) == 4)
+            {
+                GetComponent<Attribute>().health = 0;
+                return;
+            }*/
             if (Global.GetMapLandform(X, Y) == -2)
             {
                 GetComponent<Attribute>().health --; 
@@ -108,14 +136,19 @@ public class Run : MonoBehaviour
                 RandHex();
             }
             Global.SetPlayer(X, Y, 1);
-            anim.SetBool("walking", false);
+            //anim.SetBool("walking", false);
             if (Q.Count > 0)
             {
+                Global.move = true;
                 top = Q.Dequeue();
                 Global.SetPlayer(X, Y, 0);
+                GameObject hex = WhatIsDown();
+                Debug.Log(hex.transform.GetChild(hex.transform.childCount - 1).gameObject);
+                if(hex.transform.childCount>0)
+                    Destroy(hex.transform.GetChild(hex.transform.childCount - 1).gameObject);
                 X = X + PlayerAction[top, 0];
                 Y = Y + PlayerAction[top, 1];
-                Global.Water();
+                StartCoroutine(Global.Water());
                 if (X < 0)
                 {
                     target = transform.position + new Vector3(PlayerAction[top, 0] * Sqrt3 * 10f - PlayerAction[top, 1] * 5f * Sqrt3, 0, PlayerAction[top, 1] * 15f);
@@ -194,9 +227,34 @@ public class Run : MonoBehaviour
             }
             else
             {
+                if (show && !Global.CellIfSelected(X, Y))
+                {
+                    show = false;
+                    GameObject hex = WhatIsDown();
+                    if (hex.transform.childCount > 0)
+                    {
+                        Destroy(hex.transform.GetChild(hex.transform.childCount - 1).gameObject);
+                    }
+                }
+                if (!show && Global.CellIfSelected(X, Y))
+                {
+                    if (tag == clicked.lastPlayer.tag)
+                    {
+                        Global.ChangeSelected(X, Y, 0);
+                    }
+                    else
+                    {
+                        show = true;
+                        GameObject hex = WhatIsDown();
+                        Instantiate(Ring, hex.transform.position + new Vector3(0, 1f, 0), Quaternion.Euler(0, 0, 0), hex.transform);
+                    }
+                }
                 ifgao = false;
                 if (!damageif)
                 {
+                    if(anim!=null)
+                    anim.SetBool("walking", false);
+                    Global.move = false;
                     GameObject Hex = WhatIsDown();
 
                     if (Hex.GetComponent<Element>().Element_ > 0)
@@ -229,9 +287,12 @@ public class Run : MonoBehaviour
                         int X = Hex.GetComponent<Position>().X;
                         int Y = Hex.GetComponent<Position>().Y;
                         Global.SelectPlayer(X, Y, GetComponent<Attribute>().attackWide, 6);
-                        Global.SetElement(X, Y, 0);
+                        Global.SetElement(X, Y, 0); 
+                        Destroy(Hex.transform.GetChild(0).gameObject);
                         var UI = GameObject.FindWithTag("UI");
                         UI.GetComponent<Canvas>().enabled = false;
+                        //GameObject hex = WhatIsDown();
+                        //Instantiate(Ring, hex.transform.position + new Vector3(0, 1f, 0), Quaternion.Euler(0, 0, 0), hex.transform);
                     }
                     damageif = true;
                 }

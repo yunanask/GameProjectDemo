@@ -10,6 +10,8 @@ using TMPro;
 
 public class clicked : MonoBehaviour
 {
+    private InitGame gm;
+    public GameObject[] skillui;
     public static GameObject lastPlayer;
     public int dis = 3;
     // Start is called before the first frame update
@@ -19,6 +21,7 @@ public class clicked : MonoBehaviour
         int X = HexcellDown.GetComponent<Position>().X;
         int Y = HexcellDown.GetComponent<Position>().Y;
         Global.SetPlayer(X, Y, 1);
+        gm = GameObject.Find("GameManage").GetComponent<InitGame>();
     }
 
     // Update is called once per frame
@@ -61,6 +64,8 @@ public class clicked : MonoBehaviour
                     GameObject hex = lastPlayer.GetComponent<clicked>().WhatIsDown();
                     X = hex.GetComponent<Position>().X;
                     Y = hex.GetComponent<Position>().Y;
+                    Quaternion Q = Quaternion.Euler(0, 0, 0);
+                    Instantiate(skillui[0], clicked.lastPlayer.transform.position + new Vector3(0, 3f, 0), Q);
                     Skill.AOE(X, Y, false);
                     //has apply skill 1
                     GetComponent<Attribute>().CanSkill = false;
@@ -71,6 +76,8 @@ public class clicked : MonoBehaviour
                 if (Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
                     Skill.AOE(X, Y, true);
+                    Quaternion Q = Quaternion.Euler(0, 0, 0);
+                    Instantiate(skillui[1], transform.position, Q);
                     //has apply skill 2
                     lastPlayer.GetComponent<Attribute>().CanSkill = false;
                 }
@@ -109,6 +116,8 @@ public class clicked : MonoBehaviour
                     }
                     if (action >= 0)
                     {
+                        Quaternion Q = Quaternion.Euler(0, 0, 0);
+                        Instantiate(skillui[2], transform.position, Q);
                         Queue<int> q = new Queue<int>();
                         for (int i = 0; i < dis; i++)
                         {
@@ -129,6 +138,16 @@ public class clicked : MonoBehaviour
             //ui显示选中角色的信息
             if (gameObject.GetComponent<Attribute>().IsTurn)
             {
+                GameObject hex;
+                foreach (var o in gm.getteam)
+                {
+                    hex = o.GetComponent<Attribute>().WhatIsDown();
+                    if (o.GetComponent<Attribute>().IsTurn)
+                        hex.transform.GetChild(hex.transform.childCount - 1).gameObject.SetActive(false);
+                    //var ring = Instantiate(Ring, hex.transform.position + new Vector3(0, 1f, 0), Quaternion.Euler(0, 0, 0), hex.transform);
+                }
+                hex = GetComponent<Attribute>().WhatIsDown();
+                hex.transform.GetChild(hex.transform.childCount - 1).gameObject.SetActive(true);
                 SelectMap(X, Y, 0, 0);
                 var UI = GameObject.FindWithTag("UI");
                 UI.GetComponent<Canvas>().enabled = true;

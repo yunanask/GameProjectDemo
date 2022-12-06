@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mountain3:
     mesh: {fileID: -1847016644449167091, guid: 6feb16662a87d64479bb68a98d57d7f6, type: 3}
-    material: {fileID: -4372536172839912495, guid: fe1654dd9466992418e147aed1b3018d, type: 3}
+    material: {fileID: -4372536172839912495, guid: 6feb16662a87d64479bb68a98d57d7f6, type: 3}
   hill2:
     mesh: {fileID: -7082320712167015420, guid: 4e12b566dd02b124ea76db90de54479b, type: 3}
     material: {fileID: -4372536172839912495, guid: 6feb16662a87d64479bb68a98d57d7f6, type: 3}

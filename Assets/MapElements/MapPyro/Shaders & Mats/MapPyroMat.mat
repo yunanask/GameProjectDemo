@@ -24,8 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MapPyroMat
-  m_Shader: {fileID: -6465566751694194690, guid: 0a37ee669ec472a438d0da701a37f589,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 0a37ee669ec472a438d0da701a37f589, type: 3}
   m_ValidKeywords:
   - _MATERIAL_AFFECTS_ALBEDO
   - _MATERIAL_AFFECTS_MASKMAP
@@ -90,9 +89,9 @@ Material:
     - _DrawOrder: -18
     - _Edge: 0.07
     - _Emissive: 5
-    - _Size: 50
+    - _Size: 75
     - _Speed: 1
-    - _Strength: 0.7
+    - _Strength: 1
     m_Colors:
     - _BurnColor: {r: 0.066037714, g: 0.012907482, b: 0.009137287, a: 0}
     - _Color: {r: 1, g: 0.33033955, b: 0, a: 0}

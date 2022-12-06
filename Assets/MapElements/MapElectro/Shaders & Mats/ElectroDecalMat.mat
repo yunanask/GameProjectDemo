@@ -24,8 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ElectroDecalMat
-  m_Shader: {fileID: -6465566751694194690, guid: 6e335c691c50fb044bec285996da1d65,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 6e335c691c50fb044bec285996da1d65, type: 3}
   m_ValidKeywords:
   - _MATERIAL_AFFECTS_ALBEDO
   m_InvalidKeywords: []
@@ -74,8 +73,8 @@ Material:
     - _DecalStencilRef: 16
     - _DecalStencilWriteMask: 16
     - _DrawOrder: 1
-    - _Range: 0.275
-    - _Strength: 0.9
+    - _Range: 0.3
+    - _Strength: 1
     m_Colors:
     - _Color: {r: 0.45882353, g: 0.33333334, b: 1, a: 0}
   m_BuildTextureStacks: []

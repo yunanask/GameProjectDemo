@@ -70,7 +70,8 @@ public class AttackHex : MonoBehaviour
                 }
             }
         }
-        Global.Water();
+        //Coroutine c;
+        StartCoroutine( Global.Water());
     }
     public void AttackAOE()
     {
@@ -117,7 +118,7 @@ public class AttackHex : MonoBehaviour
                 }
             }
         }
-        Global.Water();
+        StartCoroutine(Global.Water());
     }
     int kezhi(int x,int y)
     {

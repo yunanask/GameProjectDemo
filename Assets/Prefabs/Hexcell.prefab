@@ -35,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 2146082171609279187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.98, y: 1, z: 0.98}
+  m_LocalScale: {x: 0.98, y: 3, z: 0.98}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,7 +54,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4000656572952849625, guid: c9a669e0bfd33b84cbff6a144e5a82de, type: 3}
+  m_Mesh: {fileID: 4446515560500082974, guid: a404a46591b6de24892dac63d83acff1, type: 3}
 --- !u!33 &8244015213526752681
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7026ff68bbdb9db4084ceadb3ee9da30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ring: {fileID: 8920383445949253781, guid: 5d0f97bac14e496498a3c29573925d8a, type: 3}
   X: 0
   Y: 0
 --- !u!114 &4660566508686726134
@@ -143,6 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50940bab09633240833e32d1797be5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillui:
+  - {fileID: 886255227094329437, guid: cba92cf846b96ff49bfdb224dfbe990e, type: 3}
+  - {fileID: 4434611674299665882, guid: 30e12aa736ad5cc43b467b30857ba6f9, type: 3}
+  - {fileID: 886255227094329437, guid: 2b311aaf8a729794da102fa6fbd7c042, type: 3}
+  - {fileID: 4434611674299665882, guid: 8e99f0a96d25dff47951236a29fe6c26, type: 3}
   Inventory: {fileID: 11400000, guid: 410d462df560e1d4c9eac0d87d23d5b7, type: 2}
   inventory: {fileID: 11400000, guid: dcb55c14ac4b748418d5ef4c120ae88e, type: 2}
   Landform: 2
@@ -203,5 +209,5 @@ MonoBehaviour:
   enabled: 0
   color: 0
   material:
-  - {fileID: 2100000, guid: a8e2709da8e7b614b944fcff64bb8262, type: 2}
-  - {fileID: 2100000, guid: 65d030ae17969d644893aff1f0b9e2fe, type: 2}
+  - {fileID: 2100000, guid: 85f35451e10fb984698ae311822bd83e, type: 2}
+  - {fileID: 2100000, guid: f899d623674f55643874544475f0957d, type: 2}

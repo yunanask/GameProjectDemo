@@ -38,7 +38,7 @@ public class Attribute : MonoBehaviour
         if (health <= 0)
         {
             GameObject HexcellDown = WhatIsDown();
-            Global.Water();
+            StartCoroutine(Global.Water());
 
             if (gameObject.tag == "Player")
             {
@@ -85,7 +85,10 @@ public class Attribute : MonoBehaviour
                 }
             }
 
-            Destroy(gameObject);
+            Animator anim = gameObject.GetComponent<Animator>();
+            anim.SetTrigger("dead");
+
+            Destroy(gameObject,1f);
             Debug.Log("À¿Õˆ");
 
             if (HexcellDown != null)
@@ -93,6 +96,10 @@ public class Attribute : MonoBehaviour
                 int X = HexcellDown.GetComponent<Position>().X;
                 int Y = HexcellDown.GetComponent<Position>().Y;
                 Global.SetPlayer(X, Y, 0);
+                if (HexcellDown.transform.childCount > 0)
+                {
+                    Destroy(HexcellDown.transform.GetChild(HexcellDown.transform.childCount-1).gameObject);
+                }
             }
 
         }

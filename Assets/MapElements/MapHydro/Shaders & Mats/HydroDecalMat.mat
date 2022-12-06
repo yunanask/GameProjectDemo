@@ -24,8 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HydroDecalMat
-  m_Shader: {fileID: -6465566751694194690, guid: 7e50596d5a3af714f939091c5d3dfdf5,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7e50596d5a3af714f939091c5d3dfdf5, type: 3}
   m_ValidKeywords:
   - _MATERIAL_AFFECTS_ALBEDO
   - _MATERIAL_AFFECTS_MASKMAP
@@ -80,7 +79,7 @@ Material:
     - _DecalStencilWriteMask: 16
     - _DrawOrder: 0
     - _Range: 0.275
-    - _Strength: 0.039
+    - _Strength: 1
     m_Colors:
     - _Color: {r: 0, g: 0.5912342, b: 1, a: 0}
   m_BuildTextureStacks: []
