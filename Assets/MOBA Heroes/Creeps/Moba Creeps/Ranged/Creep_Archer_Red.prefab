@@ -1633,6 +1633,7 @@ MonoBehaviour:
   skillui:
   - {fileID: 886255227094329437, guid: cba92cf846b96ff49bfdb224dfbe990e, type: 3}
   - {fileID: 4434611674299665882, guid: 30e12aa736ad5cc43b467b30857ba6f9, type: 3}
+  - {fileID: 3538371555303699088, guid: 973ef0643bab5b941a924e39cf554f0e, type: 3}
   dis: 3
 --- !u!114 &6962117657529466861
 MonoBehaviour:

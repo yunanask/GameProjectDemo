@@ -89,13 +89,16 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                 text.GetComponent<Text>().text = "Turn:" + gm.getturncount.ToString();
                 //Debug.Log(gm.getturncount.ToString());
                 //Debug.Log("Now Turncount:"+gm.getturncount);
+                //GameObject camera = GameObject.FindGameObjectWithTag("Main Camera");
                 if (gm.getturncount % 2 == 1)
                 {
+                    //camera.transform.position = new Vector3(50f, camera.transform.position.y, camera.transform.position.z);
                     gm.getteam = gm.getmyplayer;
                     StartCoroutine(TurnUI("YourTurn"));
                 }
                 else
                 {
+                   //camera.transform.position = new Vector3(150f, camera.transform.position.y, camera.transform.position.z);
                     gm.getteam = gm.getenemy;
                     StartCoroutine(TurnUI("Enemy Turn"));
                 }

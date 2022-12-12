@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillui:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3538371555303699088, guid: 973ef0643bab5b941a924e39cf554f0e, type: 3}
   - {fileID: 3538371555303699088, guid: 973ef0643bab5b941a924e39cf554f0e, type: 3}
   dis: 3
 --- !u!114 &49876950846328370

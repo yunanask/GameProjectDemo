@@ -65,6 +65,7 @@ public class clicked : MonoBehaviour
                     X = hex.GetComponent<Position>().X;
                     Y = hex.GetComponent<Position>().Y;
                     Quaternion Q = Quaternion.Euler(0, 0, 0);
+                    lastPlayer.transform.LookAt(transform.position);
                     Instantiate(skillui[0], clicked.lastPlayer.transform.position + new Vector3(0, 3f, 0), Q);
                     Skill.AOE(X, Y, false);
                     //has apply skill 1
@@ -75,6 +76,7 @@ public class clicked : MonoBehaviour
             {
                 if (Global.CellIfSelected(X, Y) && lastPlayer.tag != gameObject.tag)
                 {
+                    lastPlayer.transform.LookAt(transform.position);
                     Skill.AOE(X, Y, true);
                     Quaternion Q = Quaternion.Euler(0, 0, 0);
                     Instantiate(skillui[1], transform.position, Q);
@@ -117,6 +119,7 @@ public class clicked : MonoBehaviour
                     if (action >= 0)
                     {
                         Quaternion Q = Quaternion.Euler(0, 0, 0);
+                        lastPlayer.transform.LookAt(transform.position);
                         Instantiate(skillui[2], transform.position, Q);
                         Queue<int> q = new Queue<int>();
                         for (int i = 0; i < dis; i++)
