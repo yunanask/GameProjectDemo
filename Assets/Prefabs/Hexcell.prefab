@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 1233998726387235756}
   - component: {fileID: -4687228614691476078}
   - component: {fileID: 5671085661261262285}
-  - component: {fileID: -4395444889842432627}
   - component: {fileID: 2656647289252184037}
   m_Layer: 0
   m_Name: Hexcell
@@ -181,18 +180,6 @@ MonoBehaviour:
   green: {fileID: 993081328129612792, guid: e92a9a94ce2fd4c4ca954e93dc8143b5, type: 3}
   blue: {fileID: 1472658942045177822, guid: f8b08c81654dcfc4981abf781621b8d4, type: 3}
   yellow: {fileID: 7697990583828901497, guid: 62a8fddbea83d2d4791d52f337c63d6d, type: 3}
---- !u!114 &-4395444889842432627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146082171609279187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d5302ef6a742f04d876a68cb0d35bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2656647289252184037
 MonoBehaviour:
   m_ObjectHideFlags: 0

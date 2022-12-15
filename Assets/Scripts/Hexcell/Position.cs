@@ -10,14 +10,14 @@ public class Position : MonoBehaviour
     public int Y;
     void Start()
     {
-        GameObject player = WhatIsOn();
+        /*GameObject player = WhatIsOn();
         if (player!=null)
         {
             if (player.GetComponent<Attribute>().IsTurn)
             {
                 var ring = Instantiate(Ring, transform.position + new Vector3(0, 1f, 0), Quaternion.Euler(0, 0, 0), transform);
             }
-        }
+        }*/
     }
 
     // Update is called once per frame

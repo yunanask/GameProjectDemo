@@ -74,6 +74,7 @@ public class Outline : MonoBehaviour
 			}
         }
 	}
+	//改变地形材质
 	public void LandformChange()
 	{
 		if (enabled)

@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
-{
-
+{ 
+    //根号三
+    private static float Sqrt3 = Mathf.Sqrt(3);
+    //周围相邻格与当前格的坐标差值
+    //用于搜索周围格
+    private static int[,] PlayerAction =
+    {
+        {1,1 },
+        {0,-1 },
+        {1,0 },
+        {-1,0 },
+        {0,1 },
+        {-1,-1 }
+    };
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +28,165 @@ public class Attack : MonoBehaviour
     {
 
     }
-    public void AttackPlayer()
+    //攻击棋子
+    //player是被攻击的棋子实例
+    public void PlayerAttack(GameObject player)
+    {
+        //player下的单元格
+        GameObject Hex = GetHexcell(player);
+        //单元格的XY坐标
+        int X = Hex.GetComponent<Position>().X;
+        int Y = Hex.GetComponent<Position>().Y;
+        //不在同一阵营才能发出攻击
+        if (player.tag != gameObject.tag)
+        {
+            //攻击动画
+            Animator anim = GetComponent<Animator>();
+            transform.LookAt(player.transform.position);
+            anim.SetTrigger("attack");
+            //结束本回合攻击
+            GetComponent<Attribute>().CanAttack = false;
+            //获取元素克制效果
+            int element = kezhi(GetComponent<Attribute>().element,player.GetComponent<Attribute>().element);
+            //造成伤害
+            player.GetComponent<Attribute>().health -= GetComponent<Attribute>().attackDamage * element;
+
+        }
+    }
+
+    //攻击格子
+    //player是被攻击的格子实例
+    public void HexcellAttack(GameObject hexcell)
+    {
+        //单元格的XY坐标
+        int X = hexcell.GetComponent<Position>().X;
+        int Y = hexcell.GetComponent<Position>().Y;
+        //攻击动画
+        Animator anim = GetComponent<Animator>();
+        transform.LookAt(transform.position);
+        anim.SetTrigger("attack");
+        //结束本回合攻击
+        GetComponent<Attribute>().CanAttack = false;
+        //单元格上没带有元素时
+        if (hexcell.GetComponent<Element>().Element_ == 0)
+        {
+            Global.SetElement(X, Y, GetComponent<Attribute>().element);
+        }
+        else
+        {
+            //获取元素克制关系
+            int yuan = kezhi(hexcell.GetComponent<Element>().Element_, GetComponent<Attribute>().element);
+            //单元格上的元素是被克制的就消除元素
+            if (yuan == 2)
+            {
+                Global.SetElement(X, Y, 0);
+            }
+            else
+            {
+                //水电元素反应,造成伤害
+                if (GetComponent<Attribute>().element == 1 && hexcell.GetComponent<Element>().Element_ == 4)
+                {
+                    //选中所有与XY格相连的同元素的格子
+                    Global.SelectElement(X, Y, hexcell.GetComponent<Element>().Element_);
+                    shuidian(X, Y);
+                }
+                if (GetComponent<Attribute>().element == 4 && hexcell.GetComponent<Element>().Element_ == 1)
+                {
+                    //选中所有与XY格相连的同元素的格子
+                    Global.SelectElement(X, Y, hexcell.GetComponent<Element>().Element_);
+                    shuidian(X, Y);
+                }
+                //火电元素反应,改变地形
+                if (GetComponent<Attribute>().element == 4 && hexcell.GetComponent<Element>().Element_ == 2)
+                {
+                    //选中所有与XY格相连的同元素的格子
+                    Global.SelectElement(X, Y, hexcell.GetComponent<Element>().Element_);
+                    huodian(X, Y);
+                }
+                if (GetComponent<Attribute>().element == 2 && hexcell.GetComponent<Element>().Element_ == 4)
+                {
+                    //选中所有与XY格相连的同元素的格子
+                    Global.SelectElement(X, Y, hexcell.GetComponent<Element>().Element_);
+                    huodian(X, Y);
+                }
+            }
+        }
+        //水元素在地形上由高到低流
+        //Coroutine c;
+        StartCoroutine(Global.Water());
+    }
+    //水电反应
+    void shuidian(int X, int Y)
+    {
+        //取消XY坐标被选中状态
+        Global.ChangeSelected(X, Y, 0);
+        //如果这个位置有棋子就对棋子造成伤害
+        if (Global.GetMapPlayer(X, Y) > 0)
+        {
+            Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 30f, Y * 15f);
+            Ray ray = new Ray(position, -Vector3.up);
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                Debug.Log(hitInfo.collider.gameObject);
+                //该格棋子会受到伤害
+                Global.shuidian[X, Y] = true;
+            }
+            Debug.Log(hitInfo.collider.gameObject);
+        }
+        //搜索周围可递归的六个单元格进行回溯
+        for (int i = 0; i < 6; i++)
+        {
+            int dX = X + PlayerAction[i, 0];
+            int dY = Y + PlayerAction[i, 1];
+            if (dX < 0) continue;
+            if (dY < 0) continue;
+            if (dX >= Global.size_x) continue;
+            if (dY >= Global.size_y) continue;
+            if (!Global.CellIfSelected(dX, dY)) continue;
+            shuidian(dX, dY);
+        }
+    }
+
+
+    //火电反应
+    void huodian(int X, int Y)
+    {
+        //取消XY坐标被选中状态
+        Global.ChangeSelected(X, Y, 0);
+        //消除单元格上的元素
+        Global.SetElement(X, Y, 0);
+        //该格地形会降低1
+        Global.huodian[X, Y] = true;
+        //搜索周围可递归的六个单元格进行回溯
+        for (int i = 0; i < 6; i++)
+        {
+            int dX = X + PlayerAction[i, 0];
+            int dY = Y + PlayerAction[i, 1];
+            if (dX < 0) continue;
+            if (dY < 0) continue;
+            if (dX >= Global.size_x) continue;
+            if (dY >= Global.size_y) continue;
+            if (!Global.CellIfSelected(dX, dY)) continue;
+            huodian(dX, dY);
+        }
+    }
+
+    //获取单元格实例
+    //player为该格上的棋子
+    public static GameObject GetHexcell(GameObject player)
+    {
+        Ray ray = new Ray(player.transform.position, -Vector3.up);
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            return hitInfo.collider.gameObject;
+        }
+        return null;
+    }
+
+
+    /*public void AttackPlayer()
     {
        
         GameObject Hex = WhatIsDown();
@@ -51,7 +221,8 @@ public class Attack : MonoBehaviour
             return hitInfo.collider.gameObject;
         }
         return null;
-    }
+    }*/
+    //获取元素克制关系
     int kezhi(int x, int y)
     {
         if (x == 1 && y == 3)

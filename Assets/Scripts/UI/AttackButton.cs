@@ -32,6 +32,7 @@ public class AttackButton : MonoBehaviour, IPointerDownHandler
         GameObject player = clicked.lastPlayer;
         if (player.GetComponent<Attribute>().CanAttack)
         {
+            //ÏÔÊ¾¹¥»÷·¶Î§
             GameObject hex = player.GetComponent<clicked>().WhatIsDown();
             int X = hex.GetComponent<Position>().X;
             int Y = hex.GetComponent<Position>().Y;

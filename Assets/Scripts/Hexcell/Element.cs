@@ -14,6 +14,7 @@ public class Element : MonoBehaviour
     private static float Sqrt3 = Mathf.Sqrt(3);
     void Awake()
     {
+        //元素初始化
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
         Element_ = Global.GetMapElement(X, Y);
@@ -59,6 +60,7 @@ public class Element : MonoBehaviour
         {
             return;
         }
+        //元素改变
         if (Element_!= Global.GetMapElement(X, Y))
         {
             if (Element_ != 0)
