@@ -20,7 +20,8 @@ public class InitGame : MonoBehaviour
     public GameObject count1, count2, count3, count4, count5, count6;
     public GameObject Treasure;
     private static float Sqrt3 = Mathf.Sqrt(3);
-
+    //敌我队列
+    //问徐辉男
     public List<GameObject> getmyplayer
     {
         set { myplayer = value; }
@@ -59,7 +60,7 @@ public class InitGame : MonoBehaviour
         Quaternion Q = Quaternion.Euler(0, 0, 0);
 
 
-
+        //实例化人物
         var player = new GameObject { name = "Player" };
         for (int i = 1; i <= 6; i++)
         {
@@ -90,7 +91,7 @@ public class InitGame : MonoBehaviour
         }
         players = GameObject.FindGameObjectsWithTag("Player");
         enemys = GameObject.FindGameObjectsWithTag("Enemy");
-
+        //兵种数量显示
         foreach (var o in players)
         {
             o.GetComponent<Attribute>().IsTurn = true;
@@ -112,7 +113,7 @@ public class InitGame : MonoBehaviour
         team = myplayer;
 
 
-
+        //实例化地图
         var grid = new GameObject { name = "Grid" };
         Hex.transform.localScale = new Vector3(0.98f, 3f, 0.98f);
         for (int i = 0; i < size_x; i++)

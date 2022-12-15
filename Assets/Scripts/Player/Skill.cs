@@ -25,6 +25,7 @@ public class Skill : MonoBehaviour
         {0,1 },
         {-1,-1 }
     };
+    //一二技能AOE
     public static void AOE(int X, int Y, bool IfHurtCenter)
     {
         for (int i = 0; i < 6; i++)
@@ -56,6 +57,7 @@ public class Skill : MonoBehaviour
             }
         }
     }
+    //AOE所属的攻击棋子
     public static void AttackPlayer(int X, int Y)
     {
         Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 30f, Y * 15f);
@@ -64,9 +66,10 @@ public class Skill : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo))
         {
             Debug.Log(hitInfo.collider.gameObject);
-            hitInfo.collider.gameObject.GetComponent<Attack>().AttackPlayer();
+            clicked.lastPlayer.GetComponent<Attack>().PlayerAttack(hitInfo.collider.gameObject);
         }
     }
+    //AOE所属的攻击格子
     public static void AttackHex(int X, int Y)
     {
         Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 1f, Y * 15f);
@@ -74,8 +77,9 @@ public class Skill : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo))
         {
-            Debug.Log(hitInfo.collider.gameObject);
-            hitInfo.collider.gameObject.GetComponent<AttackHex>().AttackAOE();
+            Debug.Log(hitInfo.collider.gameObject); 
+            clicked.lastPlayer.GetComponent<Attack>().HexcellAttack(hitInfo.collider.gameObject);
+            //hitInfo.collider.gameObject.GetComponent<AttackHex>().AttackAOE();
         }
     }
 }

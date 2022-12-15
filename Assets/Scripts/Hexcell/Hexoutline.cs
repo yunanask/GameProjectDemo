@@ -33,6 +33,7 @@ public class Hexoutline : MonoBehaviour
     {
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
+        //材质发生改变
         if (Global.CellIfSelected(X, Y) && !ExitShow.Item1)
         {
             ExitShow = new Tuple<bool, int>(true, 1);
@@ -49,7 +50,7 @@ public class Hexoutline : MonoBehaviour
             outline.color = ExitShow.Item2;
         }
     }
-
+    //鼠标移动到地图格上方材质改变
     void OnMouseOver()
     {
         Outline outline = GetComponent<Outline>();
@@ -71,7 +72,7 @@ public class Hexoutline : MonoBehaviour
             }
         }
     }
-
+    //鼠标离开地图格上方材质改变
     void OnMouseExit()
     {
         Outline outline = GetComponent<Outline>();
@@ -93,6 +94,7 @@ public class Hexoutline : MonoBehaviour
             }
         }
     }
+    //AOE专属鼠标离开地图格上方材质改变的收尾
     public void Hide6()
     {
         int X = GetComponent<Position>().X;
@@ -108,6 +110,7 @@ public class Hexoutline : MonoBehaviour
             Hide(dX, dY);
         }
     }
+    //AOE专属鼠标移动到地图格上方材质改变
     void Show(int X, int Y)
     {
         Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 1f, Y * 15f);
@@ -121,6 +124,7 @@ public class Hexoutline : MonoBehaviour
             outline.color = 0;
         }
     }
+    //AOE专属鼠标离开地图格上方材质改变
     void Hide(int X, int Y)
     {
         Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 1f, Y * 15f);

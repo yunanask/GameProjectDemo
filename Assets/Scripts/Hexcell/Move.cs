@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    //»ù±¾ÆúÓÃ
     // Start is called before the first frame update
     void Start()
     {

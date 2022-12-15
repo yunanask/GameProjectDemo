@@ -27,6 +27,7 @@ public class Detail : MonoBehaviour
         Landform = 0;
         cellMesh(Landform);
     }
+    //地形显示
     void cellMesh(int Landform)
     {
         MeshFilter cellMesh = GetComponent<MeshFilter>();
@@ -67,11 +68,13 @@ public class Detail : MonoBehaviour
     {
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
+        //火电地形结算
         if (Global.huodian[X, Y])
         {
             Global.huodian[X, Y] = false;
             Global.HexcellUp(X, Y, 0, -1);
         }
+        //地形发生变化
         if (Landform != Global.GetMapLandform(X, Y))
         {
             Landform = Global.GetMapLandform(X, Y);
@@ -89,6 +92,7 @@ public class Detail : MonoBehaviour
         int Y = GetComponent<Position>().Y;
         if (Global.IfCellSelected > 0)
         {
+            //改变地形
             if (Global.IfCellSelected == 7)
             {
                 if (Global.CellIfSelected(X, Y))
@@ -105,14 +109,16 @@ public class Detail : MonoBehaviour
                 }
                 return;
             }
+            //移动
             if (Global.IfCellSelected == 1)
             {
                 if (Global.CellIfSelected(X, Y))
                 {
-                    GetComponent<Move>().MovePlayer();
+                    clicked.lastPlayer.GetComponent<Run>().MovePlayer(gameObject);
                     Global.SelectCancel();
                 }
             }
+            //攻击地图格
             if (Global.IfCellSelected == 2)
             {
                 if (Global.CellIfSelected(X, Y))
@@ -120,11 +126,13 @@ public class Detail : MonoBehaviour
                     Global.SelectCancel();
                     if (WhatIsOn() == null)
                     {
-                        GetComponent<AttackHex>().Attack();
+                        clicked.lastPlayer.GetComponent<Attack>().HexcellAttack(gameObject);
+                        //GetComponent<AttackHex>().Attack();
                         //GetComponent<Attribute>().CanAttack = false;
                     }
                 }
             }
+            //技能一攻击地图格
             if (Global.IfCellSelected == 3)
             {
                 if (Global.CellIfSelected(X, Y))
@@ -140,6 +148,7 @@ public class Detail : MonoBehaviour
                     Skill.AOE(X, Y, false);
                 }
             }
+            //技能二攻击地图格
             if (Global.IfCellSelected == 4)
             {
                 if (Global.CellIfSelected(X, Y))
@@ -153,14 +162,18 @@ public class Detail : MonoBehaviour
                 }
                 GetComponent<Hexoutline>().Hide6();
             }
+            //生成新兵
             if (Global.IfCellSelected == 6)
             {
                 if (Global.CellIfSelected(X, Y))
                 {
                     Global.SelectCancel();
                     NewPlayer(X,Y);
+                    var UI = GameObject.FindWithTag("UI");
+                    UI.GetComponent<Canvas>().enabled = true;
                 }
             }
+            //取消选中
             if (!Global.CellIfSelected(X, Y))
             {
                 Global.SelectCancel();
@@ -183,6 +196,7 @@ public class Detail : MonoBehaviour
     }
 
     private static float Sqrt3 = Mathf.Sqrt(3);
+    //获取上方的棋子
     GameObject WhatIsOn()
     {
         Ray ray = new Ray(transform.position, Vector3.up);
@@ -194,6 +208,7 @@ public class Detail : MonoBehaviour
         return null;
     }
     private InitGame gm;
+    //生成新兵
     void NewPlayer(int X,int Y)
     {
         Quaternion Q = Quaternion.Euler(0, 0, 0);
@@ -208,6 +223,7 @@ public class Detail : MonoBehaviour
         Player.transform.localScale = new Vector3(5f, 5f, 5f);
         var Player_ = Instantiate(Player, new Vector3(Sqrt3 * 10f * X - 5f * Sqrt3 * Y, 1f, 15f * Y), Q, player.transform);
         Player_.tag = clicked.lastPlayer.tag;
+        //兵种数量改变显示
         if (Player_.tag == "Player")
         {
             int type = Player_.GetComponent<Attribute>().type;
