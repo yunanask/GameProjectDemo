@@ -58,10 +58,13 @@ public class Attribute : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 //移出我方队列
-                gm.getmyplayer.Remove(gameObject);
+                if (gm.getmyplayer.Contains(gameObject))
+                {
+                    gm.getmyplayer.Remove(gameObject);
+                    Global.num[type]--;
+                }
                 if (gm.getteam.Contains(gameObject))
                     gm.getteam.Remove(gameObject);
-                Global.num[type]--;
                 //修改我方存活兵种数量
                 if (type == 1)
                 {
@@ -83,7 +86,11 @@ public class Attribute : MonoBehaviour
             if (gameObject.tag == "Enemy")
             {
                 //移出敌方队列
-                gm.getenemy.Remove(gameObject);
+                if (gm.getenemy.Contains(gameObject))
+                {
+                    gm.getenemy.Remove(gameObject);
+                    Global.num[type]--;
+                }
                 if (gm.getteam.Contains(gameObject))
                     gm.getteam.Remove(gameObject);
                 Global.num[type + 3]--;
