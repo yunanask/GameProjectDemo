@@ -44,8 +44,6 @@ public class Attack : MonoBehaviour
             Animator anim = GetComponent<Animator>();
             transform.LookAt(player.transform.position);
             anim.SetTrigger("attack");
-            //结束本回合攻击
-            GetComponent<Attribute>().CanAttack = false;
             //获取元素克制效果
             int element = kezhi(GetComponent<Attribute>().element,player.GetComponent<Attribute>().element);
             //造成伤害
@@ -65,8 +63,6 @@ public class Attack : MonoBehaviour
         Animator anim = GetComponent<Animator>();
         transform.LookAt(transform.position);
         anim.SetTrigger("attack");
-        //结束本回合攻击
-        GetComponent<Attribute>().CanAttack = false;
         //单元格上没带有元素时
         if (hexcell.GetComponent<Element>().Element_ == 0)
         {
