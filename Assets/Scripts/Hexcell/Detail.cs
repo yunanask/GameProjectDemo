@@ -127,6 +127,8 @@ public class Detail : MonoBehaviour
                     if (WhatIsOn() == null)
                     {
                         clicked.lastPlayer.GetComponent<Attack>().HexcellAttack(gameObject);
+                        //结束本回合攻击
+                        clicked.lastPlayer.GetComponent<Attribute>().CanAttack = false;
                         //GetComponent<AttackHex>().Attack();
                         //GetComponent<Attribute>().CanAttack = false;
                     }
@@ -146,6 +148,7 @@ public class Detail : MonoBehaviour
                     { Instantiate(skillui[0], clicked.lastPlayer.transform.position + new Vector3(0, 3f, 0), Q); }
                     else { Instantiate(skillui[2], clicked.lastPlayer.transform.position + new Vector3(0, 3f, 0), Q); }
                     Skill.AOE(X, Y, false);
+                    clicked.lastPlayer.GetComponent<Attribute>().CanSkill = false;
                 }
             }
             //技能二攻击地图格
@@ -159,6 +162,7 @@ public class Detail : MonoBehaviour
                     { Instantiate(skillui[1], transform.position, Q); }
                     else { Instantiate(skillui[3], transform.position, Q); }
                     Skill.AOE(X, Y, true);
+                    clicked.lastPlayer.GetComponent<Attribute>().CanSkill = false;
                 }
                 GetComponent<Hexoutline>().Hide6();
             }
