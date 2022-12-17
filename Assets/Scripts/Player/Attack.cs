@@ -127,6 +127,7 @@ public class Attack : MonoBehaviour
                 Debug.Log(hitInfo.collider.gameObject);
                 //该格棋子会受到伤害
                 Global.shuidian[X, Y] = true;
+                Debug.Log(X.ToString() + " " + Y.ToString());
             }
             Debug.Log(hitInfo.collider.gameObject);
         }
