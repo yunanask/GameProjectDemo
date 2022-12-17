@@ -46,7 +46,7 @@ public class Attribute : MonoBehaviour
         //·ÀÖ¹ÉúÃüÒç³ö
         if (health > MaxHealth)
         {
-            MaxHealth = health;
+            health = MaxHealth;
         }
         //Æå×ÓËÀÍö
         if (health <= 0)
