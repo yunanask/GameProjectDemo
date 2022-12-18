@@ -17,6 +17,8 @@ public class Attack : MonoBehaviour
         {0,1 },
         {-1,-1 }
     };
+    //三种反应特效
+    public GameObject[] ERs;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,13 @@ public class Attack : MonoBehaviour
     void Update()
     {
 
+    }
+    //将网格赋给特效粒子
+    private void GiveMesh(GameObject particle)
+    {
+        GameObject Hex = particle.transform.parent.gameObject;
+        ParticleSystem.ShapeModule shape = particle.GetComponent<ParticleSystem>().shape;
+        shape.mesh = Hex.GetComponent<MeshFilter>().sharedMesh;
     }
     //攻击棋子
     //player是被攻击的棋子实例
@@ -61,8 +70,10 @@ public class Attack : MonoBehaviour
         int Y = hexcell.GetComponent<Position>().Y;
         //攻击动画
         Animator anim = GetComponent<Animator>();
-        transform.LookAt(transform.position);
+        transform.LookAt(hexcell.transform.position);
         anim.SetTrigger("attack");
+        Quaternion Q = Quaternion.Euler(0, 0, 0);
+        GameObject particle;
         //单元格上没带有元素时
         if (hexcell.GetComponent<Element>().Element_ == 0)
         {
@@ -71,10 +82,13 @@ public class Attack : MonoBehaviour
         else
         {
             //获取元素克制关系
-            int yuan = kezhi(hexcell.GetComponent<Element>().Element_, GetComponent<Attribute>().element);
+            int yuan = kezhi(GetComponent<Attribute>().element, hexcell.GetComponent<Element>().Element_);
             //单元格上的元素是被克制的就消除元素
             if (yuan == 2)
             {
+                particle = Instantiate(ERs[0], hexcell.transform.position, Q);
+                particle.transform.parent = hexcell.transform;
+                GiveMesh(particle);
                 Global.SetElement(X, Y, 0);
             }
             else
@@ -82,12 +96,20 @@ public class Attack : MonoBehaviour
                 //水电元素反应,造成伤害
                 if (GetComponent<Attribute>().element == 1 && hexcell.GetComponent<Element>().Element_ == 4)
                 {
+                    //特效
+                    particle = Instantiate(ERs[2], hexcell.transform.position, Q);
+                    particle.transform.parent = hexcell.transform;
+                    GiveMesh(particle);
                     //选中所有与XY格相连的同元素的格子
                     Global.SelectElement(X, Y, hexcell.GetComponent<Element>().Element_);
                     shuidian(X, Y);
                 }
                 if (GetComponent<Attribute>().element == 4 && hexcell.GetComponent<Element>().Element_ == 1)
                 {
+                    //特效
+                    particle = Instantiate(ERs[2], hexcell.transform.position, Q);
+                    particle.transform.parent = hexcell.transform;
+                    GiveMesh(particle);
                     //选中所有与XY格相连的同元素的格子
                     Global.SelectElement(X, Y, hexcell.GetComponent<Element>().Element_);
                     shuidian(X, Y);
@@ -95,12 +117,20 @@ public class Attack : MonoBehaviour
                 //火电元素反应,改变地形
                 if (GetComponent<Attribute>().element == 4 && hexcell.GetComponent<Element>().Element_ == 2)
                 {
+                    //特效
+                    particle = Instantiate(ERs[1], hexcell.transform.position, Q);
+                    particle.transform.parent = hexcell.transform;
+                    GiveMesh(particle);
                     //选中所有与XY格相连的同元素的格子
                     Global.SelectElement(X, Y, hexcell.GetComponent<Element>().Element_);
                     huodian(X, Y);
                 }
                 if (GetComponent<Attribute>().element == 2 && hexcell.GetComponent<Element>().Element_ == 4)
                 {
+                    //特效
+                    particle = Instantiate(ERs[1], hexcell.transform.position, Q);
+                    particle.transform.parent = hexcell.transform;
+                    GiveMesh(particle);
                     //选中所有与XY格相连的同元素的格子
                     Global.SelectElement(X, Y, hexcell.GetComponent<Element>().Element_);
                     huodian(X, Y);
@@ -154,6 +184,7 @@ public class Attack : MonoBehaviour
         Global.SetElement(X, Y, 0);
         //该格地形会降低1
         Global.huodian[X, Y] = true;
+       
         //搜索周围可递归的六个单元格进行回溯
         for (int i = 0; i < 6; i++)
         {

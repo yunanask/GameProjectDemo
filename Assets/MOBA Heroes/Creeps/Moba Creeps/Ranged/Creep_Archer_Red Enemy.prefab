@@ -1593,6 +1593,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e01910a49fb23f45858e9ef43fb007d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ERs:
+  - {fileID: 364649505888476406, guid: 4a9f4f86d1cce334da0b3d18c04aa86f, type: 3}
+  - {fileID: 1329097055756348966, guid: 3a788ab13ca943745ad3fd01a4617544, type: 3}
+  - {fileID: 2096910471125871005, guid: 0fd94e83c3f73064b91d183501c0891b, type: 3}
 --- !u!114 &6528019022917194733
 MonoBehaviour:
   m_ObjectHideFlags: 0
