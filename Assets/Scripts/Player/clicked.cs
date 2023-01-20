@@ -46,7 +46,7 @@ public class clicked : MonoBehaviour
         //攻击范围
         int attackWide = GetComponent<Attribute>().attackWide;
         //已选中状态
-        if (Global.IfCellSelected > 0&& Global.CellIfSelected(X, Y))
+        if (Global.IfCellSelected > 0 && Global.CellIfSelected(X, Y))
         {
             //改变地形无反应
             if (Global.IfCellSelected == 7)

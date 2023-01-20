@@ -78,13 +78,13 @@ public class InitGame : MonoBehaviour
             Player.transform.localScale = new Vector3(5f, 5f, 5f);
             Vector3 pos = i switch
             {
-                6 => new Vector3(Sqrt3 * 10f * 11.5f, 1f, 45f),
-                5 => new Vector3(Sqrt3 * 10f * 10.5f, 1f, 105f),
-                4 => new Vector3(Sqrt3 * 10f * 12, 1f, 30f),
-                3 => new Vector3(Sqrt3 * 10f * 0.5f, 1f, 105f),
-                2 => new Vector3(Sqrt3 * 10f , 1f, 30f),
-                1 => new Vector3(-Sqrt3 * 10f * 0.5f, 1f, 15f),
-                _ => new Vector3(0f, 1f, 30f),
+                6 => new Vector3(Sqrt3 * 10f * 11.5f, 501f, 45f),
+                5 => new Vector3(Sqrt3 * 10f * 10.5f, 501f, 105f),
+                4 => new Vector3(Sqrt3 * 10f * 12, 501f, 30f),
+                3 => new Vector3(Sqrt3 * 10f * 0.5f, 501f, 105f),
+                2 => new Vector3(Sqrt3 * 10f , 501f, 30f),
+                1 => new Vector3(-Sqrt3 * 10f * 0.5f, 501f, 15f),
+                _ => new Vector3(0f, 501f, 30f),
             };
             var Player_ = Instantiate(Player, pos, Q, player.transform);
            // Player_.transform.GetChild(2).GetComponent<Canvas>().worldCamera = Camera.main;
@@ -120,14 +120,14 @@ public class InitGame : MonoBehaviour
         {
             for (int j = 0; j < size_y; j++)
             {
-                var Hexcell = Instantiate(Hex, new Vector3(i * Sqrt3 * 10f - j * 5f * Sqrt3, 0, j * 15f), Q, grid.transform);
+                var Hexcell = Instantiate(Hex, new Vector3(i * Sqrt3 * 10f - j * 5f * Sqrt3, 500, j * 15f), Q, grid.transform);
                 var Position = Hexcell.GetComponent<Position>();
                 Position.X = i;
                 Position.Y = j;
                 if (Global.GetMapElement(i, j) == -1)
                 {
                     Treasure.transform.localScale = new Vector3(8f, 3f, 8f);
-                    Instantiate(Treasure, new Vector3(i * Sqrt3 * 10f - j * 5f * Sqrt3, 3f, j * 15f), Q, Hexcell.transform);
+                    Instantiate(Treasure, new Vector3(i * Sqrt3 * 10f - j * 5f * Sqrt3, 503f, j * 15f), Q, Hexcell.transform);
                 }
             }
         }

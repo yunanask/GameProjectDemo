@@ -37,13 +37,13 @@ public class CameraController : MonoBehaviour
         }
         if (mousePositionOnScreen.y < maxToleratedDistanceHeight)
         {
-            if (transform.position.z > -0.1f * maxToleratedMoveHeight)
+            if (transform.position.z > -0.3f * maxToleratedMoveHeight)
                 transform.Translate(-forward * cameraSpeed * Time.deltaTime, Space.World);
-            Debug.Log(transform.position.z);
+            //Debug.Log(transform.position.z);
         }
         if (mousePositionOnScreen.y > Screen.height - maxToleratedDistanceHeight)
         {
-            if (transform.position.z < 0.7f * maxToleratedMoveHeight)
+            if (transform.position.z < -0.7f * maxToleratedMoveHeight)
                 transform.Translate(forward * cameraSpeed * Time.deltaTime, Space.World);
         }
         mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView - scroll * cameraZoomSpeed, cameraZoomMin, cameraZoomMax);
