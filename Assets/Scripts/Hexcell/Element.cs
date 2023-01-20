@@ -63,7 +63,7 @@ public class Element : MonoBehaviour
         //ÔªËØ¸Ä±ä
         if (Element_!= Global.GetMapElement(X, Y))
         {
-            if (Element_ != 0)
+            if (Element_ > 0)
             {
                 Destroy(transform.GetChild(0).gameObject);
             }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Global
 {
+    public static int PandN = 0;
     public static bool move = false;
     public static int MainSkill = 0;
     public static int size_x = 18;
@@ -14,11 +15,11 @@ public class Global
     public static bool[,] shuidian = new bool[size_x, size_y];
     public static bool[,] huodian = new bool[size_x, size_y];
     //地形
-    private static int[,] MapLandform = new int[size_x, size_y];
+    private static int[,,] MapLandform = new int[size_x, size_y, 2];
     //棋子位置
-    private static int[,] MapPlayer = new int[size_x, size_y];
+    private static int[,,] MapPlayer = new int[size_x, size_y, 2];
     //元素
-    private static int[,] MapElement = new int[size_x, size_y];
+    private static int[,,] MapElement = new int[size_x, size_y, 2];
     //选中状态
     private static int[,] MapSelect = new int[size_x, size_y];
     //该格由哪格到达
@@ -47,7 +48,8 @@ public class Global
         {
             for (int j = 0; j < size_y; j++)
             {
-                MapPlayer[i, j] = 0;
+                MapPlayer[i, j, 0] = 0;
+                MapPlayer[i, j, 1] = 0;
             }
         }
         //读入地图
@@ -58,21 +60,31 @@ public class Global
             string[] ss = RawString[i].Split(' ');     //截断字节
             for(int j = 0; j < ss.Length; j++)
             {
-                MapLandform[i, j] = (int)float.Parse(ss[j]);
+                MapLandform[i, j, 0] = (int)float.Parse(ss[j]);
+                MapLandform[i, j, 1] = -MapLandform[i, j, 0];
+                if (MapLandform[i, j, 1] <= -4)
+                    MapLandform[i, j, 1] = 4;
             }
         }
 
         RawString = System.IO.File.ReadAllLines(@"Data\Element.txt");  //路径
 
-        for (int i = 0; i < RawString.Length; i++)     //
+        for (int i = 0; i*2 < RawString.Length; i++)     //
         {
             string[] ss = RawString[i].Split(' ');     //截断字节
             for (int j = 0; j < ss.Length; j++)
             {
-                MapElement[i, j] = (int)float.Parse(ss[j]);
+                MapElement[i, j, 0] = (int)float.Parse(ss[j]);
             }
         }
-        //MapElement[1, 1] = -1;
+        for (int i = 0; i*2 < RawString.Length; i++)     //
+        {
+            string[] ss = RawString[i + RawString.Length/2].Split(' ');     //截断字节
+            for (int j = 0; j < ss.Length; j++)
+            {
+                MapElement[i, j, 1] = (int)float.Parse(ss[j]);
+            }
+        }
     }
 
     public static void SaveMap()
@@ -81,10 +93,10 @@ public class Global
         string text = "";
         for(int i = 0;i< size_x; i++)
         {
-            text += MapLandform[i, 0].ToString();
+            text += MapLandform[i, 0, 0].ToString();
             for (int j = 1; j < size_y; j++)
             {
-                text += " " + MapLandform[i, j].ToString();
+                text += " " + MapLandform[i, j, 0].ToString();
             }
             text += "\r\n";
         }
@@ -92,10 +104,19 @@ public class Global
         text = "";
         for (int i = 0; i < size_x; i++)
         {
-            text += MapElement[i, 0].ToString();
+            text += MapElement[i, 0, 0].ToString();
             for (int j = 1; j < size_y; j++)
             {
-                text += " " + MapElement[i, j].ToString();
+                text += " " + MapElement[i, j, 0].ToString();
+            }
+            text += "\r\n";
+        }
+        for (int i = 0; i < size_x; i++)
+        {
+            text += MapElement[i, 0, 1].ToString();
+            for (int j = 1; j < size_y; j++)
+            {
+                text += " " + MapElement[i, j, 1].ToString();
             }
             text += "\r\n";
         }
@@ -124,9 +145,9 @@ public class Global
                 if (dY < 0) continue;
                 if (dX >= size_x) continue;
                 if (dY >= size_y) continue;
-                if (MapLandform[dX, dY] > landform) continue;
-                if (MapLandform[dX, dY] < -landform) continue;
-                if (MapPlayer[dX, dY] <= 0)
+                if (MapLandform[dX, dY, PandN] > landform) continue;
+                if (MapLandform[dX, dY, PandN] < -landform) continue;
+                if (MapPlayer[dX, dY, PandN] <= 0)
                 {
                     if (MapSelect[dX, dY] == 0)
                     {
@@ -160,17 +181,17 @@ public class Global
     //XY地形
     public static int GetMapLandform(int X,int Y)
     {
-        return MapLandform[X, Y];
+        return MapLandform[X, Y, PandN];
     }
     //XY元素
     public static int GetMapElement(int X, int Y)
     {
-        return MapElement[X, Y];
+        return MapElement[X, Y, PandN];
     }
     //XY是否有棋子
     public static int GetMapPlayer(int X, int Y)
     {
-        return MapPlayer[X, Y];
+        return MapPlayer[X, Y, PandN];
     }
     //X_MAX
     public static int GetSizeX()
@@ -195,14 +216,14 @@ public class Global
     //改变XY是否有棋子
     public static void SetPlayer(int X,int Y,int Value)
     {
-        MapPlayer[X, Y] = Value;
+        MapPlayer[X, Y, PandN] = Value;
     }
     //改变元素
     public static void SetElement(int X, int Y, int Value)
     {
-        if (MapLandform[X, Y] != 4)
+        if (MapLandform[X, Y, PandN] != 4)
         {
-            MapElement[X, Y] = Value;
+            MapElement[X, Y, PandN] = Value;
         }
     }
     //地形改变
@@ -215,15 +236,18 @@ public class Global
             {
                 if (Distance(i - X, j - Y) <= dis)
                 {
-                    MapLandform[i, j] += Addition;
-                    if (MapLandform[i, j] > 4)
+                    MapLandform[i, j, PandN] += Addition;
+                    if (MapLandform[i, j, PandN] > 4)
                     {
-                        MapLandform[i, j] = MapLandform[i, j] - 8;
+                        MapLandform[i, j, PandN] = MapLandform[i, j, PandN] - 8;
                     }
-                    if (MapLandform[i, j] < -3)
+                    if (MapLandform[i, j, PandN] < -3)
                     {
-                        MapLandform[i, j] = MapLandform[i, j] + 8;
+                        MapLandform[i, j, PandN] = MapLandform[i, j, PandN] + 8;
                     }
+                    MapLandform[i, j, PandN ^ 1] = -MapLandform[i, j, PandN];
+                    if (MapLandform[i, j, PandN] == 4)
+                        MapLandform[i, j, PandN ^ 1] = 4;
                 }
             }
         }
@@ -237,7 +261,7 @@ public class Global
             {
                 for (int j = 0; j < size_y; j++)
                 {
-                    if (MapLandform[i, j] == k && MapElement[i, j] == 1)
+                    if (MapLandform[i, j, PandN] == k && MapElement[i, j, PandN] == 1)
                     {
                         for (int t = 0; t < 6; t++)
                         {
@@ -247,13 +271,13 @@ public class Global
                             if (dY < 0) continue;
                             if (dX >= size_x) continue;
                             if (dY >= size_y) continue;
-                            if (MapPlayer[dX, dY] > 0) continue;
-                            if (MapLandform[dX, dY] < k)
+                            if (MapPlayer[dX, dY, PandN] > 0) continue;
+                            if (MapLandform[dX, dY, PandN] < k)
                             {
-                                if (MapElement[dX, dY] == 0)
+                                if (MapElement[dX, dY, PandN] == 0)
                                 {
                                     yield return new WaitForSeconds(1f);
-                                    MapElement[dX, dY] = 1;
+                                    MapElement[dX, dY, PandN] = 1;
                                   
                                 }
                             }
@@ -281,7 +305,7 @@ public class Global
 
                     if (type == 6)
                     {
-                        if (MapPlayer[i, j] == 0 && MapLandform[i, j] == 0) 
+                        if (MapPlayer[i, j, PandN] == 0 && MapLandform[i, j, PandN] == 0) 
                         {
                             MapSelect[i, j] = 1;
                         }
@@ -289,14 +313,14 @@ public class Global
                     else
                     if (type >= 7)
                     {
-                        if (MapPlayer[i, j] == 0 && MapElement[i, j] >= 0)
+                        if (MapPlayer[i, j, PandN] == 0 && MapElement[i, j, PandN] >= 0)
                         {
                             MapSelect[i, j] = 1;
                         }
                     }
                     else
                     {
-                        if (MapPlayer[i, j] == 1 || MapElement[i, j] >= 0)
+                        if (MapPlayer[i, j, PandN] == 1 || MapElement[i, j, PandN] >= 0)
                         {
                             MapSelect[i, j] = 1;
                         }
@@ -355,7 +379,7 @@ public class Global
                 if (dY < 0) continue;
                 if (dX >= size_x) continue;
                 if (dY >= size_y) continue;
-                if (MapElement[dX, dY] != element) continue;
+                if (MapElement[dX, dY, PandN] != element) continue;
                 if (MapSelect[dX, dY] == 0)
                 {
                     MapSelect[dX, dY] = 1;
@@ -373,9 +397,9 @@ public class Global
             t = t + 1;
             X = UnityEngine.Random.Range(0, size_x - 1);
             Y = UnityEngine.Random.Range(0, size_y - 1);
-            if (MapElement[X, Y] == 0 && MapLandform[X, Y] == 0 && MapPlayer[X, Y] == 0)
+            if (MapElement[X, Y, PandN] == 0 && MapLandform[X, Y, PandN] == 0 && MapPlayer[X, Y, PandN] == 0)
             {
-                MapElement[X, Y] = -1;
+                MapElement[X, Y, PandN] = -1;
                 return new Tuple<int, int>(X, Y); 
             }
         }

@@ -31,7 +31,7 @@ public class Attribute : MonoBehaviour
     //棋子是否在能行动的回合
     public bool IsTurn = false;
     public int turn = 0;
-
+    public int PorN = 0;
 
     private InitGame gm;
     //棋子初始化
