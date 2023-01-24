@@ -98,7 +98,7 @@ public class clicked : MonoBehaviour
                     Skill.AOE(X, Y, true);
                     Quaternion Q = Quaternion.Euler(0, 0, 0);
                     //技能特效
-                    Instantiate(skillui[1], transform.position, Q);
+                    Instantiate(skillui[1], transform.position + new Vector3(0, 3f, 0), Q);
                     //has apply skill 2
                     //本回合技能结束
                     lastPlayer.GetComponent<Attribute>().CanSkill = false;

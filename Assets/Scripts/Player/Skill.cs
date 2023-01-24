@@ -60,7 +60,7 @@ public class Skill : MonoBehaviour
     //AOE所属的攻击棋子
     public static void AttackPlayer(int X, int Y)
     {
-        Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 30f, Y * 15f);
+        Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 530f, Y * 15f);
         Ray ray = new Ray(position, -Vector3.up);
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo))
@@ -72,7 +72,7 @@ public class Skill : MonoBehaviour
     //AOE所属的攻击格子
     public static void AttackHex(int X, int Y)
     {
-        Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 1f, Y * 15f);
+        Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 501f, Y * 15f);
         Ray ray = new Ray(position, -Vector3.up);
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo))

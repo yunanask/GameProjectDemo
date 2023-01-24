@@ -13,6 +13,7 @@ public class HPBar : MonoBehaviour
     private int health;
     private int maxhealth;
     private int element;
+    Quaternion Q = Quaternion.Euler(50, 0, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,8 @@ public class HPBar : MonoBehaviour
             2 => Color.red,
             3 => Color.green,
             4 => Color.magenta,
-         };
+            _ => Color.blue,
+        };
         
     }
     void Update()
@@ -43,6 +45,7 @@ public class HPBar : MonoBehaviour
             transform.GetChild(0).GetChild(2).GetComponent<Image>().fillAmount = 1.0f * health / maxhealth;
             transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Text>().text = health.ToString()+'/' + maxhealth.ToString();
 
+            transform.rotation = Q;
         }
     }
 }

@@ -1270,6 +1270,7 @@ MonoBehaviour:
   - {fileID: 364649505888476406, guid: 4a9f4f86d1cce334da0b3d18c04aa86f, type: 3}
   - {fileID: 1329097055756348966, guid: 3a788ab13ca943745ad3fd01a4617544, type: 3}
   - {fileID: 2096910471125871005, guid: 0fd94e83c3f73064b91d183501c0891b, type: 3}
+  bullet: []
 --- !u!114 &-8829466550581814682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,7 +1300,7 @@ MonoBehaviour:
   health: 10
   MaxHealth: 10
   element: 1
-  moveWide: 4
+  moveWide: 12
   attackWide: 1
   attackDamage: 1
   landform: 1
@@ -1353,7 +1354,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2985546131517567250}
-  m_LocalRotation: {x: 0.523168, y: 0, z: 0, w: 0.85222954}
+  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
   m_LocalPosition: {x: 0, y: 0, z: 0.46}
   m_LocalScale: {x: 0.008, y: 0.008, z: 0.008}
   m_ConstrainProportionsScale: 1
@@ -1361,7 +1362,7 @@ RectTransform:
   - {fileID: 1217500041538806882}
   m_Father: {fileID: 495512}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 63.09, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.916, y: 3.35}

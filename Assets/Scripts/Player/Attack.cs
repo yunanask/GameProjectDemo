@@ -19,6 +19,8 @@ public class Attack : MonoBehaviour
     };
     //三种反应特效
     public GameObject[] ERs;
+    //两种炮车攻击特效
+    public GameObject[] bullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,24 @@ public class Attack : MonoBehaviour
             int element = kezhi(GetComponent<Attribute>().element,player.GetComponent<Attribute>().element);
             //造成伤害
             player.GetComponent<Attribute>().health -= GetComponent<Attribute>().attackDamage * element;
+            //炮车攻击特效
+            Quaternion Q = Quaternion.Euler(0, 0, 0);
+            GameObject particle;
+            if (transform.GetComponent<Attribute>().type == 3)
+            {
+                if (gameObject.tag == "Player")
+                {
+                    Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
+                    particle = Instantiate(bullet[0], transform.position + new Vector3(0, 10f, 0), Q);
+                    particle.GetComponent<BulletMove>().destination = player.transform.position;
+                }
+                else
+                {
+                    Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
+                    particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
+                    particle.GetComponent<BulletMove>().destination = player.transform.position;
+                }
+            }
 
         }
     }
@@ -74,6 +94,24 @@ public class Attack : MonoBehaviour
         anim.SetTrigger("attack");
         Quaternion Q = Quaternion.Euler(0, 0, 0);
         GameObject particle;
+        //炮车攻击特效
+        if (transform.GetComponent<Attribute>().type == 3)
+        {
+            if (gameObject.tag == "Player")
+            {
+                //electric
+                Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
+                particle = Instantiate(bullet[0], transform.position + new Vector3(0, 10f, 0), Q);
+                particle.GetComponent<BulletMove>().destination = hexcell.transform.position;
+            }
+            else
+            {
+                //fire
+                Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
+                particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
+                particle.GetComponent<BulletMove>().destination = hexcell.transform.position;
+            }
+        }
         //单元格上没带有元素时
         if (hexcell.GetComponent<Element>().Element_ == 0)
         {
