@@ -68,13 +68,13 @@ public class Attack : MonoBehaviour
                 {
                    // Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
                     particle = Instantiate(bullet[0], transform.position + new Vector3(0, 10f, 0), Q);
-                    particle.GetComponent<BulletMove>().destination = player.transform.position;
+                    particle.GetComponent<Wagon_Shoot>().Target = player.transform.position;
                 }
                 else
                 {
                    // Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
                     particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
-                    particle.GetComponent<BulletMove>().destination = player.transform.position;
+                    particle.GetComponent<Wagon_Shoot>().Target = player.transform.position;
                 }
             }
             //¹­¼ý¹¥»÷ÌØÐ§
@@ -116,14 +116,14 @@ public class Attack : MonoBehaviour
                 //electric
                 //Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
                 particle = Instantiate(bullet[0], transform.position + new Vector3(0, 10f, 0), Q);
-                particle.GetComponent<BulletMove>().destination = hexcell.transform.position;
+                particle.GetComponent<Wagon_Shoot>().Target = hexcell.transform.position;
             }
             else
             {
                 //fire
                 //Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
                 particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
-                particle.GetComponent<BulletMove>().destination = hexcell.transform.position;
+                particle.GetComponent<Wagon_Shoot>().Target = hexcell.transform.position;
             }
         }
         //¹­¼ý¹¥»÷ÌØÐ§
