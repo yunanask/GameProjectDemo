@@ -75,7 +75,7 @@ public class InitGame : MonoBehaviour
                 1 => inventory.player1,
                 _ => inventory.player1,
             };
-            Player.transform.localScale = new Vector3(5f, 5f, 5f);
+            Player.transform.localScale = new Vector3(3f, 3f, 3f);
             Vector3 pos = i switch
             {
                 6 => new Vector3(Sqrt3 * 10f * 11.5f, 501f, 45f),
@@ -115,7 +115,7 @@ public class InitGame : MonoBehaviour
 
         //ÊµÀý»¯µØÍ¼
         var grid = new GameObject { name = "Grid" };
-        Hex.transform.localScale = new Vector3(0.98f, 3f, 0.98f);
+        Hex.transform.localScale = new Vector3(1f, 1f, 1f);
         for (int i = 0; i < size_x; i++)
         {
             for (int j = 0; j < size_y; j++)
@@ -126,7 +126,7 @@ public class InitGame : MonoBehaviour
                 Position.Y = j;
                 if (Global.GetMapElement(i, j) == -1)
                 {
-                    Treasure.transform.localScale = new Vector3(8f, 3f, 8f);
+                    Treasure.transform.localScale = new Vector3(1f, 1f, 1f);
                     Instantiate(Treasure, new Vector3(i * Sqrt3 * 10f - j * 5f * Sqrt3, 503f, j * 15f), Q, Hexcell.transform);
                 }
             }
