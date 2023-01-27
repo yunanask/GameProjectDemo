@@ -21,16 +21,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PyroParticleMat
-  m_Shader: {fileID: -6465566751694194690, guid: 439d519d746cf344b947ddd848fe09f5,
+  m_Shader: {fileID: -6465566751694194690, guid: 4e78863205d6d1e4d9110cea93e0e10c,
     type: 3}
   m_ValidKeywords:
+  - _ENABLE_FOG_ON_TRANSPARENT
+  - _SURFACE_TYPE_TRANSPARENT
+  m_InvalidKeywords:
   - _DISABLE_DECALS
   - _DISABLE_SSR
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
-  - _ENABLE_FOG_ON_TRANSPARENT
-  - _SURFACE_TYPE_TRANSPARENT
-  m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -48,6 +48,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _SampleTexture2D_63cb39013ad64e13917d816c481096eb_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 9d908052e17d9e54db00c14953d2e748, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture:
         m_Texture: {fileID: 2800000, guid: 9d908052e17d9e54db00c14953d2e748, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -81,9 +85,12 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
+    - _Emission: 1
     - _Emissive: 3
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
+    - _Fade: 1
+    - _Opacity: 1
     - _OpaqueCullMode: 2
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -119,10 +126,12 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
+    - _BaseColor: {r: 2, g: 1.4499398, b: 0, a: 1}
     - _Color1: {r: 0.98039216, g: 0.746573, b: 0, a: 0}
     - _Color2: {r: 1, g: 0.22837156, b: 0, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
+    - _EdgeColor: {r: 2.9960785, g: 0.1882353, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _GradientRange: {r: 5, g: 15, b: 0, a: 0}
   m_BuildTextureStacks: []

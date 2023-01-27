@@ -331,7 +331,7 @@ public class Run : MonoBehaviour
                         int Y = Hex.GetComponent<Position>().Y;
                         Global.SelectPlayer(X, Y, GetComponent<Attribute>().attackWide, 6);
                         Global.SetElement(X, Y, 0); 
-                        Destroy(Hex.transform.GetChild(0).gameObject);
+                        Hex.transform.GetChild(0).GetComponent<TB_Manager>().Activate();
                         var UI = GameObject.FindWithTag("UI");
                         UI.GetComponent<Canvas>().enabled = false;
                         //GameObject hex = WhatIsDown();

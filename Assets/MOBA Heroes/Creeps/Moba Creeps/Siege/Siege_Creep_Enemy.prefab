@@ -106,6 +106,7 @@ MonoBehaviour:
   CanSkill: 1
   IsTurn: 0
   turn: 0
+  PorN: 0
 --- !u!114 &2991568264253144464
 MonoBehaviour:
   m_ObjectHideFlags: 0

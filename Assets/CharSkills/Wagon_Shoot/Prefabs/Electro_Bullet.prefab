@@ -9791,7 +9791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g: 9.8
-  elevationAngle: 45
+  elevationAngle: 30
   destination: {x: 0, y: 40, z: 50}
 --- !u!1 &4097008144339356819
 GameObject:

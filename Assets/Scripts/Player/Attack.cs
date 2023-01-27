@@ -19,7 +19,7 @@ public class Attack : MonoBehaviour
     };
     //三种反应特效
     public GameObject[] ERs;
-    //两种炮车攻击特效
+    //两种炮车攻击特效,两种弓箭攻击特效
     public GameObject[] bullet;
     // Start is called before the first frame update
     void Start()
@@ -66,18 +66,32 @@ public class Attack : MonoBehaviour
             {
                 if (gameObject.tag == "Player")
                 {
-                    Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
-                    particle = Instantiate(bullet[0], transform.position + new Vector3(0, 10f, 0), Q);
+                   // Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
+                    particle = Instantiate(bullet[0], transform.position + new Vector3(0, 12f, 0), Q);
                     particle.GetComponent<BulletMove>().destination = player.transform.position;
                 }
                 else
                 {
-                    Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
-                    particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
+                   // Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
+                    particle = Instantiate(bullet[1], transform.position + new Vector3(0, 12f, 0), Q);
                     particle.GetComponent<BulletMove>().destination = player.transform.position;
                 }
             }
-
+            //弓箭攻击特效
+            if (transform.GetComponent<Attribute>().type == 2)//弓箭手
+            {
+                Vector3 pos = (player.transform.position - transform.position).normalized;
+                if (gameObject.tag == "Player")
+                {
+                    particle = Instantiate(bullet[0], transform.position + new Vector3(0, 8f, 0) + 8 * pos, Q);
+                    particle.GetComponent<ArrowShoot>().target = player.transform.position;
+                }
+                else
+                {
+                    particle = Instantiate(bullet[1], transform.position + new Vector3(0, 8f, 0) + 8 * pos, Q);
+                    particle.GetComponent<ArrowShoot>().target = player.transform.position;
+                }
+            }
         }
     }
 
@@ -100,16 +114,34 @@ public class Attack : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 //electric
-                Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
-                particle = Instantiate(bullet[0], transform.position + new Vector3(0, 10f, 0), Q);
+                //Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
+                particle = Instantiate(bullet[0], transform.position + new Vector3(0, 12f, 0), Q);
                 particle.GetComponent<BulletMove>().destination = hexcell.transform.position;
             }
             else
             {
                 //fire
-                Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
-                particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
+                //Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
+                particle = Instantiate(bullet[1], transform.position + new Vector3(0, 12f, 0), Q);
                 particle.GetComponent<BulletMove>().destination = hexcell.transform.position;
+            }
+        }
+        //弓箭攻击特效
+        if (transform.GetComponent<Attribute>().type == 2)//弓箭手
+        {
+            Vector3 pos = (hexcell.transform.position - transform.position).normalized;
+
+            if (gameObject.tag == "Player")
+            {
+                //pyro
+                particle = Instantiate(bullet[0], transform.position + new Vector3(0, 8f, 0) + 8*pos, Q);
+                particle.GetComponent<ArrowShoot>().target = hexcell.transform.position;
+            }
+            else
+            {
+                //electric
+                particle = Instantiate(bullet[1], transform.position + new Vector3(0, 8f, 0) + 8*pos, Q);
+                particle.GetComponent<ArrowShoot>().target = hexcell.transform.position;
             }
         }
         //单元格上没带有元素时

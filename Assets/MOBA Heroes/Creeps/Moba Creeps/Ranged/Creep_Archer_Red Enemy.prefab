@@ -1597,6 +1597,9 @@ MonoBehaviour:
   - {fileID: 364649505888476406, guid: 4a9f4f86d1cce334da0b3d18c04aa86f, type: 3}
   - {fileID: 1329097055756348966, guid: 3a788ab13ca943745ad3fd01a4617544, type: 3}
   - {fileID: 2096910471125871005, guid: 0fd94e83c3f73064b91d183501c0891b, type: 3}
+  bullet:
+  - {fileID: 6671545614331669739, guid: 7cecc70fbc1b5504890bf62abf06f368, type: 3}
+  - {fileID: 6671545614331669739, guid: 081891a611cf8ee45a31d2b3abc48315, type: 3}
 --- !u!114 &6528019022917194733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1622,6 +1625,7 @@ MonoBehaviour:
   CanSkill: 1
   IsTurn: 0
   turn: 0
+  PorN: 0
 --- !u!114 &8418996458473050004
 MonoBehaviour:
   m_ObjectHideFlags: 0

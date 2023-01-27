@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DendroLeafMat_2
-  m_Shader: {fileID: -6465566751694194690, guid: 745b353dc3c7a0e4daabaf58f1858f5c,
+  m_Shader: {fileID: -6465566751694194690, guid: 2966f1d57d433d74cb4cbe337c908bc0,
     type: 3}
   m_ValidKeywords:
   - _ENABLE_FOG_ON_TRANSPARENT
@@ -29,8 +29,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _ColorTexture:
+        m_Texture: {fileID: 2800000, guid: 76e7aa496d7014e4f846d6b8b4d76585, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Mask:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 76e7aa496d7014e4f846d6b8b4d76585, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MskSeries:
@@ -75,6 +79,7 @@ Material:
     - _Emission: 0
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
+    - _Fade: 1
     - _OpaqueCullMode: 2
     - _RenderQueueType: 4
     - _SrcBlend: 1
@@ -102,6 +107,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
+    - _BaseColor: {r: 2, g: 2, b: 2, a: 1}
     - _Color: {r: 0.52156866, g: 1, b: 0.03529412, a: 0}
     - _Color_2: {r: 0.7568628, g: 0.5607843, b: 0.06274508, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
