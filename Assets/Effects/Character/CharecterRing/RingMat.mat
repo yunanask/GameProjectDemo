@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RingMat
-  m_Shader: {fileID: -6465566751694194690, guid: 807a0f26287ffe840b218dff9592c21a,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 807a0f26287ffe840b218dff9592c21a, type: 3}
   m_ValidKeywords:
   - _MATERIAL_AFFECTS_ALBEDO
   - _MATERIAL_AFFECTS_MASKMAP
@@ -99,7 +98,7 @@ Material:
     - _AffectSmoothness: 1
     - _AlphaClip: 0
     - _Blend: 0
-    - _Blur: 0.03
+    - _Blur: 0.02
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -119,7 +118,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DrawOrder: 30
     - _DstBlend: 0
-    - _Emissive: 6
+    - _Emissive: 20
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -146,7 +145,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.11642267, g: 0.19334598, b: 0.21462265, a: 0}
+    - _Color1: {r: 0.20220712, g: 0.7368314, b: 0.9056604, a: 0}
     - _Color2: {r: 0.43137255, g: 0, b: 0.8627451, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
