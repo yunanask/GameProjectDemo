@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
     public Vector3 mapOrigin;
     [Tooltip("The size of current map")]
     public Vector2 mapSize;
+    [Tooltip("If the camera is looking the front map")]
     public bool isLookFront = true;
 /*
     [Tooltip("The origin of front map(left bottom)")]
@@ -32,11 +33,15 @@ public class CameraController : MonoBehaviour
 */
     [Tooltip("The timespan of tracing animation"), Range(0.2f,2)]
     public float tracingAnimTime;
-
+    [Tooltip("The timespan of camera shake"), Range(0.05f, 0.5f)]
+    public float shakeAnimTime;
+    [Tooltip("The amplitude of camera shake"), Range(0,1)]
+    public float shakeAmplitude;
     //public float maxToleratedDistanceEdge = 0.1f;
     bool isMouse2Down;
     bool isTracing = false;//if the camera is tracing somthing.
     bool isMovable = true;//if the Camera receives user input
+    bool isAniming = false;//is the camera is performing local animating.
     GameObject tracingObject;//the object to trace.
     GameObject selectObject;
     float time;
@@ -130,24 +135,67 @@ public class CameraController : MonoBehaviour
         #endregion
 
     }
-    //This funtion lets the camera trace some GameObject. You CAN use this for camera animation.
-    public void Tracing(GameObject target)
+    #region Camera Tracing 
+    ///<summary>
+    ///This funtion lets the camera trace some GameObject. You CAN use this for camera animation.
+    ///Target is a object to trace, and callback is a callback function that will be executed after camera animation(can be null).
+    ///</summary>
+    public void Tracing(GameObject target, TracingCallback callback)
     {
         isTracing = false;//first stop the previous tracing.
         tracingObject = target;//set new target
-        StartCoroutine(TaracingProcess(transform.parent.position, target.transform.position));//start animation
+            StartCoroutine(TaracingProcess(transform.parent.position, target.transform.position, callback));//start animation
     }
-    IEnumerator TaracingProcess(Vector3 now, Vector3 target)
+
+    IEnumerator TaracingProcess(Vector3 now, Vector3 target, TracingCallback callback)
     {
+        isAniming = true;
         isMovable = false;//forbid user input for a while.
-        for(int i = 0; i < 30; i++)
+        float elapsed = 0;
+        while(elapsed < tracingAnimTime)
         {
-            transform.parent.position = i/30.0f * target + (30-i)/30.0f * now;
-            yield return new WaitForSecondsRealtime(tracingAnimTime/30.0f);
+            elapsed += Time.deltaTime;
+            transform.parent.position = (1-elapsed/tracingAnimTime) * now + elapsed/tracingAnimTime * target;
+            yield return 0;
         }
         isTracing = true;
         isMovable = true;
+        isAniming = false;
+        if(callback != null)
+        {
+            callback();
+        }
     }
+
+    //This is a delegete to be accuted after tracing.
+    public delegate void TracingCallback();
+
+    //This function lets the camera to trace next movable character.
+    public void TracingNext()
+    {
+        InitGame game = GameObject.Find("GameManage").GetComponent<InitGame>();
+        foreach (var character in game.getmyplayer)
+        {
+            if(character.GetComponent<Attribute>().IsTurn)//find the first movable character.
+            {
+                //trace the next movable character
+                Tracing(character, FindNext);
+                break;
+            }
+        }
+    }
+
+    void FindNext()
+    {    
+        //set selected character
+        clicked.lastPlayer = tracingObject;
+        //find and show character UI
+        var UI = GameObject.FindWithTag("UI");
+        UI.GetComponent<Canvas>().enabled = true;
+    }
+
+    #endregion
+    #region Camera Switch 
     //switch the camera to look at another side
     //this function controls the move process, You CAN call this this function to switch.
     public void SwitchSide()
@@ -169,6 +217,39 @@ public class CameraController : MonoBehaviour
         }   
     }*/
     //this functoin use double click to select a GameObject
+    #endregion
+    #region Camera Shake
+    //This function shakes the camera. Can be used for Skill Effects.
+    public void CameraShake()
+    {
+        if(!isAniming)
+            StartCoroutine(Shake());
+    }
+
+    //A simlest shake
+    IEnumerator Shake()
+    {
+        isAniming = true;
+        isMovable = false;
+        isTracing = false;
+        //Vector3 shakeVec = new Vector3(0,0,0);
+        Vector3 initial = transform.localPosition;
+        float dx,dy;
+        float elapsed = 0;
+        while(elapsed < shakeAnimTime)
+        {
+            dx = Random.Range(-1.0f, 1.0f) * shakeAmplitude;
+            dy = Random.Range(-1.0f, 1.0f) * shakeAmplitude;
+            elapsed += Time.deltaTime;
+            transform.localPosition += transform.up * dy;
+            transform.localPosition += transform.right * dx;
+            yield return 0;
+        }
+        transform.localPosition = initial;//reset position
+        isAniming = false;
+        isMovable = true;
+    }
+    #endregion
     void DoubleClick()
     {
         if(isMovable && Input.GetMouseButtonDown(0))
@@ -179,7 +260,7 @@ public class CameraController : MonoBehaviour
                 if(selectObject == hit.transform.gameObject && Time.realtimeSinceStartup - time < 0.2f)//if double click
                 {
                     //Debug.Log("DoubleClick!");
-                    Tracing(selectObject);
+                    Tracing(selectObject, null);
                 }else{
                     time = Time.realtimeSinceStartup;
                     selectObject = hit.transform.gameObject;

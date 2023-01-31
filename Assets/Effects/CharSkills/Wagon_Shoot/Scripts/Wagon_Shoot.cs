@@ -52,6 +52,7 @@ public class Wagon_Shoot : MonoBehaviour
         GameObject hit = GameObject.Instantiate(HitEffect, Target, new Quaternion(1,0,0,0));
         hit.transform.LookAt(transform);
         GameObject.DestroyImmediate(bullet);
+        Camera.main.GetComponent<CameraController>().CameraShake();
         StartCoroutine(Destroy());        
     }
 

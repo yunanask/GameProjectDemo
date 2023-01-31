@@ -729,8 +729,7 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-    m_Mesh: {fileID: -4814942593649100790, guid: 1fabc9182ac3ba84daa0b5b4368794e2,
-      type: 3}
+    m_Mesh: {fileID: -4814942593649100790, guid: 1fabc9182ac3ba84daa0b5b4368794e2, type: 3}
     m_MeshRenderer: {fileID: 0}
     m_SkinnedMeshRenderer: {fileID: 0}
     m_Sprite: {fileID: 0}
@@ -4882,6 +4881,7 @@ GameObject:
   - component: {fileID: 3869954592954938550}
   - component: {fileID: 3869954592954938549}
   - component: {fileID: 3869954592954938548}
+  - component: {fileID: -556262978201233697}
   m_Layer: 0
   m_Name: Pyro_Slash
   m_TagString: Untagged
@@ -9763,6 +9763,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-556262978201233697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3869954592954938547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616a88941fbfec244a87c0810a0b7a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4177171513709383090
 GameObject:
   m_ObjectHideFlags: 0

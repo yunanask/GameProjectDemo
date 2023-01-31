@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3588.88, g: 2517.5508, b: 2499.3945, a: 1}
+  m_IndirectSpecularColor: {r: 3619.0332, g: 2528.9746, b: 2474.375, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1684,7 +1684,9 @@ MonoBehaviour:
   mapOrigin: {x: 0, y: 500, z: 0}
   mapSize: {x: 200, y: 200}
   isLookFront: 1
-  tracingAnimTime: 0.5
+  tracingAnimTime: 0.3
+  shakeAnimTime: 0.2
+  shakeAmplitude: 0.7
   mainCamera: {fileID: 963194227}
 --- !u!114 &963194231
 MonoBehaviour:
