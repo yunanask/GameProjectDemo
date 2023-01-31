@@ -11,6 +11,7 @@ public class Element : MonoBehaviour
     public GameObject green;
     public GameObject blue;
     public GameObject yellow;
+    public GameObject Treasure;
     private static float Sqrt3 = Mathf.Sqrt(3);
     void Awake()
     {
@@ -63,7 +64,7 @@ public class Element : MonoBehaviour
         //ÔªËØ¸Ä±ä
         if (Element_!= Global.GetMapElement(X, Y))
         {
-            if (Element_ > 0)
+            if (Element_ > 0 || Element_ == -1)
             {
                 Destroy(transform.GetChild(0).gameObject);
             }
@@ -79,6 +80,11 @@ public class Element : MonoBehaviour
                     _ => red,
                 };
                 var element = Instantiate(element_, transform.position, Quaternion.Euler(0, 0, 0), transform);
+            }
+            if (Element_ == -1)
+            {
+                Treasure.transform.localScale = new Vector3(8f, 3f, 8f);
+                Instantiate(Treasure, new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 503f, Y * 15f), Quaternion.Euler(0, 0, 0), transform);
             }
         }
     }
