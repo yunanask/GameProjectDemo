@@ -14,17 +14,17 @@ public class Global
     public static int[] num = new int[7];
     public static bool[,] shuidian = new bool[size_x, size_y];
     public static bool[,] huodian = new bool[size_x, size_y];
-    //地形
+    //????
     private static int[,,] MapLandform = new int[size_x, size_y, 2];
-    //棋子位置
+    //????λ??
     private static int[,,] MapPlayer = new int[size_x, size_y, 2];
-    //元素
+    //???
     private static int[,,] MapElement = new int[size_x, size_y, 2];
-    //选中状态
+    //?????
     private static int[,] MapSelect = new int[size_x, size_y];
-    //该格由哪格到达
+    //?????????
     private static int[,] PlayerComeFrom = new int[size_x, size_y];
-    //移动数组
+    //???????
     private static int[,] PlayerAction = 
     {
         {1,1 },
@@ -34,7 +34,7 @@ public class Global
         {0,1 },
         {-1,-1 }
     };
-    //初始化
+    //?????
     public static void Init()
     {
         InitMap();
@@ -52,12 +52,12 @@ public class Global
                 MapPlayer[i, j, 1] = 0;
             }
         }
-        //读入地图
-        string[] RawString = System.IO.File.ReadAllLines(@"Data\Map.txt");  //路径
+        //??????
+        string[] RawString = System.IO.File.ReadAllLines(@"Data\Map.txt");  //·??
 
         for (int i = 0; i < RawString.Length; i++)     //
         {
-            string[] ss = RawString[i].Split(' ');     //截断字节
+            string[] ss = RawString[i].Split(' ');     //??????
             for(int j = 0; j < ss.Length; j++)
             {
                 MapLandform[i, j, 0] = (int)float.Parse(ss[j]);
@@ -67,11 +67,11 @@ public class Global
             }
         }
 
-        RawString = System.IO.File.ReadAllLines(@"Data\Element.txt");  //路径
+        RawString = System.IO.File.ReadAllLines(@"Data\Element.txt");  //·??
 
         for (int i = 0; i*2 < RawString.Length; i++)     //
         {
-            string[] ss = RawString[i].Split(' ');     //截断字节
+            string[] ss = RawString[i].Split(' ');     //??????
             for (int j = 0; j < ss.Length; j++)
             {
                 MapElement[i, j, 0] = (int)float.Parse(ss[j]);
@@ -79,7 +79,7 @@ public class Global
         }
         for (int i = 0; i*2 < RawString.Length; i++)     //
         {
-            string[] ss = RawString[i + RawString.Length/2].Split(' ');     //截断字节
+            string[] ss = RawString[i + RawString.Length/2].Split(' ');     //??????
             for (int j = 0; j < ss.Length; j++)
             {
                 MapElement[i, j, 1] = (int)float.Parse(ss[j]);
@@ -89,7 +89,7 @@ public class Global
 
     public static void SaveMap()
     {
-        //输出地图地形元素
+        //?????????????
         string text = "";
         for(int i = 0;i< size_x; i++)
         {
@@ -125,7 +125,7 @@ public class Global
 
     public static int IfCellSelected = 0;
 
-    //显示路径
+    //???·??
     public static void SelectMap(int X, int Y, int dis, int landform)
     {
         Queue<Tuple<int, int>> q = new Queue<Tuple<int, int>>();
@@ -165,7 +165,7 @@ public class Global
         MapSelect[X, Y] = 0;
         IfCellSelected = 1;
     }
-    //取消路径显示
+    //???·?????
     public static void SelectCancel()
     {
         for(int i = 0; i < size_x; i++)
@@ -178,17 +178,17 @@ public class Global
         }
         IfCellSelected = 0;
     }
-    //XY地形
+    //XY????
     public static int GetMapLandform(int X,int Y)
     {
         return MapLandform[X, Y, PandN];
     }
-    //XY元素
+    //XY???
     public static int GetMapElement(int X, int Y)
     {
         return MapElement[X, Y, PandN];
     }
-    //XY是否有棋子
+    //XY?????????
     public static int GetMapPlayer(int X, int Y)
     {
         return MapPlayer[X, Y, PandN];
@@ -203,22 +203,22 @@ public class Global
     {
         return size_y;
     }
-    //改变XY是否被选中
+    //???XY??????
     public static void ChangeSelected(int X,int Y,int Value)
     {
         MapSelect[X, Y] = Value;
     }
-    //是否被选中
+    //??????
     public static bool CellIfSelected(int X, int Y)
     {
         return MapSelect[X, Y] == 1;
     }
-    //改变XY是否有棋子
+    //???XY?????????
     public static void SetPlayer(int X,int Y,int Value)
     {
         MapPlayer[X, Y, PandN] = Value;
     }
-    //改变元素
+    //??????
     public static void SetElement(int X, int Y, int Value)
     {
         if (MapLandform[X, Y, PandN] != 4)
@@ -226,7 +226,7 @@ public class Global
             MapElement[X, Y, PandN] = Value;
         }
     }
-    //地形改变
+    //???θ??
     public static void HexcellUp(int X, int Y, int dis, int Addition)
     {
         Addition = (Addition % 8 + 8)%8;
@@ -252,7 +252,7 @@ public class Global
             }
         }
     }
-    //水流
+    //???
     public static IEnumerator Water()
     {
         for (int k = 3; k > -3; k--)
@@ -287,13 +287,13 @@ public class Global
             }
         }
     }
-    //选择可操作范围
-    //2普通攻击
-    //3技能一
-    //4技能二
-    //5技能三
-    //6产新兵
-    //7改地形
+    //?????????Χ
+    //2???????
+    //3?????
+    //4?????
+    //5??????
+    //6???±?
+    //7?????
     public static void SelectPlayer(int X, int Y, int dis,int type)
     {
         for (int i = 0; i < size_x; i++)
@@ -334,7 +334,7 @@ public class Global
         }
         IfCellSelected = type;
     }
-    //获取距离
+    //???????
     private static int Distance(int X,int Y)
     {
         if (X < 0)
@@ -347,7 +347,7 @@ public class Global
         return X - Y;
 
     }
-    //获取移动队列
+    //??????????
     public static Queue<int> GetPoint(int X, int Y, int X0, int Y0)
     {
         if (X == X0 && Y == Y0)
@@ -359,7 +359,7 @@ public class Global
         return q;
     }
 
-    //按元素获取范围
+    //?????????Χ
     public static void SelectElement(int X, int Y, int element)
     {
         Queue<Tuple<int, int>> q = new Queue<Tuple<int, int>>();
@@ -388,7 +388,7 @@ public class Global
             }
         }
     }
-    //随机箱子
+    //???????
     public static Tuple<int, int> randTreasure()
     {
         int X, Y,t=0;

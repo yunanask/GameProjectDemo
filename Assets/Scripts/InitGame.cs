@@ -20,8 +20,8 @@ public class InitGame : MonoBehaviour
     public GameObject count1, count2, count3, count4, count5, count6;
     public GameObject Treasure;
     private static float Sqrt3 = Mathf.Sqrt(3);
-    //µÐÎÒ¶ÓÁÐ
-    //ÎÊÐì»ÔÄÐ
+    //ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public List<GameObject> getmyplayer
     {
         set { myplayer = value; }
@@ -60,7 +60,7 @@ public class InitGame : MonoBehaviour
         Quaternion Q = Quaternion.Euler(0, 0, 0);
 
 
-        //ÊµÀý»¯ÈËÎï
+        //Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         var player = new GameObject { name = "Player" };
         for (int i = 1; i <= 6; i++)
         {
@@ -75,7 +75,7 @@ public class InitGame : MonoBehaviour
                 1 => inventory.player1,
                 _ => inventory.player1,
             };
-            Player.transform.localScale = new Vector3(5f, 5f, 5f);
+            Player.transform.localScale = new Vector3(3f, 3f, 3f);
             Vector3 pos = i switch
             {
                 6 => new Vector3(Sqrt3 * 10f * 11.5f, 501f, 45f),
@@ -91,7 +91,7 @@ public class InitGame : MonoBehaviour
         }
         players = GameObject.FindGameObjectsWithTag("Player");
         enemys = GameObject.FindGameObjectsWithTag("Enemy");
-        //±øÖÖÊýÁ¿ÏÔÊ¾
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
         foreach (var o in players)
         {
             o.GetComponent<Attribute>().IsTurn = true;
@@ -113,9 +113,9 @@ public class InitGame : MonoBehaviour
         team = myplayer;
 
 
-        //ÊµÀý»¯µØÍ¼
+        //Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
         var grid = new GameObject { name = "Grid" };
-        Hex.transform.localScale = new Vector3(0.98f, 3f, 0.98f);
+        Hex.transform.localScale = new Vector3(1f, 1f, 1f);
         for (int i = 0; i < size_x; i++)
         {
             for (int j = 0; j < size_y; j++)

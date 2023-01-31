@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 141846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.8275928, y: -4.2012777, z: -2.2006102}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 441848}
@@ -77,8 +77,8 @@ MonoBehaviour:
   - {fileID: 1329097055756348966, guid: 3a788ab13ca943745ad3fd01a4617544, type: 3}
   - {fileID: 2096910471125871005, guid: 0fd94e83c3f73064b91d183501c0891b, type: 3}
   bullet:
-  - {fileID: 4097008143912143578, guid: af8ba295629a17543bcbf4540b25dd7e, type: 3}
-  - {fileID: 2625367569564390354, guid: faa66e3ba1e89b946b3af457605f4341, type: 3}
+  - {fileID: 1026937620153115181, guid: 42104ed5495a03648ae8510e8ec84550, type: 3}
+  - {fileID: 1026937620153115181, guid: e6e1ece37cc4b314d984d9e2ba8723a9, type: 3}
   - {fileID: 1026937620153115181, guid: e6e1ece37cc4b314d984d9e2ba8723a9, type: 3}
   - {fileID: 1026937620153115181, guid: 42104ed5495a03648ae8510e8ec84550, type: 3}
 --- !u!114 &749209238381608921
