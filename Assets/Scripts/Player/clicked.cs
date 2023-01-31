@@ -14,6 +14,8 @@ public class clicked : MonoBehaviour
     public GameObject[] skillui;
     public static GameObject lastPlayer;
     public int dis = 3;
+    private GameObject yes;
+    private GameObject no;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,9 @@ public class clicked : MonoBehaviour
         int Y = HexcellDown.GetComponent<Position>().Y;
         Global.SetPlayer(X, Y, 1);
         gm = GameObject.Find("GameManage").GetComponent<InitGame>();
+        Debug.Log(GameObject.FindGameObjectsWithTag("LandformUp"));
+        yes = LandformUpButton.Yes;
+        no = LandformUpButton.No;
     }
 
     // Update is called once per frame
@@ -164,6 +169,10 @@ public class clicked : MonoBehaviour
         else
         //未选中状态
         {
+            //关闭地形改变ui
+            Global.SelectCancel();
+            yes.SetActive(false);
+            no.SetActive(false);
             //ui显示选中角色的信息
             if (gameObject.GetComponent<Attribute>().IsTurn)
             {
@@ -185,6 +194,7 @@ public class clicked : MonoBehaviour
                 //确定执行操作棋子
                 lastPlayer = gameObject;
             }
+
         }
         Global.MainSkill = 0;
     }

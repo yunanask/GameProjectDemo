@@ -180,6 +180,7 @@ MonoBehaviour:
   green: {fileID: 993081328129612792, guid: e92a9a94ce2fd4c4ca954e93dc8143b5, type: 3}
   blue: {fileID: 1472658942045177822, guid: f8b08c81654dcfc4981abf781621b8d4, type: 3}
   yellow: {fileID: 7697990583828901497, guid: 62a8fddbea83d2d4791d52f337c63d6d, type: 3}
+  Treasure: {fileID: 2161289890558334382, guid: a6fa716783c97144ebff71739456b8b4, type: 3}
 --- !u!114 &2656647289252184037
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -124,11 +124,11 @@ public class InitGame : MonoBehaviour
                 var Position = Hexcell.GetComponent<Position>();
                 Position.X = i;
                 Position.Y = j;
-                if (Global.GetMapElement(i, j) == -1)
+                /*if (Global.GetMapElement(i, j) == -1)
                 {
                     Treasure.transform.localScale = new Vector3(8f, 3f, 8f);
                     Instantiate(Treasure, new Vector3(i * Sqrt3 * 10f - j * 5f * Sqrt3, 503f, j * 15f), Q, Hexcell.transform);
-                }
+                }*/
             }
         }
     }
