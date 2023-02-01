@@ -129,7 +129,6 @@ public class InitGame : MonoBehaviour
                     Treasure.transform.localScale = new Vector3(8f, 3f, 8f);
                     Instantiate(Treasure, new Vector3(i * Sqrt3 * 10f - j * 5f * Sqrt3, 503f, j * 15f), Q, Hexcell.transform);
                 }*/
-
             }
         }
     }
