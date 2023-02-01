@@ -124,6 +124,8 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                 }
             }
             Global.MainSkill = 0;
+            //try to trace the next movable character.(added by GTZ)
+            Camera.main.GetComponent<CameraController>().TracingNext();
         }
     }
 
@@ -156,8 +158,6 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             //var ring = Instantiate(Ring, hex.transform.position + new Vector3(0, 1f, 0), Quaternion.Euler(0, 0, 0), hex.transform);
         }
 
-        //try to trace the next movable character.(added by GTZ)
-        Camera.main.GetComponent<CameraController>().TracingNext();
 
         //�ж��Ƿ������
         foreach (var o in gm.getteam)
@@ -213,6 +213,8 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             }
         }
         Global.MainSkill = 0;
+        //try to trace the next movable character.(added by GTZ)
+        Camera.main.GetComponent<CameraController>().TracingNext();
     }
     private static float Sqrt3 = Mathf.Sqrt(3);
     public GameObject Treasure;

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
-{   
+{
+    private InitGame gm;
     [Range(0,100)]
     public float cameraSpeed;
     [Range(0,100)]
@@ -49,6 +50,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        gm = GameObject.Find("GameManage").GetComponent<InitGame>();
         SettingsInit();
         TransformInit();
         mainCamera = Camera.main;
@@ -174,10 +176,31 @@ public class CameraController : MonoBehaviour
     public void TracingNext()
     {
         InitGame game = GameObject.Find("GameManage").GetComponent<InitGame>();
-        foreach (var character in game.getmyplayer)
+        foreach (var character in game.getteam)
         {
             if(character.GetComponent<Attribute>().IsTurn)//find the first movable character.
             {
+                if(Global.PandN != character.GetComponent<Attribute>().PorN)
+                {
+                    Global.SelectCancel();
+                    Global.PandN ^= 1;
+                    foreach (var o in gm.getmyplayer)
+                    {
+                        if (o.GetComponent<Attribute>().PorN == Global.PandN)
+                            o.SetActive(true);
+                        else
+                            o.SetActive(false);
+                    }
+                    foreach (var o in gm.getenemy)
+                    {
+                        if (o.GetComponent<Attribute>().PorN == Global.PandN)
+                            o.SetActive(true);
+                        else
+                            o.SetActive(false);
+                    }
+                    var UI = GameObject.FindWithTag("UI");
+                    UI.GetComponent<Canvas>().enabled = false;
+                }
                 //trace the next movable character
                 Tracing(character, FindNext);
                 break;

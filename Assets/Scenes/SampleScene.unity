@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3619.0332, g: 2528.9746, b: 2474.375, a: 1}
+  m_IndirectSpecularColor: {r: 6614.125, g: 5497.867, b: 6008.1484, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -189,7 +189,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &195833499
 GameObject:
@@ -455,7 +455,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &231739774
 PrefabInstance:
@@ -808,7 +808,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &356893516
 PrefabInstance:
@@ -915,38 +915,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1004673eeaeb77e4f98b5150303c3328, type: 3}
---- !u!1 &456392842
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 456392843}
-  m_Layer: 0
-  m_Name: CameraTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &456392843
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456392842}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 963194228}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &465770318 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8612422319641872494, guid: d5d3f7ea7957f924abfa7bca1e454616, type: 3}
@@ -1274,7 +1242,7 @@ RectTransform:
   - {fileID: 948648474}
   - {fileID: 1085314015}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1657,12 +1625,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.33759978, y: -0, z: -0, w: 0.9412898}
-  m_LocalPosition: {x: 0, y: 375, z: -306}
+  m_LocalPosition: {x: 40, y: 548.08, z: -3.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 456392843}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 39.461, y: 0, z: 0}
 --- !u!114 &963194230
 MonoBehaviour:
@@ -1676,17 +1644,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f854f9b6403c174684baefc27d24591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 52.6
-  cameraZoomSpeed: 47.2
-  focusDist: 50
-  distRange: {x: 20, y: 100}
-  maxToleratedProportion: 0.98
-  mapOrigin: {x: 0, y: 500, z: 0}
-  mapSize: {x: 200, y: 200}
-  isLookFront: 1
-  tracingAnimTime: 0.3
-  shakeAnimTime: 0.2
-  shakeAmplitude: 0.7
+  cameraSpeed: -80
+  cameraZoomSpeed: 30
+  cameraZoomMin: 20
+  cameraZoomMax: 100
+  maxToleratedDistanceEdge: 0.1
   mainCamera: {fileID: 963194227}
 --- !u!114 &963194231
 MonoBehaviour:
@@ -2137,10 +2099,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2492184201657572563, guid: 79e07585919dd664a9fa7f1327532d03, type: 3}
-      propertyPath: sharedProfile
-      value: 
-      objectReference: {fileID: 11400000, guid: 0a891136f2784cb48ad74103c4659d0f, type: 2}
     - target: {fileID: 2492184201657572564, guid: 79e07585919dd664a9fa7f1327532d03, type: 3}
       propertyPath: m_Name
       value: Sky and Fog Volume
@@ -3052,7 +3010,7 @@ RectTransform:
   - {fileID: 1664801929}
   - {fileID: 465770319}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

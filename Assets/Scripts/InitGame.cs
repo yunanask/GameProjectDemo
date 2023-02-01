@@ -115,7 +115,7 @@ public class InitGame : MonoBehaviour
 
         //ʵ������ͼ
         var grid = new GameObject { name = "Grid" };
-        Hex.transform.localScale = new Vector3(1f, 1f, 1f);
+        Hex.transform.localScale = new Vector3(1f, 2f, 1f);
         for (int i = 0; i < size_x; i++)
         {
             for (int j = 0; j < size_y; j++)

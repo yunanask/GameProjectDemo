@@ -473,7 +473,7 @@
         },
         "preventRotation": false
     },
-    "m_Path": "TA Shaders",
+    "m_Path": "Shader Graphs",
     "m_GraphPrecision": 1,
     "m_PreviewMode": 2,
     "m_OutputNode": {
@@ -625,7 +625,7 @@
     "isMainTexture": false,
     "useTilingAndOffset": false,
     "m_Modifiable": true,
-    "m_DefaultType": 0
+    "m_DefaultType": 2
 }
 
 {

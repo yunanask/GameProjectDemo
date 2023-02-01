@@ -15,7 +15,7 @@ public class Element : MonoBehaviour
     private static float Sqrt3 = Mathf.Sqrt(3);
     void Awake()
     {
-        //Ԫ�س�ʼ��
+        //ÔªËØ³õÊ¼»¯
         int X = GetComponent<Position>().X;
         int Y = GetComponent<Position>().Y;
         Element_ = Global.GetMapElement(X, Y);
@@ -61,7 +61,7 @@ public class Element : MonoBehaviour
         {
             return;
         }
-        //Ԫ�ظı�
+        //ÔªËØ¸Ä±ä
         if (Element_!= Global.GetMapElement(X, Y))
         {
             if (Element_ > 0 || Element_ == -1)
@@ -83,7 +83,7 @@ public class Element : MonoBehaviour
             }
             if (Element_ == -1)
             {
-                Treasure.transform.localScale = new Vector3(8f, 3f, 8f);
+                Treasure.transform.localScale = new Vector3(1f, 1f, 1f);
                 Instantiate(Treasure, new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 503f, Y * 15f), Quaternion.Euler(0, 0, 0), transform);
             }
         }
