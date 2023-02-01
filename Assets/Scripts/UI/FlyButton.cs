@@ -199,6 +199,8 @@ public class FlyButton : MonoBehaviour, IPointerDownHandler
             }
         }
         Global.MainSkill = 0;
+        //try to trace the next movable character.(added by GTZ)
+        Camera.main.GetComponent<CameraController>().TracingNext();
     }
 
     private static float Sqrt3 = Mathf.Sqrt(3);

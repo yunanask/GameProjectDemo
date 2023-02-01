@@ -56,7 +56,8 @@ public class Hexoutline : MonoBehaviour
         Outline outline = GetComponent<Outline>();
         outline.enabled = true;
         outline.color = 0;
-        if (Global.IfCellSelected == 4)
+        if (Global.IfCellSelected == 4 && 
+            Global.CellIfSelected(GetComponent<Position>().X, GetComponent<Position>().Y))
         {
             int X = GetComponent<Position>().X;
             int Y = GetComponent<Position>().Y;
@@ -68,6 +69,7 @@ public class Hexoutline : MonoBehaviour
                 if (dY < 0) continue;
                 if (dX >= Global.size_x) continue;
                 if (dY >= Global.size_y) continue;
+                if (Global.GetMapLandform(dX, dY) == 4) continue;
                 Show(dX, dY);
             }
         }
@@ -113,7 +115,7 @@ public class Hexoutline : MonoBehaviour
     //AOE专属鼠标移动到地图格上方材质改变
     void Show(int X, int Y)
     {
-        Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 1f, Y * 15f);
+        Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 501f, Y * 15f);
         Ray ray = new Ray(position, -Vector3.up);
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo))
@@ -127,7 +129,7 @@ public class Hexoutline : MonoBehaviour
     //AOE专属鼠标离开地图格上方材质改变
     void Hide(int X, int Y)
     {
-        Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 1f, Y * 15f);
+        Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 501f, Y * 15f);
         Ray ray = new Ray(position, -Vector3.up);
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo))

@@ -67,14 +67,14 @@ public class Attack : MonoBehaviour
                 if (gameObject.tag == "Player")
                 {
                    // Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
-                    particle = Instantiate(bullet[0], transform.position + new Vector3(0, 12f, 0), Q);
-                    particle.GetComponent<BulletMove>().destination = player.transform.position;
+                    particle = Instantiate(bullet[0], transform.position + new Vector3(0, 10f, 0), Q);
+                    particle.GetComponent<Wagon_Shoot>().Target = player.transform.position;
                 }
                 else
                 {
                    // Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
-                    particle = Instantiate(bullet[1], transform.position + new Vector3(0, 12f, 0), Q);
-                    particle.GetComponent<BulletMove>().destination = player.transform.position;
+                    particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
+                    particle.GetComponent<Wagon_Shoot>().Target = player.transform.position;
                 }
             }
             //¹­¼ý¹¥»÷ÌØÐ§
@@ -83,12 +83,12 @@ public class Attack : MonoBehaviour
                 Vector3 pos = (player.transform.position - transform.position).normalized;
                 if (gameObject.tag == "Player")
                 {
-                    particle = Instantiate(bullet[0], transform.position + new Vector3(0, 8f, 0) + 8 * pos, Q);
+                    particle = Instantiate(bullet[0], transform.position + new Vector3(0, 5f, 0) + 5 * pos, Q);
                     particle.GetComponent<ArrowShoot>().target = player.transform.position;
                 }
                 else
                 {
-                    particle = Instantiate(bullet[1], transform.position + new Vector3(0, 8f, 0) + 8 * pos, Q);
+                    particle = Instantiate(bullet[1], transform.position + new Vector3(0, 5f, 0) + 5 * pos, Q);
                     particle.GetComponent<ArrowShoot>().target = player.transform.position;
                 }
             }
@@ -115,15 +115,15 @@ public class Attack : MonoBehaviour
             {
                 //electric
                 //Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
-                particle = Instantiate(bullet[0], transform.position + new Vector3(0, 12f, 0), Q);
-                particle.GetComponent<BulletMove>().destination = hexcell.transform.position;
+                particle = Instantiate(bullet[0], transform.position + new Vector3(0, 10f, 0), Q);
+                particle.GetComponent<Wagon_Shoot>().Target = hexcell.transform.position;
             }
             else
             {
                 //fire
                 //Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
-                particle = Instantiate(bullet[1], transform.position + new Vector3(0, 12f, 0), Q);
-                particle.GetComponent<BulletMove>().destination = hexcell.transform.position;
+                particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
+                particle.GetComponent<Wagon_Shoot>().Target = hexcell.transform.position;
             }
         }
         //¹­¼ý¹¥»÷ÌØÐ§
@@ -134,13 +134,13 @@ public class Attack : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 //pyro
-                particle = Instantiate(bullet[0], transform.position + new Vector3(0, 8f, 0) + 8*pos, Q);
+                particle = Instantiate(bullet[0], transform.position + new Vector3(0, 5f, 0) + 5*pos, Q);
                 particle.GetComponent<ArrowShoot>().target = hexcell.transform.position;
             }
             else
             {
                 //electric
-                particle = Instantiate(bullet[1], transform.position + new Vector3(0, 8f, 0) + 8*pos, Q);
+                particle = Instantiate(bullet[1], transform.position + new Vector3(0, 5f, 0) + 5*pos, Q);
                 particle.GetComponent<ArrowShoot>().target = hexcell.transform.position;
             }
         }

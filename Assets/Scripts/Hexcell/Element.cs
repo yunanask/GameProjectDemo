@@ -83,7 +83,7 @@ public class Element : MonoBehaviour
             }
             if (Element_ == -1)
             {
-                Treasure.transform.localScale = new Vector3(8f, 3f, 8f);
+                Treasure.transform.localScale = new Vector3(1f, 1f, 1f);
                 Instantiate(Treasure, new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 503f, Y * 15f), Quaternion.Euler(0, 0, 0), transform);
             }
         }

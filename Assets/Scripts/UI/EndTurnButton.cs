@@ -18,8 +18,8 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
         gm = GameObject.Find("GameManage").GetComponent<InitGame>();
        
     }
-    //ÆÁÄ»ÖÐÑë»ØºÏÇÐ»»ÏÔÊ¾
-    //Ðì»ÔÄÐÐ´µÄ
+    //ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½Ð»ï¿½ï¿½ï¿½Ê¾
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½
     public static IEnumerator TurnUI(string s)
     {
         GameObject ui = GameObject.Find(s);
@@ -42,13 +42,13 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
         {
             return;
         }
-        //È«²¿Íê³É×Ô¶¯½áÊø»ØºÏ
+        //È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øºï¿½
         if (!player.GetComponent<Attribute>().IsTurn&&!player.GetComponent<Attribute>().CanMove&& !Global.move)
         {
 
             Global.SelectCancel();
             player = clicked.lastPlayer;
-            //·ÀÖ¹¶à´ÎÔËÐÐ
+            //ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             player.GetComponent<Attribute>().IsTurn = false;
             player.GetComponent<Attribute>().CanAttack = false;
             player.GetComponent<Attribute>().CanMove = true;
@@ -57,11 +57,11 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             GameObject Hex = player.GetComponent<Attribute>().WhatIsDown();
             bool turnover = true;
             //Destroy(Hex.transform.GetChild(Hex.transform.childCount - 1).gameObject);
-            //È¡Ïû¹âÈ¦
+            //È¡ï¿½ï¿½ï¿½ï¿½È¦
             player.transform.GetChild(3).gameObject.SetActive(false);
             var UI = GameObject.FindWithTag("UI");
             UI.GetComponent<Canvas>().enabled = false;
-            //ÏÔÊ¾Ê£Óà¹âÈ¦
+            //ï¿½ï¿½Ê¾Ê£ï¿½ï¿½ï¿½È¦
             foreach (var o in gm.getteam)
             {
                 GameObject hex = o.GetComponent<Attribute>().WhatIsDown();
@@ -70,7 +70,7 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                 //hex.transform.GetChild(0).gameObject.SetActive(true);
                 //var ring = Instantiate(Ring, hex.transform.position + new Vector3(0, 1f, 0), Quaternion.Euler(0, 0, 0), hex.transform);
             }
-            //ÅÐ¶ÏÊÇ·ñ¶¼Íê³ÉÁË
+            //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             foreach (var o in gm.getteam)
             {
                 if (o.GetComponent<Attribute>().IsTurn == true)
@@ -79,17 +79,17 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                 }
 
             }
-            //ÇÐ»»»ØºÏ
+            //ï¿½Ð»ï¿½ï¿½Øºï¿½
             if (turnover)
             {
-                //»Ö¸´ÍÁÄ¾¼¼ÄÜ
+                //ï¿½Ö¸ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½
                 GameObject tumu = GameObject.Find("constructionskill");
                 tumu.GetComponent<Button>().interactable = true;
-                //ÇÐ»»¶ÓÎé
+                //ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (gm.getteam == gm.getmyplayer) gm.getteam = gm.getenemy;
                 else gm.getteam = gm.getmyplayer;
                 gm.getturncount++;
-                //Ìí¼ÓÏä×Ó
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (gm.getturncount % 5 == 0)
                 {
                     Tuple<int, int> T = Global.randTreasure();
@@ -98,12 +98,12 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                         HexTreasure(T.Item1, T.Item2);
                     }
                 }
-                //»ØºÏÊý¼ÓÒ»
+                //ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½Ò»
                 GameObject text = GameObject.Find("TurnCountText");
                 text.GetComponent<Text>().text = "Turn:" + gm.getturncount.ToString();
                 //Debug.Log(gm.getturncount.ToString());
                 //Debug.Log("Now Turncount:"+gm.getturncount);
-                //»ØºÏÇÐ»»ÏÔÊ¾
+                //ï¿½Øºï¿½ï¿½Ð»ï¿½ï¿½ï¿½Ê¾
                 if (gm.getturncount % 2 == 1)
                 {
                     gm.getteam = gm.getmyplayer;
@@ -114,7 +114,7 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                     gm.getteam = gm.getenemy;
                     StartCoroutine(TurnUI("Enemy Turn"));
                 }
-                //ÏÔÊ¾¹âÈ¦
+                //ï¿½ï¿½Ê¾ï¿½ï¿½È¦
                 foreach (var o in gm.getteam)
                 {
                     o.GetComponent<Attribute>().IsTurn = true;
@@ -124,6 +124,8 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                 }
             }
             Global.MainSkill = 0;
+            //try to trace the next movable character.(added by GTZ)
+            Camera.main.GetComponent<CameraController>().TracingNext();
         }
     }
 
@@ -133,7 +135,7 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
 
         Global.SelectCancel();
         player = clicked.lastPlayer;
-        //·ÀÖ¹¶à´ÎÔËÐÐ
+        //ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         player.GetComponent<Attribute>().IsTurn = false;
         player.GetComponent<Attribute>().CanAttack = false;
         player.GetComponent<Attribute>().CanMove = true;
@@ -142,11 +144,11 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
         GameObject Hex = player.GetComponent<Attribute>().WhatIsDown();
         bool turnover = true;
         //Destroy(Hex.transform.GetChild(Hex.transform.childCount - 1).gameObject);
-        //È¡Ïû¹âÈ¦
+        //È¡ï¿½ï¿½ï¿½ï¿½È¦
         player.transform.GetChild(3).gameObject.SetActive(false);
         var UI = GameObject.FindWithTag("UI");
         UI.GetComponent<Canvas>().enabled = false;
-        //ÏÔÊ¾Ê£Óà¹âÈ¦
+        //ï¿½ï¿½Ê¾Ê£ï¿½ï¿½ï¿½È¦
         foreach (var o in gm.getteam)
         {
             GameObject hex = o.GetComponent<Attribute>().WhatIsDown();
@@ -155,7 +157,9 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             //hex.transform.GetChild(0).gameObject.SetActive(true);
             //var ring = Instantiate(Ring, hex.transform.position + new Vector3(0, 1f, 0), Quaternion.Euler(0, 0, 0), hex.transform);
         }
-        //ÅÐ¶ÏÊÇ·ñ¶¼Íê³ÉÁË
+
+
+        //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         foreach (var o in gm.getteam)
         {
             if (o.GetComponent<Attribute>().IsTurn == true)
@@ -164,17 +168,17 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             }
 
         }
-        //ÇÐ»»»ØºÏ
+        //ï¿½Ð»ï¿½ï¿½Øºï¿½
         if (turnover)
         {
-            //»Ö¸´ÍÁÄ¾¼¼ÄÜ
+            //ï¿½Ö¸ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½
             GameObject tumu = GameObject.Find("constructionskill");
             tumu.GetComponent<Button>().interactable = true;
-            //ÇÐ»»¶ÓÎé
+            //ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½
             if (gm.getteam == gm.getmyplayer) gm.getteam = gm.getenemy;
             else gm.getteam = gm.getmyplayer;
             gm.getturncount++;
-            //Ìí¼ÓÏä×Ó
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (gm.getturncount % 5 == 0)
             {
                 Tuple<int, int> T = Global.randTreasure();
@@ -183,12 +187,12 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                     HexTreasure(T.Item1, T.Item2);
                 }
             }
-            //»ØºÏÊý¼ÓÒ»
+            //ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½Ò»
             GameObject text = GameObject.Find("TurnCountText");
             text.GetComponent<Text>().text = "Turn:" + gm.getturncount.ToString();
             //Debug.Log(gm.getturncount.ToString());
             //Debug.Log("Now Turncount:"+gm.getturncount);
-            //»ØºÏÇÐ»»ÏÔÊ¾
+            //ï¿½Øºï¿½ï¿½Ð»ï¿½ï¿½ï¿½Ê¾
             if (gm.getturncount % 2 == 1)
             {
                 gm.getteam = gm.getmyplayer;
@@ -199,7 +203,7 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
                 gm.getteam = gm.getenemy;
                 StartCoroutine(TurnUI("Enemy Turn"));
             }
-            //ÏÔÊ¾¹âÈ¦
+            //ï¿½ï¿½Ê¾ï¿½ï¿½È¦
             foreach (var o in gm.getteam)
             {
                 o.GetComponent<Attribute>().IsTurn = true;
@@ -209,10 +213,12 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             }
         }
         Global.MainSkill = 0;
+        //try to trace the next movable character.(added by GTZ)
+        Camera.main.GetComponent<CameraController>().TracingNext();
     }
     private static float Sqrt3 = Mathf.Sqrt(3);
     public GameObject Treasure;
-    //Éú³É±¦²ØÏä×Ó
+    //ï¿½ï¿½ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     void HexTreasure(int X, int Y)
     {
         Vector3 position = new Vector3(X * Sqrt3 * 10f - Y * 5f * Sqrt3, 1f, Y * 15f);
