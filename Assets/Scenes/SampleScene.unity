@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 6608.174, g: 5610.7344, b: 6349.5156, a: 1}
+  m_IndirectSpecularColor: {r: 3673.7676, g: 2543.0781, b: 2412.918, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2105,6 +2105,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2492184201657572563, guid: 79e07585919dd664a9fa7f1327532d03, type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a891136f2784cb48ad74103c4659d0f, type: 2}
     - target: {fileID: 2492184201657572564, guid: 79e07585919dd664a9fa7f1327532d03, type: 3}
       propertyPath: m_Name
       value: Sky and Fog Volume
