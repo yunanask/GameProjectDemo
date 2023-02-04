@@ -231,21 +231,21 @@ public class Global
     //???¦È??
     public static void HexcellUp(int X, int Y, int dis, int Addition)
     {
-        Addition = (Addition % 8 + 8)%8;
-        for(int i = 0; i < size_x; i++)
+        Addition = (Addition % 7 + 7) % 7;
+        for (int i = 0; i < size_x; i++)
         {
-            for(int j = 0; j < size_y; j++)
+            for (int j = 0; j < size_y; j++)
             {
                 if (Distance(i - X, j - Y) <= dis)
                 {
                     MapLandform[i, j, PandN] += Addition;
-                    if (MapLandform[i, j, PandN] > 4)
+                    if (MapLandform[i, j, PandN] > 3)
                     {
-                        MapLandform[i, j, PandN] = MapLandform[i, j, PandN] - 8;
+                        MapLandform[i, j, PandN] = MapLandform[i, j, PandN] - 7;
                     }
                     if (MapLandform[i, j, PandN] < -3)
                     {
-                        MapLandform[i, j, PandN] = MapLandform[i, j, PandN] + 8;
+                        MapLandform[i, j, PandN] = MapLandform[i, j, PandN] + 7;
                     }
                     MapLandform[i, j, PandN ^ 1] = -MapLandform[i, j, PandN];
                     if (MapLandform[i, j, PandN] == 4)
@@ -302,7 +302,7 @@ public class Global
         {
             for (int j = 0; j < size_y; j++)
             {
-                if (Distance(i - X, j - Y) <= dis)
+                if (Distance(i - X, j - Y) <= dis && MapLandform[i, j, PandN] != 4)
                 {
 
                     if (type == 6)
