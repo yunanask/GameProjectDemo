@@ -127,11 +127,12 @@ public class Run : MonoBehaviour
                 GetComponent<Attribute>().health = 0;
                 return;
             }
-            /*if (Global.GetMapLandform(X, Y) == 4)
+            //边界条件
+            if (Global.GetMapLandform(X, Y) == 4)
             {
                 GetComponent<Attribute>().health = 0;
                 return;
-            }*/
+            }
             //浅坑受伤
             if (Global.GetMapLandform(X, Y) == -2)
             {
@@ -343,6 +344,7 @@ public class Run : MonoBehaviour
                         UI.GetComponent<Canvas>().enabled = false;
                         //GameObject hex = WhatIsDown();
                         //Instantiate(Ring, hex.transform.position + new Vector3(0, 1f, 0), Quaternion.Euler(0, 0, 0), hex.transform);
+                        GetComponent<Attribute>().CanMove = true;
                     }
                     damageif = true;
                 }
@@ -394,6 +396,10 @@ public class Run : MonoBehaviour
             {
                 continue;
             }
+            if (Global.GetMapLandform(dX, dY) == 4)
+            {
+                continue;
+            }
             canrun = true;
         }
         for (; canrun; )
@@ -417,7 +423,11 @@ public class Run : MonoBehaviour
             {
                 continue;
             }
-            if(Global.GetMapPlayer(dX, dY) == 0)
+            if (Global.GetMapLandform(dX, dY) == 4)
+            {
+                continue;
+            }
+            if (Global.GetMapPlayer(dX, dY) == 0)
             {
                 Queue<int> q = new Queue<int>();
                 q.Enqueue(way);
