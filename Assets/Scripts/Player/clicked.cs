@@ -8,6 +8,8 @@ using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 using TMPro;
 
+//点击选择攻击与技能对象释放
+
 public class clicked : MonoBehaviour
 {
     private InitGame gm;

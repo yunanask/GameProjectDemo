@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+//游戏初始化,回合控制
+
 public class InitGame : MonoBehaviour
 {
     [SerializeField] private GameObject Hex;

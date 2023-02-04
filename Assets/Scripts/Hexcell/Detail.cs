@@ -9,6 +9,8 @@ using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+//地形相关,新兵生成
+
 public class Detail : MonoBehaviour
 {
     public static int Back = 0;

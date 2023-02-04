@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//攻击与元素反应的实现
+
 public class Attack : MonoBehaviour
 { 
     //根号三
@@ -59,23 +61,24 @@ public class Attack : MonoBehaviour
             int element = kezhi(GetComponent<Attribute>().element,player.GetComponent<Attribute>().element);
             //造成伤害
             player.GetComponent<Attribute>().health -= GetComponent<Attribute>().attackDamage * element;
-            //炮车攻击特效
+            //炮车攻击特效与音效
             Quaternion Q = Quaternion.Euler(0, 0, 0);
             GameObject particle;
             if (transform.GetComponent<Attribute>().type == 3)
             {
-                if (gameObject.tag == "Player")
+                if (gameObject.tag == "Player")//我方
                 {
                    // Instantiate(bullet[3], transform.position + new Vector3(0, 10f, 0), Q);
                     particle = Instantiate(bullet[0], transform.position + new Vector3(0, 10f, 0), Q);
                     particle.GetComponent<Wagon_Shoot>().Target = player.transform.position;
                 }
-                else
+                else//敌方
                 {
                    // Instantiate(bullet[2], transform.position + new Vector3(0, 10f, 0), Q);
                     particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
                     particle.GetComponent<Wagon_Shoot>().Target = player.transform.position;
                 }
+                SoundManager.PlayAttack(2);
             }
             //弓箭攻击特效
             if (transform.GetComponent<Attribute>().type == 2)//弓箭手
@@ -91,6 +94,7 @@ public class Attack : MonoBehaviour
                     particle = Instantiate(bullet[1], transform.position + new Vector3(0, 5f, 0) + 5 * pos, Q);
                     particle.GetComponent<ArrowShoot>().target = player.transform.position;
                 }
+                SoundManager.PlayAttack(1);
             }
         }
     }
@@ -125,6 +129,7 @@ public class Attack : MonoBehaviour
                 particle = Instantiate(bullet[1], transform.position + new Vector3(0, 10f, 0), Q);
                 particle.GetComponent<Wagon_Shoot>().Target = hexcell.transform.position;
             }
+            SoundManager.PlayAttack(2);
         }
         //弓箭攻击特效
         if (transform.GetComponent<Attribute>().type == 2)//弓箭手
@@ -143,11 +148,20 @@ public class Attack : MonoBehaviour
                 particle = Instantiate(bullet[1], transform.position + new Vector3(0, 5f, 0) + 5*pos, Q);
                 particle.GetComponent<ArrowShoot>().target = hexcell.transform.position;
             }
+            SoundManager.PlayAttack(1);
         }
         //单元格上没带有元素时
         if (hexcell.GetComponent<Element>().Element_ == 0)
         {
-            Global.SetElement(X, Y, GetComponent<Attribute>().element);
+            int ele = GetComponent<Attribute>().element;
+            Global.SetElement(X, Y, ele);
+            //元素音效
+            if(ele == 1) SoundManager.Playyuansu(0);
+            if (ele == 2) SoundManager.Playyuansu(1);
+            if (ele == 3) SoundManager.Playyuansu(2);
+            int lei = Random.Range(3, 6);
+            if (ele == 4) SoundManager.Playyuansu(lei);
+
         }
         else
         {

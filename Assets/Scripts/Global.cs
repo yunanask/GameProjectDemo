@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//全局函数,地图初始化相关
+
 public class Global
 {
     public static int PandN = 0;

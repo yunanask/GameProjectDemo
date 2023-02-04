@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//移动,地形判定,获得宝箱
+
 public class Run : MonoBehaviour
 {
     private float Sqrt3 = Mathf.Sqrt(3);
@@ -51,6 +53,7 @@ public class Run : MonoBehaviour
     {
         int X = hexcell.GetComponent<Position>().X;
         int Y = hexcell.GetComponent<Position>().Y;
+
         GameObject hex = WhatIsDown();
         PostQ(Global.GetPoint(X, Y, hex.GetComponent<Position>().X, hex.GetComponent<Position>().Y));
         //hasmoved
@@ -169,7 +172,9 @@ public class Run : MonoBehaviour
             //没有位移结束
             if (Q.Count > 0)
             {
-                //移动动画
+                //移动音效
+                SoundManager.Playmove(GetComponent<Attribute>().type -1);
+
                 Global.move = true;
                 top = Q.Dequeue();
                 Global.SetPlayer(X, Y, 0);
