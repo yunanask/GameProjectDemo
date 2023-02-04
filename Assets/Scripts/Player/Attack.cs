@@ -61,8 +61,13 @@ public class Attack : MonoBehaviour
             int element = kezhi(GetComponent<Attribute>().element,player.GetComponent<Attribute>().element);
             //造成伤害
             player.GetComponent<Attribute>().health -= GetComponent<Attribute>().attackDamage * element;
-            //炮车攻击特效与音效
-            Quaternion Q = Quaternion.Euler(0, 0, 0);
+            //剑士攻击音效
+            if (transform.GetComponent<Attribute>().type == 1)
+            {
+                SoundManager.PlayAttack(0);
+            }
+                //炮车攻击特效与音效
+                Quaternion Q = Quaternion.Euler(0, 0, 0);
             GameObject particle;
             if (transform.GetComponent<Attribute>().type == 3)
             {
@@ -110,6 +115,13 @@ public class Attack : MonoBehaviour
         Animator anim = GetComponent<Animator>();
         transform.LookAt(hexcell.transform.position);
         anim.SetTrigger("attack");
+
+        //剑士攻击音效
+        if (transform.GetComponent<Attribute>().type == 1)
+        {
+            SoundManager.PlayAttack(0);
+        }
+
         Quaternion Q = Quaternion.Euler(0, 0, 0);
         GameObject particle;
         //炮车攻击特效
@@ -170,6 +182,9 @@ public class Attack : MonoBehaviour
             //单元格上的元素是被克制的就消除元素
             if (yuan == 2)
             {
+                //音效
+                SoundManager.Playfanying(0);
+
                 particle = Instantiate(ERs[0], hexcell.transform.position, Q);
                 particle.transform.parent = hexcell.transform;
                 GiveMesh(particle);
@@ -180,6 +195,8 @@ public class Attack : MonoBehaviour
                 //水电元素反应,造成伤害
                 if (GetComponent<Attribute>().element == 1 && hexcell.GetComponent<Element>().Element_ == 4)
                 {
+                    //音效
+                    SoundManager.Playfanying(2);
                     //特效
                     particle = Instantiate(ERs[2], hexcell.transform.position, Q);
                     particle.transform.parent = hexcell.transform;
@@ -190,6 +207,8 @@ public class Attack : MonoBehaviour
                 }
                 if (GetComponent<Attribute>().element == 4 && hexcell.GetComponent<Element>().Element_ == 1)
                 {
+                    //音效
+                    SoundManager.Playfanying(2);
                     //特效
                     particle = Instantiate(ERs[2], hexcell.transform.position, Q);
                     particle.transform.parent = hexcell.transform;
@@ -201,6 +220,8 @@ public class Attack : MonoBehaviour
                 //火电元素反应,改变地形
                 if (GetComponent<Attribute>().element == 4 && hexcell.GetComponent<Element>().Element_ == 2)
                 {
+                    //音效
+                    SoundManager.Playfanying(1);
                     //特效
                     particle = Instantiate(ERs[1], hexcell.transform.position, Q);
                     particle.transform.parent = hexcell.transform;
@@ -211,6 +232,8 @@ public class Attack : MonoBehaviour
                 }
                 if (GetComponent<Attribute>().element == 2 && hexcell.GetComponent<Element>().Element_ == 4)
                 {
+                    //音效
+                    SoundManager.Playfanying(1);
                     //特效
                     particle = Instantiate(ERs[1], hexcell.transform.position, Q);
                     particle.transform.parent = hexcell.transform;

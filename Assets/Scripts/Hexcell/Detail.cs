@@ -226,7 +226,7 @@ public class Detail : MonoBehaviour
             _ => Inventory.player1,
         };
         GameObject player = GameObject.Find("Player");
-        Player.transform.localScale = new Vector3(5f, 5f, 5f);
+        Player.transform.localScale = new Vector3(3f, 3f, 3f);
         var Player_ = Instantiate(Player, new Vector3(Sqrt3 * 10f * X - 5f * Sqrt3 * Y, 501f, 15f * Y), Q, player.transform);
         Player_.tag = clicked.lastPlayer.tag;
         //兵种数量改变显示

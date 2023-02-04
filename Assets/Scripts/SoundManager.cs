@@ -79,8 +79,8 @@ public class SoundManager : MonoBehaviour
     public static void PlayAttack(int type)
     {
         if (type == 0) audioSrc.PlayOneShot(attack0);
-        if (type == 1) audioSrc.PlayOneShot(attack1);
-        if (type == 2) audioSrc.PlayOneShot(attack2);
+        if (type == 1) audioSrc.PlayOneShot(attack1,1.5f);
+        if (type == 2) audioSrc.PlayOneShot(attack2,0.6f);
     }
 
     public static void Playbutton()
@@ -117,7 +117,7 @@ public class SoundManager : MonoBehaviour
     {
         if (type == 0) audioSrc.PlayOneShot(skill0);
         if (type == 1) audioSrc.PlayOneShot(skill1);
-        if (type == 2) audioSrc.PlayOneShot(skill2);
+        if (type == 2) audioSrc.PlayOneShot(skill2,5f);
     }
     public static void Playyuansu(int type)
     {

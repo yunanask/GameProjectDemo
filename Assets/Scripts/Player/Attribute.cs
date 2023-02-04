@@ -32,7 +32,7 @@ public class Attribute : MonoBehaviour
     public bool IsTurn = false;
     public int turn = 0;
     public int PorN = 0;
-
+    private int isplayed = 0;
     private InitGame gm;
     //棋子初始化
     void Start()
@@ -111,6 +111,9 @@ public class Attribute : MonoBehaviour
                     count.GetComponent<Text>().text = Global.num[6].ToString();
                 }
             }
+
+            //死亡音效
+            if (isplayed == 0) { SoundManager.Playcharacter(0); isplayed = 1; }
             //死亡动画
             Animator anim = gameObject.GetComponent<Animator>();
             anim.SetTrigger("dead");
@@ -122,6 +125,7 @@ public class Attribute : MonoBehaviour
             //销毁棋子实例
             Destroy(gameObject,1f);
             Debug.Log("死亡");
+
             /*if (HexcellDown != null)
             {
                 //如果有光环,删除脚下光环

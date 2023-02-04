@@ -22,6 +22,9 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
     //�����д��
     public static IEnumerator TurnUI(string s)
     {
+        //回合切换音效
+        SoundManager.Playgame(0);
+
         GameObject ui = GameObject.Find(s);
         if (ui != null)
         {

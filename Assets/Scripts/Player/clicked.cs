@@ -147,6 +147,8 @@ public class clicked : MonoBehaviour
                     }
                     if (action >= 0)
                     {
+                        //音效
+                        SoundManager.Playskill(2);
                         Quaternion Q = Quaternion.Euler(0, 0, 0);
                         lastPlayer.transform.LookAt(transform.position);
                         Instantiate(skillui[2], transform.position, Q);
@@ -188,13 +190,15 @@ public class clicked : MonoBehaviour
                 }
                 transform.GetChild(3).gameObject.SetActive(true);
                 SelectMap(X, Y, 0, 0);
-                //显示人物I
+                //显示人物UI
                 var UI = GameObject.FindWithTag("UI");
                 UI.GetComponent<Canvas>().enabled = true;
                 //UI.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "X: " + X.ToString() + "\nY: " + Y.ToString() + "\nHealth: " + GetComponent<Attribute>().health.ToString();
                 //SelectMap(X, Y, moveWide);
                 //确定执行操作棋子
                 lastPlayer = gameObject;
+                //选中音效
+                SoundManager.Playcharacter(1);
             }
 
         }

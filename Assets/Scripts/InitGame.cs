@@ -152,10 +152,12 @@ public class InitGame : MonoBehaviour
                 if(myplayer.Count <= 0)
                 {
                     Debug.Log("enemy win!");
+                    SoundManager.Playgame(2);
                 }
                 else
                 {
                     Debug.Log("you win!");
+                    SoundManager.Playgame(1);
                 }
                 GameEnd = true;
             }

@@ -331,6 +331,8 @@ public class Run : MonoBehaviour
                     //增加新兵
                     if (Hex.GetComponent<Element>().Element_ < 0)
                     {
+                        //获得宝箱音效
+                        SoundManager.Playmove(3);
                         //GetComponent<Attribute>().health += 100;
                         int X = Hex.GetComponent<Position>().X;
                         int Y = Hex.GetComponent<Position>().Y;
