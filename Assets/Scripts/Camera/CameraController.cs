@@ -140,6 +140,7 @@ public class CameraController : MonoBehaviour
 
         #region Camera Tracing
         if(isTracing){
+            if(tracingObject)
             transform.parent.position = tracingObject.transform.position;
         }
         #endregion
