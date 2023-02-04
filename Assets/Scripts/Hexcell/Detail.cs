@@ -178,6 +178,7 @@ public class Detail : MonoBehaviour
                     var UI = GameObject.FindWithTag("UI");
                     UI.GetComponent<Canvas>().enabled = true;
                 }
+                clicked.lastPlayer.GetComponent<Attribute>().CanMove = false;
             }
             //取消选中
             if (!Global.CellIfSelected(X, Y))
