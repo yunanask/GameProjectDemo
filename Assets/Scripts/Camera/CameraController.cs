@@ -9,7 +9,11 @@ public class CameraController : MonoBehaviour
     public float cameraSpeed;
     [Range(0,100)]
     public float cameraZoomSpeed;
-    [Tooltip("The distance between camera and target")]
+    [Tooltip("Controls the camer lifting when zooming"), Range(0,1)]
+    public float cameraZoomLifting;
+    [Tooltip("The basic camera height in metres"), Range(0,10)]
+    public float cameraBasicLift;
+    [Tooltip("The horizontal distance between camera and target")]
     public float focusDist = 50;
     [Tooltip("The range of distance")]
     public Vector2 distRange;
@@ -47,6 +51,7 @@ public class CameraController : MonoBehaviour
     GameObject selectObject;
     float time;
     public Camera mainCamera;
+    Quaternion basicRotation;
 
     private void Start()
     {
@@ -75,6 +80,7 @@ public class CameraController : MonoBehaviour
     {
         //set local transform
         transform.LookAt(transform.parent, Vector3.up);//look at the target
+        basicRotation = transform.rotation;
         transform.localPosition = Vector3.zero;//reset the distance
         transform.position -= transform.forward * focusDist;//move to the pre-setted distance.
         //set world taransform
@@ -124,10 +130,12 @@ public class CameraController : MonoBehaviour
         #endregion
 
         #region Camera Push and Pull
-        //mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView - scroll * cameraZoomSpeed, cameraZoomMin, cameraZoomMax);
-        focusDist += cameraZoomSpeed * Input.GetAxisRaw("Mouse ScrollWheel");
+        //Transform
+        focusDist -= cameraZoomSpeed * Input.GetAxisRaw("Mouse ScrollWheel");
         focusDist = Mathf.Clamp(focusDist, distRange.x, distRange.y);
-        transform.localPosition = -transform.forward * focusDist;
+        transform.localPosition = new Vector3(0, cameraBasicLift + cameraZoomLifting * focusDist*focusDist / 100f, -focusDist);
+        //Rotate
+        transform.LookAt(transform.parent, Vector3.up);
         #endregion
 
         #region Camera Tracing
