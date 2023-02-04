@@ -37,8 +37,12 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             ui.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
     }
-
-    void Update()
+    public static IEnumerator Tracenext()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Camera.main.GetComponent<CameraController>().TracingNext();
+    }
+        void Update()
     {
         player = clicked.lastPlayer;
         if (player == null)
@@ -128,7 +132,7 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             }
             Global.MainSkill = 0;
             //try to trace the next movable character.(added by GTZ)
-            Camera.main.GetComponent<CameraController>().TracingNext();
+            StartCoroutine(Tracenext());
         }
     }
 

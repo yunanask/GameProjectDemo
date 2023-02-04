@@ -102,7 +102,7 @@ public class SoundManager : MonoBehaviour
     {
         if (type == 0) audioSrc.PlayOneShot(game0);
         if (type == 1) audioSrc.PlayOneShot(game1);
-        if (type == 2) audioSrc.PlayOneShot(game2);
+        if (type == 2) audioSrc.PlayOneShot(game2,1.5f);
     }
     public static void Playmove(int type)
     {

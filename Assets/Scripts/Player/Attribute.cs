@@ -124,7 +124,7 @@ public class Attribute : MonoBehaviour
             }
             //Ïú»ÙÆå×ÓÊµÀı
             Destroy(gameObject,1f);
-            Debug.Log("ËÀÍö");
+            //Debug.Log("ËÀÍö");
 
             /*if (HexcellDown != null)
             {
