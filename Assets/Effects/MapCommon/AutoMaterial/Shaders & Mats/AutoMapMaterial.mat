@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AutoMapMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 74e4a366f8f28df45b6a00fd89e51a27,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 74e4a366f8f28df45b6a00fd89e51a27, type: 3}
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
   m_InvalidKeywords: []
