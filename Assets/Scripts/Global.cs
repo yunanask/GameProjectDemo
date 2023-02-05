@@ -21,7 +21,7 @@ public class Global
     //????¦Ë??
     private static int[,,] MapPlayer = new int[size_x, size_y, 2];
     //???
-    public static int[,,] MapElement = new int[size_x, size_y, 2];
+    private static int[,,] MapElement = new int[size_x, size_y, 2];
     //?????
     private static int[,] MapSelect = new int[size_x, size_y];
     //?????????
@@ -187,6 +187,11 @@ public class Global
     }
     //XY???
     public static int GetMapElement(int X, int Y)
+    {
+        return MapElement[X, Y, PandN];
+    }
+
+    public static int GetMapElementPlus(int X, int Y,int PandN)
     {
         return MapElement[X, Y, PandN];
     }

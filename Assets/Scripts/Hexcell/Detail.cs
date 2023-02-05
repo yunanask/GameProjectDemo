@@ -171,6 +171,7 @@ public class Detail : MonoBehaviour
             //Éú³ÉÐÂ±ø
             if (Global.IfCellSelected == 6)
             {
+                EndTurnButton.tr = true;
                 if (Global.CellIfSelected(X, Y))
                 {
                     Global.SelectCancel();
