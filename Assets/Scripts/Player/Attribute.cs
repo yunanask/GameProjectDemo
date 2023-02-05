@@ -48,6 +48,10 @@ public class Attribute : MonoBehaviour
         {
             health = MaxHealth;
         }
+        if (health == -1000000)
+        {
+            return;
+        }
         //棋子死亡
         if (health <= 0)
         {
@@ -81,6 +85,7 @@ public class Attribute : MonoBehaviour
                     GameObject count = GameObject.Find("CountText3");
                     count.GetComponent<Text>().text = Global.num[3].ToString();
                 }
+                health = -1000000;
             }
             //该棋子是敌方棋子
             if (gameObject.tag == "Enemy")
@@ -110,6 +115,7 @@ public class Attribute : MonoBehaviour
                     GameObject count = GameObject.Find("CountText6");
                     count.GetComponent<Text>().text = Global.num[6].ToString();
                 }
+                health = -1000000;
             }
 
             //死亡音效

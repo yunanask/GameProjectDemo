@@ -188,10 +188,29 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             //��������
             if (gm.getturncount % 5 == 0)
             {
-                Tuple<int, int> T = Global.randTreasure();
-                if (T.Item1 > -1)
+                bool tr = true;
+                for(int i = 0; i < Global.size_x; i++)
                 {
-                    HexTreasure(T.Item1, T.Item2);
+                    for (int j = 0; i < Global.size_y; j++)
+                    {
+                        if(Global.MapElement[i,j,0]==-1|| Global.MapElement[i, j, 1] == -1)
+                        {
+                            tr = false;
+                            break;
+                        }
+                        if (tr == false)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (tr)
+                {
+                    Tuple<int, int> T = Global.randTreasure();
+                    if (T.Item1 > -1)
+                    {
+                        HexTreasure(T.Item1, T.Item2);
+                    }
                 }
             }
             //�غ�����һ
