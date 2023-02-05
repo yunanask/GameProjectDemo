@@ -175,8 +175,8 @@ public class clicked : MonoBehaviour
         {
             //关闭地形改变ui
             Global.SelectCancel();
-            yes.SetActive(false);
-            no.SetActive(false);
+            if(yes) yes.SetActive(false);
+            if(no) no.SetActive(false);
             //ui显示选中角色的信息
             if (gameObject.GetComponent<Attribute>().IsTurn)
             {
