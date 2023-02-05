@@ -1300,7 +1300,7 @@ MonoBehaviour:
   health: 10
   MaxHealth: 10
   element: 1
-  moveWide: 12
+  moveWide: 7
   attackWide: 1
   attackDamage: 1
   landform: 1
