@@ -13,7 +13,7 @@ public class Restart : MonoBehaviour
     }
     private void Onclick()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
 }

@@ -240,7 +240,7 @@ public class Run : MonoBehaviour
                 else
                 //高山停止,无后续动作
                 {
-                    if (Global.GetMapLandform(X, Y) > 1)
+                    if (Global.GetMapLandform(X, Y) > 1&& Global.GetMapLandform(X, Y) != 4)
                     {
                         GetComponent<Attribute>().health -= (Q.Count + 1) * Global.GetMapLandform(X, Y);
                         for (; Q.Count > 0;)

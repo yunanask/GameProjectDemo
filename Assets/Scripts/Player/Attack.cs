@@ -266,7 +266,7 @@ public class Attack : MonoBehaviour
                 Global.shuidian[X, Y] = true;
                 Debug.Log(X.ToString() + " " + Y.ToString());
             }
-            Debug.Log(hitInfo.collider.gameObject);
+            //Debug.Log(hitInfo.collider.gameObject);
         }
         //搜索周围可递归的六个单元格进行回溯
         for (int i = 0; i < 6; i++)
