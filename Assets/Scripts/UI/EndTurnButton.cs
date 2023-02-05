@@ -9,6 +9,7 @@ using TMPro;
 
 public class EndTurnButton : MonoBehaviour, IPointerDownHandler
 {
+    public static bool tr = false;
     private InitGame gm;
     private GameObject player;
     public GameObject Ring;
@@ -188,22 +189,6 @@ public class EndTurnButton : MonoBehaviour, IPointerDownHandler
             //��������
             if (gm.getturncount % 5 == 0)
             {
-                bool tr = true;
-                for(int i = 0; i < Global.size_x; i++)
-                {
-                    for (int j = 0; i < Global.size_y; j++)
-                    {
-                        if(Global.MapElement[i,j,0]==-1|| Global.MapElement[i, j, 1] == -1)
-                        {
-                            tr = false;
-                            break;
-                        }
-                        if (tr == false)
-                        {
-                            break;
-                        }
-                    }
-                }
                 if (tr)
                 {
                     Tuple<int, int> T = Global.randTreasure();
